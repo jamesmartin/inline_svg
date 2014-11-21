@@ -1,13 +1,13 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'inline-svg/version'
+require 'inline_svg/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "inline-svg"
+  spec.name          = "inline_svg"
   spec.version       = InlineSvg::VERSION
   spec.authors       = ["James Martin"]
-  spec.email         = ["inline-svg@jmrtn.com"]
+  spec.email         = ["inline_svg@jmrtn.com"]
   spec.summary       = %q{Embeds an SVG document, inline.}
   spec.description   = %q{Get an SVG into your view and then style it with CSS.}
   spec.homepage      = ""
