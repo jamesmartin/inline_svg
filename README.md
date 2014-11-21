@@ -4,7 +4,7 @@ Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
 embedding](http://css-tricks.com/using-svg/) it inline in the HTML.
 
-This gem is a little helper method that reads an SVG document from a Rails
+This gem is a little helper method (`inline_svg`) that reads an SVG document from a Rails
 image directory, applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
@@ -27,6 +27,7 @@ Or install it yourself as:
 Currently, this little helper only works in the context of a Rails app. Here's
 an example of embedding an SVG document and applying a 'class' attribute in
 HAML:
+
 ```
  !!! 5 
   %html
@@ -35,7 +36,7 @@ HAML:
     %body
       %h1 Embedded SVG Documents
       %div
-        = embedded_svg "some-document.svg", class: 'some-class'
+        = inline_svg "some-document.svg", class: 'some-class'
 ```
 
 Here's some CSS to target the SVG, resize it and turn it an attractive shade of
