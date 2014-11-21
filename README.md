@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'inline_svg'
+    gem 'inline-svg'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install inline_svg
+    $ gem install inline-svg
 
 ## Usage
 
@@ -22,7 +22,7 @@ TODO: Write usage instructions here
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/inline_svg/fork )
+1. Fork it ( http://github.com/<my-github-username>/inline-svg/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
