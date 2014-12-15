@@ -24,6 +24,10 @@ Or install it yourself as:
 
 ## Usage
 
+```
+inline_svg(file_name, options={})
+```
+
 Currently, this little helper only works in the context of a Rails app. Here's
 an example of embedding an SVG document and applying a 'class' attribute in
 HAML:
@@ -52,6 +56,17 @@ blue:
 }
 ```
 
+## Options
+* `class`: set a CSS class attribute on the SVG
+* `title`: add a \<title\> node inside the top level of the SVG document
+* `desc`: add a \<desc\> node inside the top level of the SVG document
+
+Example:
+
+```
+inline_svg("some-document.svg", class: 'some-class', title: 'Some Title', desc:
+'Some interesting description')
+```
 
 ## Contributing
 
