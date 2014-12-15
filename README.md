@@ -60,12 +60,13 @@ blue:
 * `class`: set a CSS class attribute on the SVG
 * `title`: add a \<title\> node inside the top level of the SVG document
 * `desc`: add a \<desc\> node inside the top level of the SVG document
+* `nocomment`: remove comment tags from svg
 
 Example:
 
 ```
 inline_svg("some-document.svg", class: 'some-class', title: 'Some Title', desc:
-'Some interesting description')
+'Some interesting description', nocomment: true)
 ```
 
 ## Contributing
