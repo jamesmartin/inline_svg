@@ -44,10 +44,7 @@ SVG
         
         it { is_expected.to eql example_svg }
       
-      end # 'and additional options'
-    
-    end # 'when passed a SVG file'
-    
-  end #inline_svg
-  
-end # describe InlineSvg::ActionView::Helpers
+      end
+    end
+  end
+end
