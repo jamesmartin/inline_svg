@@ -32,7 +32,7 @@ SVG
       
       it { is_expected.to eql example_svg }
       
-      context 'and additional options' do
+      context 'and title and description options' do
       
         subject { mock_helper.inline_svg( 'mocked_path', title: 'A title', desc: 'A desc' ) }
         let(:example_svg) {
