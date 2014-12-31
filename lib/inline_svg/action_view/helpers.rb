@@ -4,10 +4,16 @@ require 'nokogiri'
 require 'loofah'
 
 module InlineSvg
+  class FindsFiles
+    def self.named(filename)
+      File.read(Rails.root.join('app', 'assets', 'images', filename))
+    end
+  end
+
   module ActionView
     module Helpers
       def inline_svg(filename, options={})
-        file = File.read(Rails.root.join('app', 'assets', 'images', filename))
+        file = FindsFiles.named(filename)
         doc = Loofah::HTML::DocumentFragment.parse file
 
         # remove comments from svg file
