@@ -23,10 +23,10 @@ describe InlineSvg::ActionView::Helpers do
     
     context 'when passed a SVG file' do
       
-      subject { mock_helper.inline_svg( 'mocked_path' ) }
+      subject { mock_helper.inline_svg( 'mocked_path' ).strip }
       let(:example_svg) {
 <<-SVG.sub(/\n$/, '')
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>
+<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
 SVG
       }
       
@@ -34,16 +34,29 @@ SVG
       
       context 'and title and description options' do
       
-        subject { mock_helper.inline_svg( 'mocked_path', title: 'A title', desc: 'A desc' ) }
+        subject { mock_helper.inline_svg( 'mocked_path', title: 'A title', desc: 'A desc' ).strip }
         let(:example_svg) {
 <<-SVG.sub(/\n$/, '')
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><title>A title</title>
+<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --><title>A title</title>
 <desc>A desc</desc></svg>
 SVG
         }
         
         it { is_expected.to eql example_svg }
       
+      end
+
+      context 'and the "nocomment" option' do
+
+        subject { mock_helper.inline_svg( 'mocked_path', nocomment: true).strip }
+        let(:example_svg) {
+<<-SVG.sub(/\n$/, '')
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
+SVG
+        }
+
+        it { is_expected.to eql example_svg }
+
       end
     end
   end
