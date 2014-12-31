@@ -8,11 +8,11 @@ module InlineSvg
     module Helpers
       def inline_svg(filename, options={})
         file = File.read(Rails.root.join('app', 'assets', 'images', filename))
-        doc = Nokogiri::HTML::DocumentFragment.parse file
+        doc = Loofah::HTML::DocumentFragment.parse file
 
         # remove comments from svg file
         if options[:nocomment].present?
-          doc = Loofah.fragment(doc.to_s).scrub!(:strip)
+          doc.scrub!(:strip)
         end
 
         svg = doc.at_css 'svg'
