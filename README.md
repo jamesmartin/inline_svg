@@ -60,7 +60,8 @@ blue:
 * `class`: set a CSS class attribute on the SVG
 * `title`: add a \<title\> node inside the top level of the SVG document
 * `desc`: add a \<desc\> node inside the top level of the SVG document
-* `nocomment`: remove comment tags from svg
+* `nocomment`: remove comment tags (and other unsafe/unknown tags) from svg
+  (uses the [Loofah](https://github.com/flavorjones/loofah) gem)
 
 Example:
 
