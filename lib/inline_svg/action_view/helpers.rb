@@ -19,16 +19,15 @@ module InlineSvg
         if options[:class]
           svg['class'] = options[:class]
         end
-        if options[:title].present?
-          title = Nokogiri::XML::Node.new("title", doc)
-          title.content = options[:title]
-          svg.add_child title
+
+        %i(title desc).each do |child|
+          if options[child].present?
+            node = Nokogiri::XML::Node.new(child.to_s, doc)
+            node.content = options[child]
+            svg.add_child node
+          end
         end
-        if options[:desc].present?
-          desc = Nokogiri::XML::Node.new("desc", doc)
-          desc.content = options[:desc]
-          svg.add_child desc
-        end
+
         doc.to_html.html_safe
       end
     end
