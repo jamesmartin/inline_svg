@@ -1,6 +1,4 @@
 require 'inline_svg'
-require 'nokogiri'
-require 'active_support/core_ext'
 
 describe InlineSvg::ActionView::Helpers do
 
