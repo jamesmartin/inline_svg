@@ -7,8 +7,11 @@ module InlineSvg
   module ActionView
     module Helpers
       def inline_svg(filename, options={})
-        file = AssetFile.named(filename)
-        doc = Loofah::HTML::DocumentFragment.parse file
+        begin
+          doc = Loofah::HTML::DocumentFragment.parse(AssetFile.named(filename))
+        rescue InlineSvg::AssetFile::FileNotFound
+          return "<svg><!-- SVG file not found: '#{filename}' --></svg>".html_safe
+        end
 
         if options[:nocomment].present?
           doc.scrub!(:strip)

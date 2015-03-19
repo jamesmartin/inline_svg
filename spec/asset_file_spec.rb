@@ -8,4 +8,12 @@ describe InlineSvg::AssetFile do
 
     expect(InlineSvg::AssetFile.named('some filename')).to include('This is a test')
   end
+
+  it "complains when the file is not found" do
+    allow(InlineSvg::FindsAssets).to receive(:by_filename).and_return('/this/path/does/not/exist')
+
+    expect do
+      InlineSvg::AssetFile.named('some missing file')
+    end.to raise_error InlineSvg::AssetFile::FileNotFound
+  end
 end

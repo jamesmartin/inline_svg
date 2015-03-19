@@ -6,6 +6,15 @@ describe InlineSvg::ActionView::Helpers do
 
   describe "#inline_svg" do
     
+    context "when passed the name of an SVG that does not exist" do
+      it "returns an empty, html safe, SVG document as a placeholder" do
+        allow(InlineSvg::AssetFile).to receive(:named).with('some-missing-file').and_raise(InlineSvg::AssetFile::FileNotFound.new)
+        output = helper.inline_svg('some-missing-file')
+        expect(output).to eq "<svg><!-- SVG file not found: 'some-missing-file' --></svg>"
+        expect(output).to be_html_safe
+      end
+    end
+
     context "when passed an existing SVG file" do
 
       context "and no options" do
