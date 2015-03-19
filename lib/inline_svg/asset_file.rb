@@ -1,7 +1,8 @@
 module InlineSvg
   class AssetFile
     def self.named(filename)
-      File.read(Rails.root.join('app', 'assets', 'images', filename))
+      asset_path = FindsAssets.by_filename(filename)
+      File.read(asset_path)
     end
   end
 end
