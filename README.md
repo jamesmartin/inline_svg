@@ -85,3 +85,8 @@ inline_svg("some-document.svg", class: 'some-class', title: 'Some Title', desc:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+Please write tests for anything you change, add or fix.
+There is a [basic Rails
+app](http://github.com/jamesmartin/inline_svg_test_app) that demonstrates the
+gem's functionality in use.
