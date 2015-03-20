@@ -4,19 +4,15 @@ require 'nokogiri'
 require 'loofah'
 
 module InlineSvg
-  class FindsFiles
-    def self.named(filename)
-      File.read(Rails.root.join('app', 'assets', 'images', filename))
-    end
-  end
-
   module ActionView
     module Helpers
       def inline_svg(filename, options={})
-        file = FindsFiles.named(filename)
-        doc = Loofah::HTML::DocumentFragment.parse file
+        begin
+          doc = Loofah::HTML::DocumentFragment.parse(AssetFile.named(filename))
+        rescue InlineSvg::AssetFile::FileNotFound
+          return "<svg><!-- SVG file not found: '#{filename}' --></svg>".html_safe
+        end
 
-        # remove comments from svg file
         if options[:nocomment].present?
           doc.scrub!(:strip)
         end
