@@ -32,9 +32,12 @@ Or install it yourself as:
 ```
 inline_svg(file_name, options={})
 ```
+The `file_name` can be a full path to a file, or just the file's basename. The
+actual path of the file on disk is resolved using
+[Sprockets](://github.com/sstephenson/sprockets), which means you can pre-process
+and fingerprint your SVG files like any other Rails asset.
 
-Currently, this little helper only works in the context of a Rails app. Here's
-an example of embedding an SVG document and applying a 'class' attribute in
+Here's an example of embedding an SVG document and applying a 'class' attribute in
 HAML:
 
 ```
