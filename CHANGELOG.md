@@ -3,9 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-### Changed
-- Use Sprockets to find the canonical asset paths (post asset-pipeline).
-- Refactored most of the helper to delegate to collaborators.
+Nothing.
+
+## [0.3.0] - 2015-03-20
+### Added
+- Use Sprockets to find canonical asset paths (fingerprinted, post asset-pipeline).
 
 ## [0.2.0] - 2014-12-31
 ### Added
