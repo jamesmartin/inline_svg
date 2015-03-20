@@ -1,4 +1,4 @@
-# Inline Svg
+# Inline SVG
 
 Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
