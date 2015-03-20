@@ -8,6 +8,11 @@ This gem is a little helper method (`inline_svg`) that reads an SVG document fro
 image directory, applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
+## Changelog
+
+All notable changes to this project are documented in the
+[CHANGELOG](https://github.com/jamesmartin/inline_svg/blob/master/CHANGELOG.md).
+
 ## Installation
 
 Add this line to your application's Gemfile:
