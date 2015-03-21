@@ -75,7 +75,8 @@ module InlineSvg
       end
     end
 
-    def self.generate_html_from(document, transform_params)
+    def self.generate_html_from(svg_file, transform_params)
+      document = Nokogiri::XML::Document.parse(svg_file)
       Transformations.lookup(transform_params).reduce(document) do |doc, transformer|
         transformer.transform(doc)
       end.to_html
@@ -86,12 +87,12 @@ module InlineSvg
     module Helpers
       def inline_svg(filename, transform_params={})
         begin
-          doc = Nokogiri::XML::Document.parse(AssetFile.named(filename))
+          svg_file = AssetFile.named(filename)
         rescue InlineSvg::AssetFile::FileNotFound
           return "<svg><!-- SVG file not found: '#{filename}' --></svg>".html_safe
         end
 
-        TransformPipeline.generate_html_from(doc, transform_params).html_safe
+        InlineSvg::TransformPipeline.generate_html_from(svg_file, transform_params).html_safe
       end
     end
   end
