@@ -91,8 +91,7 @@ module InlineSvg
           return "<svg><!-- SVG file not found: '#{filename}' --></svg>".html_safe
         end
 
-        doc = TransformPipeline.generate_html_from(doc, transform_params)
-        doc.html_safe
+        TransformPipeline.generate_html_from(doc, transform_params).html_safe
       end
     end
   end
