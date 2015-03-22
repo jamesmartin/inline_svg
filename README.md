@@ -66,6 +66,9 @@ blue:
 
 ## Options
 * `class`: set a CSS class attribute on the SVG
+* `size`: set width and height attributes on the SVG
+  * Supplied as "{Width} * {Height}" or "{Number}", so "30px*45px" becomes `width="30px"`
+    and `height="45"`, and "50%" becomes `width="50"` and `height="50"`
 * `title`: add a \<title\> node inside the top level of the SVG document
 * `desc`: add a \<desc\> node inside the top level of the SVG document
 * `nocomment`: remove comment tags (and other unsafe/unknown tags) from svg
@@ -74,7 +77,7 @@ blue:
 Example:
 
 ```
-inline_svg("some-document.svg", class: 'some-class', title: 'Some Title', desc:
+inline_svg("some-document.svg", class: 'some-class', size: '30% * 20%', title: 'Some Title', desc:
 'Some interesting description', nocomment: true)
 ```
 

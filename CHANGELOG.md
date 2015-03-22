@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 Nothing.
 
+## [0.4.0] - 2015-03-22
+### Added
+- A new option: `size` adds width and height attributes to an SVG. Thanks, @2metres.
+
+### Changed
+- Dramatically simplified the TransformPipeline and Transformations code.
+- Added tests for the pipeline and new size transformations.
+
+### Fixed
+- Transformations can no longer be created with a nil value.
+
 ## [0.3.0] - 2015-03-20
 ### Added
 - Use Sprockets to find canonical asset paths (fingerprinted, post asset-pipeline).
@@ -22,7 +33,8 @@ Nothing.
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/jamesmartin/inline_svg/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/jamesmartin/inline_svg/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/jamesmartin/inline_svg/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jamesmartin/inline_svg/compare/v0.0.1...v0.1.0
