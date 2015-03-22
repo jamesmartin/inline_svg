@@ -11,7 +11,7 @@ module InlineSvg::TransformPipeline::Transformations
     end
 
     def transform(*)
-      raise "#transform should be implemented by subclasses of #{self.class}"
+      raise "#transform should be implemented by subclasses of Transformation"
     end
   end
 
