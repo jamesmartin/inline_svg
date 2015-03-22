@@ -19,9 +19,9 @@ describe InlineSvg::ActionView::Helpers do
 
       context "and no options" do
         it "returns a html safe version of the file's contents" do
-          example_file = <<-SVG.sub(/\n$/, '')
-  <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
-  SVG
+          example_file = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
+SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(example_file)
           expect(helper.inline_svg('some-file')).to eq example_file
         end
@@ -29,10 +29,10 @@ describe InlineSvg::ActionView::Helpers do
 
       context "and the 'title' option" do
         it "adds the title node to the SVG output" do
-          input_svg = <<-SVG.sub(/\n$/, '')
+          input_svg = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>
 SVG
-          expected_output = <<-SVG.sub(/\n$/, '')
+          expected_output = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><title>A title</title></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
@@ -42,10 +42,10 @@ SVG
 
       context "and the 'desc' option" do
         it "adds the description node to the SVG output" do
-          input_svg = <<-SVG.sub(/\n$/, '')
+          input_svg = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>
 SVG
-          expected_output = <<-SVG.sub(/\n$/, '')
+          expected_output = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><desc>A description</desc></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
@@ -55,10 +55,10 @@ SVG
 
       context "and the 'nocomment' option" do
         it "strips comments and other unknown/unsafe nodes from the output" do
-          input_svg = <<-SVG.sub(/\n$/, '')
+          input_svg = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
 SVG
-          expected_output = <<-SVG.sub(/\n$/, '')
+          expected_output = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
@@ -68,10 +68,10 @@ SVG
 
       context "and all options" do
         it "applies all expected transformations to the output" do
-          input_svg = <<-SVG.sub(/\n$/, '')
+          input_svg = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
 SVG
-          expected_output = <<-SVG.sub(/\n$/, '')
+          expected_output = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><title>A title</title>
 <desc>A description</desc></svg>
 SVG
