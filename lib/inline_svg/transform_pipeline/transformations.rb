@@ -6,7 +6,8 @@ module InlineSvg::TransformPipeline::Transformations
       title: Title,
       desc: Description,
       size: Size,
-      id: IdAttribute
+      id: IdAttribute,
+      data: DataAttributes
     }
   end
 
@@ -28,3 +29,4 @@ require 'inline_svg/transform_pipeline/transformations/title'
 require 'inline_svg/transform_pipeline/transformations/description'
 require 'inline_svg/transform_pipeline/transformations/size'
 require 'inline_svg/transform_pipeline/transformations/id_attribute'
+require 'inline_svg/transform_pipeline/transformations/data_attributes'
