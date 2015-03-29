@@ -1,6 +1,13 @@
 module InlineSvg::TransformPipeline::Transformations
   def self.all_transformations
-    {nocomment: NoComment, class: ClassAttribute, title: Title, desc: Description, size: Size}
+    {
+      nocomment: NoComment,
+      class: ClassAttribute,
+      title: Title,
+      desc: Description,
+      size: Size,
+      id: IdAttribute
+    }
   end
 
   def self.lookup(transform_params)
@@ -20,3 +27,4 @@ require 'inline_svg/transform_pipeline/transformations/class_attribute'
 require 'inline_svg/transform_pipeline/transformations/title'
 require 'inline_svg/transform_pipeline/transformations/description'
 require 'inline_svg/transform_pipeline/transformations/size'
+require 'inline_svg/transform_pipeline/transformations/id_attribute'
