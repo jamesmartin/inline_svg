@@ -8,7 +8,8 @@ describe InlineSvg::TransformPipeline::Transformations do
         class: 'irrelevant',
         title: 'irrelevant',
         desc: 'irrelevant',
-        size: 'irrelevant'
+        size: 'irrelevant',
+        id: 'irrelevant'
       )
 
       expect(transformations.map(&:class)).to match_array([
@@ -16,7 +17,8 @@ describe InlineSvg::TransformPipeline::Transformations do
         InlineSvg::TransformPipeline::Transformations::ClassAttribute,
         InlineSvg::TransformPipeline::Transformations::Title,
         InlineSvg::TransformPipeline::Transformations::Description,
-        InlineSvg::TransformPipeline::Transformations::Size
+        InlineSvg::TransformPipeline::Transformations::Size,
+        InlineSvg::TransformPipeline::Transformations::IdAttribute
       ])
     end
 
