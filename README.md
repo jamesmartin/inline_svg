@@ -67,6 +67,7 @@ blue:
 ## Options
 * `id`: set a ID attribute on the SVG
 * `class`: set a CSS class attribute on the SVG
+* `data`: add data attributes to the SVG (supply as a hash)
 * `size`: set width and height attributes on the SVG
   * Supplied as "{Width} * {Height}" or "{Number}", so "30px*45px" becomes `width="30px"`
     and `height="45px"`, and "50%" becomes `width="50%"` and `height="50%"`
@@ -78,7 +79,7 @@ blue:
 Example:
 
 ```
-inline_svg("some-document.svg", id: 'some-id', class: 'some-class', size: '30% * 20%', title: 'Some Title', desc:
+inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some: "value"}, size: '30% * 20%', title: 'Some Title', desc:
 'Some description', nocomment: true)
 ```
 
