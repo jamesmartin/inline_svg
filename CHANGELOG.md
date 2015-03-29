@@ -3,8 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+Nothing.
+
+## [0.5.0] - 2015-03-29
+### Added
 - A new option: `id` adds an id attribute to the SVG.
 - A new option: `data` adds data attributes to the SVG.
+
+### Changed
 - New options: `height` and `width` override `size` and can be set independently.
 
 ## [0.4.0] - 2015-03-22
@@ -35,7 +41,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/jamesmartin/inline_svg/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/jamesmartin/inline_svg/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/jamesmartin/inline_svg/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/jamesmartin/inline_svg/compare/v0.1.0...v0.2.0
