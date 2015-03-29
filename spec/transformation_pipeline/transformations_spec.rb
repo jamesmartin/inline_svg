@@ -9,6 +9,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         title: 'irrelevant',
         desc: 'irrelevant',
         size: 'irrelevant',
+        height: 'irrelevant',
         id: 'irrelevant',
         data: 'irrelevant'
       )
@@ -19,6 +20,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         InlineSvg::TransformPipeline::Transformations::Title,
         InlineSvg::TransformPipeline::Transformations::Description,
         InlineSvg::TransformPipeline::Transformations::Size,
+        InlineSvg::TransformPipeline::Transformations::Height,
         InlineSvg::TransformPipeline::Transformations::IdAttribute,
         InlineSvg::TransformPipeline::Transformations::DataAttributes
       ])
