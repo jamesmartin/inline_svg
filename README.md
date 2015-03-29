@@ -69,6 +69,8 @@ blue:
 * `class`: set a CSS class attribute on the SVG
 * `data`: add data attributes to the SVG (supply as a hash)
 * `size`: set width and height attributes on the SVG
+  * Can also be set using `height` and/or `width` attributes, which take
+    precedence over `size`
   * Supplied as "{Width} * {Height}" or "{Number}", so "30px*45px" becomes `width="30px"`
     and `height="45px"`, and "50%" becomes `width="50%"` and `height="50%"`
 * `title`: add a \<title\> node inside the top level of the SVG document
