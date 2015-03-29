@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 - A new option: `id` adds an id attribute to the SVG.
+- A new option: `data` adds data attributes to the SVG.
 
 ## [0.4.0] - 2015-03-22
 ### Added
