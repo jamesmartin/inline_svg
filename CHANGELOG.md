@@ -3,7 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Add support for ActiveSupport (and hence, Rails) 4.2.x. Thanks, @jmarceli.
+Nothing.
+
+## [0.5.1] - 2015-03-30
+### Fixed
+- Support for ActiveSupport (and hence, Rails) 4.2.x. Thanks, @jmarceli.
 
 ## [0.5.0] - 2015-03-29
 ### Added
