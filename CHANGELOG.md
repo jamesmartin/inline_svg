@@ -45,7 +45,8 @@ Nothing.
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/jamesmartin/inline_svg/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/jamesmartin/inline_svg/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/jamesmartin/inline_svg/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/jamesmartin/inline_svg/compare/v0.2.0...v0.3.0
