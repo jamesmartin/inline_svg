@@ -3,9 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-Nothing.
+- Support Sprockets v2 and v3 (Sprockets::Asset no longer to_s to a filename)
 
 ## [0.5.1] - 2015-03-30
+### Warning
+*** This version is NOT comaptible with Sprockets >= 3.***
+
 ### Fixed
 - Support for ActiveSupport (and hence, Rails) 4.2.x. Thanks, @jmarceli.
 
