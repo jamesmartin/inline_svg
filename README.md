@@ -66,21 +66,22 @@ blue:
 
 ## Options 
 
-key      | description
-:------- | :---------- 
-`id`     | set a ID attribute on the SVG
-`class`  | set a CSS class attribute on the SVG
-`data`   | add data attributes to the SVG (supply as a hash)
-`size`   | set width and height attributes on the SVG <br/> Can also be set using `height` and/or `width` attributes, which take precedence over `size` <br/> Supplied as "{Width} * {Height}" or "{Number}", so "30px*45px" becomes `width="30px"` and `height="45px"`, and "50%" becomes `width="50%"` and `height="50%"`
-`title` | add a \<title\> node inside the top level of the SVG document
-`desc`  | add a \<desc\> node inside the top level of the SVG document
-`nocomment` | remove comment tags (and other unsafe/unknown tags) from svg (uses the [Loofah](https://github.com/flavorjones/loofah) gem)
+key                     | description
+:---------------------- | :---------- 
+`id`                    | set a ID attribute on the SVG
+`class`                 | set a CSS class attribute on the SVG
+`data`                  | add data attributes to the SVG (supply as a hash)
+`size`                  | set width and height attributes on the SVG <br/> Can also be set using `height` and/or `width` attributes, which take precedence over `size` <br/> Supplied as "{Width} * {Height}" or "{Number}", so "30px*45px" becomes `width="30px"` and `height="45px"`, and "50%" becomes `width="50%"` and `height="50%"`
+`title`                 | add a \<title\> node inside the top level of the SVG document
+`desc`                  | add a \<desc\> node inside the top level of the SVG document
+`nocomment`             | remove comment tags (and other unsafe/unknown tags) from svg (uses the [Loofah](https://github.com/flavorjones/loofah) gem)
+`preserve_aspect_ratio` | adds a `preserveAspectRatio` attribute to the SVG
 
 Example:
 
 ```
 inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some: "value"}, size: '30% * 20%', title: 'Some Title', desc:
-'Some description', nocomment: true)
+'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet')
 ```
 
 ## Contributing
