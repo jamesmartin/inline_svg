@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-Nothing.
+- `preserveAspectRatio` transformation on SVG root node. Thanks, @paulozoom.
 
 ## [0.5.2] - 2015-04-03
 ### Fixed
