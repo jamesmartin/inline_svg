@@ -12,7 +12,8 @@ describe InlineSvg::TransformPipeline::Transformations do
         height: 'irrelevant',
         width: 'irrelevant',
         id: 'irrelevant',
-        data: 'irrelevant'
+        data: 'irrelevant',
+        preserve_aspect_ratio: 'irrelevant',
       )
 
       expect(transformations.map(&:class)).to match_array([
@@ -24,7 +25,8 @@ describe InlineSvg::TransformPipeline::Transformations do
         InlineSvg::TransformPipeline::Transformations::Height,
         InlineSvg::TransformPipeline::Transformations::Width,
         InlineSvg::TransformPipeline::Transformations::IdAttribute,
-        InlineSvg::TransformPipeline::Transformations::DataAttributes
+        InlineSvg::TransformPipeline::Transformations::DataAttributes,
+        InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio
       ])
     end
 
