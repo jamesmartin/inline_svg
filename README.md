@@ -92,6 +92,7 @@ For example, inherit from `InlineSvg::CustomTransformation` and implement the `#
 
 ```ruby
 # Sets the `custom` attribute on the root SVG element to supplied value
+# Remember to return a document, as this will be passed along the transformation chain
 
 class MyCustomTransform < InlineSvg::CustomTransformation
   def transform(doc)
