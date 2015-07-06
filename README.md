@@ -84,6 +84,46 @@ inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some:
 'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet')
 ```
 
+## Custom Transformations
+
+The transformation behavior of `inline_svg` can be customized by creating custom transformation classes.
+
+For example, inherit from `InlineSvg::CustomTransformation` and implement the `#transform` method:
+
+```ruby
+# Sets the `custom` attribute on the root SVG element to supplied value
+
+class MyCustomTransform < InlineSvg::CustomTransformation
+  def transform(doc)
+    doc = Nokogiri::XML::Document.parse(doc.to_html)
+    svg = doc.at_css 'svg'
+    svg['custom'] = value
+    doc
+  end
+end
+```
+
+Add the custom configuration in an initializer (E.g. `./config/initializers/inline_svg.rb`):
+
+```ruby
+# Note that the named `attribute` will be used to pass a value to your custom transform
+InlineSvg.configure do |config|
+  config.add_custom_transformation(attribute: :my_custom_attribute, transform: MyCustomTransform)
+end
+```
+
+The custom transformation can then be called like so:
+```haml
+%div
+  = inline_svg "some-document.svg", my_custom_attribute: 'some value'
+```
+
+In this example, the following transformation would be applied to a SVG document:
+
+```xml
+<svg custom="some value">...</svg>
+```
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
