@@ -1,5 +1,5 @@
 module InlineSvg::TransformPipeline::Transformations
-  def self.all_transformations
+  def self.built_in_transformations
     {
       nocomment: NoComment,
       class: ClassAttribute,
@@ -12,6 +12,14 @@ module InlineSvg::TransformPipeline::Transformations
       data: DataAttributes,
       preserve_aspect_ratio: PreserveAspectRatio
     }
+  end
+
+  def self.custom_transformations
+    InlineSvg.configuration.custom_transformations
+  end
+
+  def self.all_transformations
+    built_in_transformations.merge(custom_transformations)
   end
 
   def self.lookup(transform_params)

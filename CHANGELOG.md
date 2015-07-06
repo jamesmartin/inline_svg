@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing.
+- Possible to apply user-supplied custom transformations to a document.
 
 ## [0.5.3] - 2015-06-22
 ### Added
