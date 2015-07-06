@@ -21,3 +21,15 @@ module InlineSvg::TransformPipeline::Transformations
     end
   end
 end
+
+module InlineSvg
+  class CustomTransformation < InlineSvg::TransformPipeline::Transformations::Transformation
+    # Inherit from this class to keep custom transformation class definitions short
+    # E.g.
+    # class MyTransform < InlineSvg::CustomTransformation
+    #   def transform(doc)
+    #     # Your code here...
+    #   end
+    # end
+  end
+end

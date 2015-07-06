@@ -1,5 +1,14 @@
 require 'inline_svg'
 
+class WorkingCustomTransform < InlineSvg::CustomTransformation
+  def transform(doc)
+    doc = Nokogiri::XML::Document.parse(doc.to_html)
+    svg = doc.at_css 'svg'
+    svg['custom'] = value
+    doc
+  end
+end
+
 describe InlineSvg::ActionView::Helpers do
 
   let(:helper) { ( Class.new { include InlineSvg::ActionView::Helpers } ).new }
@@ -77,6 +86,29 @@ SVG
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.inline_svg('some-file', title: 'A title', desc: 'A description', nocomment: true)).to eq expected_output
+        end
+      end
+
+      context "with custom transformations" do
+        before(:each) do
+          InlineSvg.configure do |config|
+            config.add_custom_transformation({attribute: :custom, transform: WorkingCustomTransform})
+          end
+        end
+
+        after(:each) do
+          InlineSvg.reset_configuration!
+        end
+
+        it "applies custm transformations to the output" do
+          input_svg = <<-SVG
+<svg></svg>
+SVG
+          expected_output = <<-SVG
+<svg custom="some value"></svg>
+SVG
+          allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
+          expect(helper.inline_svg('some-file', custom: 'some value')).to eq expected_output
         end
       end
     end

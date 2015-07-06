@@ -1,8 +1,15 @@
+require 'inline_svg'
 require 'inline_svg/transform_pipeline'
+
+class ACustomTransform < InlineSvg::CustomTransformation
+  def transform(doc)
+    doc
+  end
+end
 
 describe InlineSvg::TransformPipeline::Transformations do
   context "looking up transformations" do
-    it "returns configured transformations when parameters are supplied" do
+    it "returns built-in transformations when parameters are supplied" do
       transformations = InlineSvg::TransformPipeline::Transformations.lookup(
         nocomment: 'irrelevant',
         class: 'irrelevant',
@@ -48,4 +55,25 @@ describe InlineSvg::TransformPipeline::Transformations do
       expect(transformations.map(&:class)).to match_array([])
     end
   end
+
+  context "custom transformations" do
+    before(:each) do
+      InlineSvg.configure do |config|
+        config.add_custom_transformation({transform: ACustomTransform, attribute: :my_transform})
+      end
+    end
+
+    after(:each) do
+      InlineSvg.reset_configuration!
+    end
+
+    it "returns configured custom transformations" do
+      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+        my_transform: :irrelevant
+      )
+
+      expect(transformations.map(&:class)).to match_array([ACustomTransform])
+    end
+  end
+
 end
