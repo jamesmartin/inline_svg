@@ -3,7 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Possible to apply user-supplied custom transformations to a document.
+- Nothing.
+
+## [0.6.0] - 2015-07-07
+### Added
+- Apply user-supplied [custom
+transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md#custom-transformations) to a document.
 
 ## [0.5.3] - 2015-06-22
 ### Added
@@ -56,7 +61,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.5.3...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/jamesmartin/inline_svg/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/jamesmartin/inline_svg/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/jamesmartin/inline_svg/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/jamesmartin/inline_svg/compare/v0.5.0...v0.5.1
