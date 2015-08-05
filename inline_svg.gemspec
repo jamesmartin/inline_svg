@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["inline_svg@jmrtn.com"]
   spec.summary       = %q{Embeds an SVG document, inline.}
   spec.description   = %q{Get an SVG into your view and then style it with CSS.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/jamesmartin/inline_svg"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
