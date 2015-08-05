@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 - Nothing.
 
+## [0.6.1] - 2015-08-06
+### Fixed
+- Support Rails versions back to 4.0.4. Thanks, @walidvb.
+
 ## [0.6.0] - 2015-07-07
 ### Added
 - Apply user-supplied [custom
@@ -61,7 +65,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.6.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/jamesmartin/inline_svg/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/jamesmartin/inline_svg/compare/v0.5.3...v0.6.0
 [0.5.3]: https://github.com/jamesmartin/inline_svg/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/jamesmartin/inline_svg/compare/v0.5.1...v0.5.2
