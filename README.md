@@ -8,6 +8,8 @@ This gem is a little helper method (`inline_svg`) that reads an SVG document fro
 image directory, applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
+Inline SVG supports [Rails version 4.0.4](http://weblog.rubyonrails.org/2014/3/14/Rails-4-0-4-has-been-released/) and newer.
+
 ## Changelog
 
 All notable changes to this project are documented in the
