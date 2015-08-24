@@ -9,7 +9,7 @@ then embeds it into a view.
 
 Inline SVG supports [Rails version 4.0.4](http://weblog.rubyonrails.org/2014/3/14/Rails-4-0-4-has-been-released/) and newer.
 
-Want to embed SVGs with Javascript? You might like [RemoteSvg]((https://github.com/jamesmartin/remote-svg), which features similar transforms but can also load SVGs from remote URLs (like S3 etc.).
+Want to embed SVGs with Javascript? You might like [RemoteSvg](https://github.com/jamesmartin/remote-svg), which features similar transforms but can also load SVGs from remote URLs (like S3 etc.).
 
 ## Changelog
 
