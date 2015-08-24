@@ -4,11 +4,12 @@ Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
 embedding](http://css-tricks.com/using-svg/) it inline in the HTML.
 
-This gem is a little helper method (`inline_svg`) that reads an SVG document from a Rails
-image directory, applies a CSS class attribute to the root of the document and
+This gem is a little Rails helper method (`inline_svg`) that reads an SVG document (via Sprockets, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
 Inline SVG supports [Rails version 4.0.4](http://weblog.rubyonrails.org/2014/3/14/Rails-4-0-4-has-been-released/) and newer.
+
+Want to embed SVGs with Javascript? You might like [RemoteSvg]((https://github.com/jamesmartin/remote-svg), which features similar transforms but can also load SVGs from remote URLs (like S3 etc.).
 
 ## Changelog
 
