@@ -43,7 +43,7 @@ and fingerprint your SVG files like any other Rails asset.
 Here's an example of embedding an SVG document and applying a 'class' attribute in
 HAML:
 
-```
+```haml
  !!! 5 
   %html
     %head
@@ -57,7 +57,7 @@ HAML:
 Here's some CSS to target the SVG, resize it and turn it an attractive shade of
 blue:
 
-```
+```css
 .some-class {
   display: block;
   margin: 0 auto;
@@ -82,7 +82,7 @@ key                     | description
 
 Example:
 
-```
+```ruby
 inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some: "value"}, size: '30% * 20%', title: 'Some Title', desc:
 'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet')
 ```
