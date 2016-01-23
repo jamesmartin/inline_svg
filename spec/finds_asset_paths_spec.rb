@@ -1,3 +1,4 @@
+require 'pathname'
 require_relative '../lib/inline_svg'
 
 describe InlineSvg::FindsAssetPaths do
