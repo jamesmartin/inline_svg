@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing.
+- Support Sprockets >= 3.0 and config.assets.precompile = false
 
 ## [0.6.1] - 2015-08-06
 ### Fixed
