@@ -33,12 +33,12 @@ describe InlineSvg do
         expect(InlineSvg.configuration.asset_finder).to eq sprockets
       end
 
-      it "complains when the provided asset finder does not implement #find_asset" do
-        expect do
-          InlineSvg.configure do |config|
-            config.asset_finder = 'Not a real asset finder'
-          end
-        end.to raise_error(InlineSvg::Configuration::Invalid, /asset finder.*find_asset/i)
+      it "falls back to StaticAssetFinder when the provided asset finder does not implement #find_asset" do
+        InlineSvg.configure do |config|
+          config.asset_finder = 'Not a real asset finder'
+        end
+
+        expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::StaticAssetFinder
       end
     end
 

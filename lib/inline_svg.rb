@@ -2,6 +2,7 @@ require "inline_svg/version"
 require "inline_svg/action_view/helpers"
 require "inline_svg/asset_file"
 require "inline_svg/finds_asset_paths"
+require "inline_svg/static_asset_finder"
 require "inline_svg/transform_pipeline"
 
 require "inline_svg/railtie" if defined?(Rails)
@@ -22,7 +23,10 @@ module InlineSvg
       if finder.respond_to?(:find_asset)
         @asset_finder = finder
       else
-        raise InlineSvg::Configuration::Invalid.new("Asset Finder should implement the #find_asset method")
+        # fallback to a naive static asset finder (sprokects >= 3.0 &&
+        # config.assets.precompile = false
+        # See: https://github.com/jamesmartin/inline_svg/issues/25
+        @asset_finder = InlineSvg::StaticAssetFinder
       end
       asset_finder
     end
