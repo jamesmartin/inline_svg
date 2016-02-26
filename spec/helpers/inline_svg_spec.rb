@@ -111,6 +111,41 @@ SVG
           expect(helper.inline_svg('some-file', custom: 'some value')).to eq expected_output
         end
       end
+
+    end
+    context 'argument polimorphizm' do
+      let(:argument) { double('argument') }
+      it 'accept IO' do
+        expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(true)
+        expect(InlineSvg::IOResource).to receive(:read).with(argument)
+        expect(InlineSvg::AssetFile).to_not receive(:named)
+        helper.inline_svg(argument)
+      end
+      it 'accept filename' do
+        expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(false)
+        expect(InlineSvg::IOResource).to_not receive(:read)
+        expect(InlineSvg::AssetFile).to receive(:named).with(argument)
+        helper.inline_svg(argument)
+      end
+    end
+    context 'when passed IO object argument' do
+      let(:io_object) { double('io_object') }
+      let(:file_path) { File.expand_path('../../files/example.svg', __FILE__) }
+      let(:answer) { File.read(file_path) }
+      it 'return valid svg' do
+        expect(InlineSvg::IOResource).to receive(:===).with(io_object).and_return(true)
+        expect(InlineSvg::IOResource).to receive(:read).with(io_object).and_return("<svg><!-- Test IO --></svg>")
+        output = helper.inline_svg(io_object)
+        expect(output).to eq "<svg><!-- Test IO --></svg>\n"
+        expect(output).to be_html_safe
+      end
+
+      it 'return valid svg for file' do
+        output = helper.inline_svg(File.new(file_path))
+        expect(output).to eq "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:lang=\"en\" role=\"presentation\"><!-- This is a test comment --></svg>\n"
+        expect(output).to be_html_safe
+      end
+
     end
   end
 end
