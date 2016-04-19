@@ -35,10 +35,12 @@ Or install it yourself as:
 ```
 inline_svg(file_name, options={})
 ```
-The `file_name` can be a full path to a file, or just the file's basename. The
+
+The `file_name` can be a full path to a file, the file's basename or an `IO`
+object. The
 actual path of the file on disk is resolved using
-[Sprockets](://github.com/sstephenson/sprockets), which means you can pre-process
-and fingerprint your SVG files like any other Rails asset.
+[Sprockets](://github.com/sstephenson/sprockets) (when available), a naive file finder (`/public/assets/...`) or in the case of `IO` objects the SVG data is read from the object.
+This means you can pre-process and fingerprint your SVG files like other Rails assets, or choose to find SVG data yourself.
 
 Here's an example of embedding an SVG document and applying a 'class' attribute in
 HAML:
