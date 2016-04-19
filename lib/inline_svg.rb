@@ -4,6 +4,7 @@ require "inline_svg/asset_file"
 require "inline_svg/finds_asset_paths"
 require "inline_svg/static_asset_finder"
 require "inline_svg/transform_pipeline"
+require "inline_svg/io_resource"
 
 require "inline_svg/railtie" if defined?(Rails)
 require 'active_support/core_ext/string'

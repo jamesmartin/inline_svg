@@ -6,7 +6,11 @@ module InlineSvg
     module Helpers
       def inline_svg(filename, transform_params={})
         begin
-          svg_file = AssetFile.named(filename)
+          svg_file = if InlineSvg::IOResource === filename
+            InlineSvg::IOResource.read filename
+          else
+            InlineSvg::AssetFile.named filename
+          end
         rescue InlineSvg::AssetFile::FileNotFound
           return "<svg><!-- SVG file not found: '#{filename}' --></svg>".html_safe
         end
