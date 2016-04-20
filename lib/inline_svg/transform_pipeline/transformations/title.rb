@@ -5,7 +5,7 @@ module InlineSvg::TransformPipeline::Transformations
       node = Nokogiri::XML::Node.new('title', doc)
       node.content = value
       doc.search('svg title').each { |node| node.remove }
-      doc.at_css('svg').children.before(node)
+      doc.at_css('svg').prepend_child(node)
       doc
     end
   end

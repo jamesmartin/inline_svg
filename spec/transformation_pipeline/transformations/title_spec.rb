@@ -18,4 +18,13 @@ describe InlineSvg::TransformPipeline::Transformations::Title do
       "<svg><title>Some Title</title>Some document</svg>\n"
     )
   end
+
+  it "handles empty SVG documents" do
+    document = Nokogiri::XML::Document.parse('<svg></svg>')
+    transformation = InlineSvg::TransformPipeline::Transformations::Title.create_with_value("Some Title")
+
+    expect(transformation.transform(document).to_html).to eq(
+      "<svg><title>Some Title</title></svg>\n"
+    )
+  end
 end
