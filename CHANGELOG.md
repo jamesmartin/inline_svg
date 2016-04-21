@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing.
+### Fixed
+- Don't duplicate the `title` element. Addresses issue #31.
+- Make the `title` element the first child node of the SVG document.
 
 ## [0.6.3] - 2016-04-19
 ### Added
