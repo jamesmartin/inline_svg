@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 ### Fixed
-- Don't duplicate the `title` element. Addresses issue #31.
+- Don't duplicate the `title` element. Addresses issue
+  [#31](https://github.com/jamesmartin/inline_svg/issues/31).
 - Make the `title` element the first child node of the SVG document.
 
 ## [0.6.3] - 2016-04-19
