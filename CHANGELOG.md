@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing.
+
+## [0.6.4] - 2016-04-23
 ### Fixed
 - Don't duplicate the `title` element. Addresses issue
   [#31](https://github.com/jamesmartin/inline_svg/issues/31).
@@ -77,7 +80,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.6.3...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.6.4...HEAD
+[0.6.4]: https://github.com/jamesmartin/inline_svg/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/jamesmartin/inline_svg/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/jamesmartin/inline_svg/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/jamesmartin/inline_svg/compare/v0.6.0...v0.6.1
