@@ -3,13 +3,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing.
+- Aria attributes transform (aria-labelledby / role etc.) Addresses issue
+  [#28](https://github.com/jamesmartin/inline_svg/issues/28)
 
 ## [0.6.4] - 2016-04-23
 ### Fixed
 - Don't duplicate the `title` element. Addresses issue
-  [#31](https://github.com/jamesmartin/inline_svg/issues/31).
-- Make the `title` element the first child node of the SVG document.
+  [#31](https://github.com/jamesmartin/inline_svg/issues/31)
+- Make the `title` element the first child node of the SVG document
 
 ## [0.6.3] - 2016-04-19
 ### Added
