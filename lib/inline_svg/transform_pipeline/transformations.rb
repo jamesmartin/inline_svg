@@ -10,7 +10,8 @@ module InlineSvg::TransformPipeline::Transformations
       width: Width,
       id: IdAttribute,
       data: DataAttributes,
-      preserve_aspect_ratio: PreserveAspectRatio
+      preserve_aspect_ratio: PreserveAspectRatio,
+      aria: AriaAttributes
     }
   end
 
@@ -44,3 +45,4 @@ require 'inline_svg/transform_pipeline/transformations/width'
 require 'inline_svg/transform_pipeline/transformations/id_attribute'
 require 'inline_svg/transform_pipeline/transformations/data_attributes'
 require 'inline_svg/transform_pipeline/transformations/preserve_aspect_ratio'
+require 'inline_svg/transform_pipeline/transformations/aria_attributes'
