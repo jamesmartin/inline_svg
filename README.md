@@ -81,12 +81,13 @@ key                     | description
 `desc`                  | add a \<desc\> node inside the top level of the SVG document
 `nocomment`             | remove comment tags (and other unsafe/unknown tags) from svg (uses the [Loofah](https://github.com/flavorjones/loofah) gem)
 `preserve_aspect_ratio` | adds a `preserveAspectRatio` attribute to the SVG
+`aria`                  | adds common accessibility attributes to the SVG (see [PR #34](https://github.com/jamesmartin/inline_svg/pull/34#issue-152062674) for details)
 
 Example:
 
 ```ruby
 inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some: "value"}, size: '30% * 20%', title: 'Some Title', desc:
-'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet')
+'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet', aria: true)
 ```
 
 ## Custom Transformations
