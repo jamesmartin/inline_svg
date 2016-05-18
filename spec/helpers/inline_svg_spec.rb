@@ -112,6 +112,38 @@ SVG
         end
       end
 
+      context "with custom transformations using a default value" do
+        before(:each) do
+          InlineSvg.configure do |config|
+            config.add_custom_transformation({attribute: :custom, transform: WorkingCustomTransform, default_value: 'default value'})
+          end
+        end
+
+        after(:each) do
+          InlineSvg.reset_configuration!
+        end
+
+        context "without passing the attribute value" do
+          it "applies custom transformations to the output using the default value" do
+            input_svg = '<svg></svg>'
+
+            allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
+
+            expect(helper.inline_svg('some-file')).to eq "<svg custom=\"default value\"></svg>\n"
+          end
+        end
+
+        context "passing the attribute value" do
+          it "applies custom transformations to the output" do
+            input_svg = '<svg></svg>'
+
+            allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
+
+            expect(helper.inline_svg('some-file', custom: 'some value')).to eq "<svg custom=\"some value\"></svg>\n"
+          end
+        end
+      end
+
     end
     context 'argument polimorphizm' do
       let(:argument) { double('argument') }

@@ -1,17 +1,17 @@
 module InlineSvg::TransformPipeline::Transformations
   def self.built_in_transformations
     {
-      nocomment: NoComment,
-      class: ClassAttribute,
-      title: Title,
-      desc: Description,
-      size: Size,
-      height: Height,
-      width: Width,
-      id: IdAttribute,
-      data: DataAttributes,
-      preserve_aspect_ratio: PreserveAspectRatio,
-      aria: AriaAttributes
+      nocomment: { transform: NoComment },
+      class: { transform: ClassAttribute },
+      title: { transform: Title },
+      desc: { transform: Description },
+      size: { transform: Size },
+      height: { transform: Height },
+      width: { transform: Width },
+      id: { transform: IdAttribute },
+      data: { transform: DataAttributes },
+      preserve_aspect_ratio: { transform: PreserveAspectRatio },
+      aria: { transform: AriaAttributes }
     }
   end
 
@@ -25,12 +25,25 @@ module InlineSvg::TransformPipeline::Transformations
 
   def self.lookup(transform_params)
     without_empty_values(transform_params).map do |key, value|
-      all_transformations.fetch(key, NullTransformation).create_with_value(value)
+      options = all_transformations.fetch(key, { transform: NullTransformation })
+      options.fetch(:transform, no_transform).create_with_value(value)
     end
   end
 
   def self.without_empty_values(params)
-    params.reject {|key, value| value.nil?}
+    all_default_values.merge(params.reject {|key, value| value.nil?})
+  end
+
+  def self.all_default_values
+    custom_transformations
+      .values
+      .select {|opt| opt[:default_value] != nil}
+      .map {|opt| [opt[:attribute], opt[:default_value]]}
+      .to_h
+  end
+
+  def self.no_transform
+    InlineSvg::TransformPipeline::Transformations::NullTransformation
   end
 end
 
