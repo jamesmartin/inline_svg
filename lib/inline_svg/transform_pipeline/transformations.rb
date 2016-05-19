@@ -39,7 +39,7 @@ module InlineSvg::TransformPipeline::Transformations
       .values
       .select {|opt| opt[:default_value] != nil}
       .map {|opt| [opt[:attribute], opt[:default_value]]}
-      .to_h
+      .inject({}){|hash, array| hash.merge!(array[0] => array[1])}
   end
 
   def self.no_transform
