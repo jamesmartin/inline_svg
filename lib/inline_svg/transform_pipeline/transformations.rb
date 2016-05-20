@@ -24,14 +24,14 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.lookup(transform_params)
-    without_empty_values(transform_params).map do |key, value|
+    all_default_values.merge(without_empty_values(transform_params)).map do |key, value|
       options = all_transformations.fetch(key, { transform: NullTransformation })
       options.fetch(:transform, no_transform).create_with_value(value)
     end
   end
 
   def self.without_empty_values(params)
-    all_default_values.merge(params.reject {|key, value| value.nil?})
+    params.reject {|key, value| value.nil?}
   end
 
   def self.all_default_values
@@ -39,7 +39,7 @@ module InlineSvg::TransformPipeline::Transformations
       .values
       .select {|opt| opt[:default_value] != nil}
       .map {|opt| [opt[:attribute], opt[:default_value]]}
-      .inject({}){|hash, array| hash.merge!(array[0] => array[1])}
+      .inject({}) {|hash, array| hash.merge!(array[0] => array[1])}
   end
 
   def self.no_transform
