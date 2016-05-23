@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing.
+- Default values for custom transformations
+  [#36](https://github.com/jamesmartin/inline_svg/issues/36). Thanks,
+  [@andrewaguiar](https://github.com/andrewaguiar)
 
 ## [0.7.0] - 2016-05-03
 ### Added
