@@ -36,7 +36,7 @@ module InlineSvg
       if incompatible_transformation?(options.fetch(:transform))
         raise InlineSvg::Configuration::Invalid.new("#{options.fetch(:transform)} should implement the .create_with_value and #transform methods")
       end
-      @custom_transformations.merge!(Hash[ *[options.fetch(:attribute, :no_attribute), options.fetch(:transform, no_transform)] ])
+      @custom_transformations.merge!(Hash[ *[options.fetch(:attribute, :no_attribute), options] ])
     end
 
     private
@@ -45,9 +45,6 @@ module InlineSvg
       !klass.is_a?(Class) || !klass.respond_to?(:create_with_value) || !klass.instance_methods.include?(:transform)
     end
 
-    def no_transform
-      InlineSvg::TransformPipeline::Transformations::NullTransformation
-    end
   end
 
   @configuration = InlineSvg::Configuration.new

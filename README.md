@@ -131,6 +131,34 @@ In this example, the following transformation would be applied to a SVG document
 <svg custom="some value">...</svg>
 ```
 
+You can also provide a default_value to the custom transformation, so even if you don't pass a value it will be triggered
+
+```ruby
+# Note that the named `attribute` will be used to pass a value to your custom transform
+InlineSvg.configure do |config|
+  config.add_custom_transformation(attribute: :my_custom_attribute, transform: MyCustomTransform, default_value: 'default value')
+end
+```
+
+The custom transformation will be triggered even if you don't pass any attribute value
+```haml
+%div
+  = inline_svg "some-document.svg"
+  = inline_svg "some-document.svg", my_custom_attribute: 'some value'
+```
+
+In this example, the following transformation would be applied to a SVG document:
+
+```xml
+<svg custom="default value">...</svg>
+```
+
+And
+
+```xml
+<svg custom="some value">...</svg>
+```
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
