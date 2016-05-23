@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [0.8.0] - 2016-05-23
+### Added
 - Default values for custom transformations
   [#36](https://github.com/jamesmartin/inline_svg/issues/36). Thanks,
   [@andrewaguiar](https://github.com/andrewaguiar)
@@ -87,8 +91,9 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.7.0...HEAD
-[0.7.0]: https://github.com/jamesmartin/inline_svg/compare/v0.6.3...v0.7.0
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/jamesmartin/inline_svg/compare/v0.7.0...v0.8.0
+[0.7.0]: https://github.com/jamesmartin/inline_svg/compare/v0.6.4...v0.7.0
 [0.6.4]: https://github.com/jamesmartin/inline_svg/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/jamesmartin/inline_svg/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/jamesmartin/inline_svg/compare/v0.6.1...v0.6.2
