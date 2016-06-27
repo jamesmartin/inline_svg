@@ -10,13 +10,11 @@ module InlineSvg::TransformPipeline::Transformations
       # Build aria-labelledby string
       aria_elements = []
       doc.search("svg title").each do |element|
-        element['id'] = InlineSvg::RandomIdGenerator.generate(salt: value)
-        aria_elements << element['id']
+        aria_elements << element['id'] = element_id_for("title", element)
       end
 
       doc.search("svg desc").each do |element|
-        element['id'] = InlineSvg::RandomIdGenerator.generate(salt: value)
-        aria_elements << element['id']
+        aria_elements << element['id'] = element_id_for("desc", element)
       end
 
       if aria_elements.any?
@@ -24,6 +22,14 @@ module InlineSvg::TransformPipeline::Transformations
       end
 
       doc
+    end
+
+    def element_id_for(base, element)
+      if element['id'].nil?
+        InlineSvg::RandomIdGenerator.generate(base: base, salt: value)
+      else
+        InlineSvg::RandomIdGenerator.generate(base: element['id'], salt: value)
+      end
     end
   end
 end

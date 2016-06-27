@@ -15,7 +15,7 @@ describe InlineSvg::TransformPipeline::Transformations::AriaAttributes do
       document = Nokogiri::XML::Document.parse('<svg><title>Some title</title>Some document</svg>')
       transformation = InlineSvg::TransformPipeline::Transformations::AriaAttributes.create_with_value("some-salt")
 
-      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(salt: "some-salt").
+      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(base: "title", salt: "some-salt").
         and_return("some-id")
 
       expect(transformation.transform(document).to_html).to eq(
@@ -27,7 +27,7 @@ describe InlineSvg::TransformPipeline::Transformations::AriaAttributes do
       document = Nokogiri::XML::Document.parse('<svg><desc>Some description</desc>Some document</svg>')
       transformation = InlineSvg::TransformPipeline::Transformations::AriaAttributes.create_with_value("some-salt")
 
-      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(salt: "some-salt").
+      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(base: "desc", salt: "some-salt").
         and_return("some-id")
 
       expect(transformation.transform(document).to_html).to eq(
@@ -39,8 +39,24 @@ describe InlineSvg::TransformPipeline::Transformations::AriaAttributes do
       document = Nokogiri::XML::Document.parse('<svg><title>Some title</title><desc>Some description</desc>Some document</svg>')
       transformation = InlineSvg::TransformPipeline::Transformations::AriaAttributes.create_with_value("some-salt")
 
-      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(salt: "some-salt").
-        and_return("some-id", "some-other-id")
+      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(base: "title", salt: "some-salt").
+        and_return("some-id")
+      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(base: "desc", salt: "some-salt").
+        and_return("some-other-id")
+
+      expect(transformation.transform(document).to_html).to eq(
+        "<svg role=\"img\" aria-labelledby=\"some-id some-other-id\"><title id=\"some-id\">Some title</title>\n<desc id=\"some-other-id\">Some description</desc>Some document</svg>\n"
+      )
+    end
+
+    it "uses existing IDs when they exist" do
+      document = Nokogiri::XML::Document.parse('<svg><title id="my-title">Some title</title><desc id="my-desc">Some description</desc>Some document</svg>')
+      transformation = InlineSvg::TransformPipeline::Transformations::AriaAttributes.create_with_value("some-salt")
+
+      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(base: "my-title", salt: "some-salt").
+        and_return("some-id")
+      expect(InlineSvg::RandomIdGenerator).to receive(:generate).with(base: "my-desc", salt: "some-salt").
+        and_return("some-other-id")
 
       expect(transformation.transform(document).to_html).to eq(
         "<svg role=\"img\" aria-labelledby=\"some-id some-other-id\"><title id=\"some-id\">Some title</title>\n<desc id=\"some-other-id\">Some description</desc>Some document</svg>\n"
