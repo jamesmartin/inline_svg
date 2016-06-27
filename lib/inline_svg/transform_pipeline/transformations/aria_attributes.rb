@@ -9,9 +9,15 @@ module InlineSvg::TransformPipeline::Transformations
 
       # Build aria-labelledby string
       aria_elements = []
-      doc.search("svg title").each { |_| aria_elements << "title" }
-      doc.search("svg desc").each { |_| aria_elements << "desc" }
-      aria_elements.uniq!
+      doc.search("svg title").each do |element|
+        element['id'] = InlineSvg::RandomIdGenerator.generate(salt: value)
+        aria_elements << element['id']
+      end
+
+      doc.search("svg desc").each do |element|
+        element['id'] = InlineSvg::RandomIdGenerator.generate(salt: value)
+        aria_elements << element['id']
+      end
 
       if aria_elements.any?
         svg["aria-labelledby"] = aria_elements.join(" ")
