@@ -11,4 +11,5 @@ end
 
 require 'nokogiri'
 require 'loofah'
+require 'inline_svg/random_id_generator'
 require 'inline_svg/transform_pipeline/transformations'

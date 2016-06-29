@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Hashed IDs for desc and title elements in aria-labeled-by attribute
+  [#38](https://github.com/jamesmartin/inline_svg/issues/38)
 
 ## [0.8.0] - 2016-05-23
 ### Added
