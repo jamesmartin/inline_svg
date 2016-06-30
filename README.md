@@ -90,6 +90,27 @@ inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some:
 'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet', aria: true)
 ```
 
+## Accessibility
+
+Use the `aria: true` option to make `inline_svg` add the following
+accessibility (a11y) attributes to your embedded SVG:
+
+* Adds a `role="img"` attribute to the root SVG element
+* Adds a `aria-labelled-by="title-id desc-id"` attribute to the root SVG
+  element, if the document contains `<title>` or `<desc>` elements
+
+Here's an example:
+
+```haml
+= inline_svg('iconmonstr-glasses-12-icon.svg', class: 'medium-blue', title: 'An SVG', desc: 'This is my SVG. There are many like it. You get the picture', aria: true)
+```
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" data-default-transform="some-default" class="medium-blue" role="img" aria-labelledby="bx6wix4t9pxpwxnohrhrmms3wexsw2o m439lk7mopdzmouktv2o689pl59wmd2"><title id="bx6wix4t9pxpwxnohrhrmms3wexsw2o">An SVG</title>
+    <path id="glasses-12" d="M358.045,135.833c-19.531,0-40.788,2.213-58.256,8.433c-39.195,14.216-47.93,14.393-87.594,0  c-17.452-6.22-38.742-8.433-58.256-8.433c-33.831,0-71.584,6.639-103.939,15.071v30.704c14.535,4.384,18.34,10.763,20.654,25.624  c6.538,41.953,21.542,83.102,87.007,83.102c52.137,0,69.538-38.785,81.055-74.594c5.851-18.189,28.55-18.658,34.484-0.251  c11.551,35.858,28.868,74.845,81.106,74.845c65.48,0,80.502-41.148,87.023-83.102c2.312-14.861,6.119-21.24,20.67-25.624v-30.704  C429.611,142.472,391.875,135.833,358.045,135.833z M226.16,201.307c-8.885,37.317-23.336,71.859-68.499,71.859  c-56.664,0-68.214-32.665-73.395-85.363c-1.24-12.816,1.576-17.846,3.789-20.512c16.261-19.472,102.178-18.691,130.661-1.584  C226.864,170.603,232.161,176.018,226.16,201.307z M427.7,187.803c-5.163,52.698-16.731,85.363-73.394,85.363  c-45.131,0-59.598-34.542-68.482-71.859c-6.02-25.289-0.721-30.704,7.443-35.6c28.582-17.167,114.449-17.812,130.66,1.584  C426.158,169.957,428.975,174.986,427.7,187.803z M344.65,168.557c26.42-4.023,56.965-0.52,65.078,9.213  c1.777,2.129,4.023,6.152,3.018,16.403c-0.536,5.432-1.156,10.578-1.928,15.457C403.795,184.114,385.822,170.435,344.65,168.557z   M101.165,209.63c-0.771-4.879-1.408-10.025-1.944-15.457c-1.006-10.251,1.257-14.274,3.034-16.403  c8.131-9.732,38.675-13.236,65.096-9.213C126.177,170.435,108.206,184.114,101.165,209.63z M376.166,342.923  C356.418,392.177,272.631,380.106,256,349.26c-16.647,30.847-100.418,42.917-120.167-6.337c9.924,8.685,26.873,11.483,39.798,9.589  c38.105-5.582,35.054-41.592,61.693-41.592c7.292,0,13.897,3.034,18.675,7.963c4.777-4.929,11.366-7.963,18.658-7.963  c26.639,0,23.604,36.01,61.693,41.592C349.277,354.406,366.226,351.607,376.166,342.923z"></path>
+    <desc id="m439lk7mopdzmouktv2o689pl59wmd2">This is my SVG. There are many like it. You get the picture</desc></svg>
+```
+
 ## Custom Transformations
 
 The transformation behavior of `inline_svg` can be customized by creating custom transformation classes.
