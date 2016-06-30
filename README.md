@@ -117,6 +117,8 @@ Here's an example:
 </svg>
 ```
 
+***Note:*** The title and desc `id` attributes generated for, and referenced by, `aria-labelled-by` are one-way digests based on the value of the title and desc elements and an optional "salt" value using the SHA1 algorithm. This reduces the chance of `inline_svg` embedding elements inside the SVG with `id` attributes that clash with other elements elsewhere on the page.
+
 ## Custom Transformations
 
 The transformation behavior of `inline_svg` can be customized by creating custom transformation classes.
