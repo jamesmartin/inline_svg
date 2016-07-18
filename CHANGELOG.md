@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+### Fixed
+- Provide a hint when the .svg extension is omitted from the filename
+  [#41](https://github.com/jamesmartin/inline_svg/issues/41)
 
 ## [0.9.0] - 2016-06-30
 ### Fixed

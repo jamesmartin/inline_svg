@@ -12,10 +12,16 @@ module InlineSvg
             InlineSvg::AssetFile.named filename
           end
         rescue InlineSvg::AssetFile::FileNotFound
-          return "<svg><!-- SVG file not found: '#{filename}' --></svg>".html_safe
+          return "<svg><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
         end
 
         InlineSvg::TransformPipeline.generate_html_from(svg_file, transform_params).html_safe
+      end
+
+      private
+
+      def extension_hint(filename)
+        filename.ends_with?(".svg") ? "" : "(Try adding .svg to your filename) "
       end
     end
   end
