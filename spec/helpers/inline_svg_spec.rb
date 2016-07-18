@@ -17,10 +17,22 @@ describe InlineSvg::ActionView::Helpers do
     
     context "when passed the name of an SVG that does not exist" do
       it "returns an empty, html safe, SVG document as a placeholder" do
-        allow(InlineSvg::AssetFile).to receive(:named).with('some-missing-file').and_raise(InlineSvg::AssetFile::FileNotFound.new)
-        output = helper.inline_svg('some-missing-file')
-        expect(output).to eq "<svg><!-- SVG file not found: 'some-missing-file' --></svg>"
+        allow(InlineSvg::AssetFile).to receive(:named).
+          with('some-missing-file.svg').
+          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+        output = helper.inline_svg('some-missing-file.svg')
+        expect(output).to eq "<svg><!-- SVG file not found: 'some-missing-file.svg' --></svg>"
         expect(output).to be_html_safe
+      end
+
+      it "gives a helpful hint when no .svg extension is provided in the filename" do
+        allow(InlineSvg::AssetFile).to receive(:named).
+          with('missing-file-with-no-extension').
+          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+        output = helper.inline_svg('missing-file-with-no-extension')
+        expect(output).to eq "<svg><!-- SVG file not found: 'missing-file-with-no-extension' (Try adding .svg to your filename) --></svg>"
       end
     end
 
