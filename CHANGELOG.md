@@ -102,7 +102,7 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
 [unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.9.1...HEAD
-[0.9.1]: https://github.com/jamesmartin/inline_svg/compare/v0.8.0...v0.9.1
+[0.9.1]: https://github.com/jamesmartin/inline_svg/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/jamesmartin/inline_svg/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/jamesmartin/inline_svg/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/jamesmartin/inline_svg/compare/v0.6.4...v0.7.0
