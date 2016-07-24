@@ -3,7 +3,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Rails 5 [#43](https://github.com/jamesmartin/inline_svg/pull/43)
+- Nothing
+
+## [0.10.0] - 2016-07-24
+### Added
+- Rails 5 support [#43](https://github.com/jamesmartin/inline_svg/pull/43)
 - Support for `Sprockets::Asset`
   [#45](https://github.com/jamesmartin/inline_svg/pull/45)
 
@@ -103,7 +107,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.9.1...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/jamesmartin/inline_svg/compare/v0.9.1...v0.10.0
 [0.9.1]: https://github.com/jamesmartin/inline_svg/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/jamesmartin/inline_svg/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/jamesmartin/inline_svg/compare/v0.7.0...v0.8.0
