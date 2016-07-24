@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Rails 5 [#43](https://github.com/jamesmartin/inline_svg/pull/43)
+- Support for `Sprockets::Asset`
+  [#45](https://github.com/jamesmartin/inline_svg/pull/45)
 
 ## [0.9.1] - 2016-07-18
 ### Fixed
