@@ -113,6 +113,23 @@ describe InlineSvg::TransformPipeline::Transformations do
       # Use `eq` here because we care about order:
       expect(transformations.map(&:class)).to eq([ASecondCustomTransform, ACustomTransform])
     end
+
+    it "always prioritizes built-in transforms before custom transforms" do
+      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+        my_transform: :irrelevant,
+        my_other_transform: :irrelevant,
+        desc: "irrelevant"
+      )
+
+      # Use `eq` here because we care about order:
+      expect(transformations.map(&:class)).to eq(
+        [
+          InlineSvg::TransformPipeline::Transformations::Description,
+          ASecondCustomTransform,
+          ACustomTransform
+        ]
+      )
+    end
   end
 
 end

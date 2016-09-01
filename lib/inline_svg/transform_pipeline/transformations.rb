@@ -17,7 +17,20 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.custom_transformations
-    InlineSvg.configuration.custom_transformations
+    magnify_priorities(InlineSvg.configuration.custom_transformations)
+  end
+
+  def self.magnify_priorities(transforms)
+    transforms.inject({}) do |output, (name, definition)|
+      priority = definition.fetch(:priority, built_in_transformations.size)
+
+      output[name] = definition.merge( { priority: magnify(priority) } )
+      output
+    end
+  end
+
+  def self.magnify(priority=0)
+    (priority + 1) * built_in_transformations.size
   end
 
   def self.all_transformations
