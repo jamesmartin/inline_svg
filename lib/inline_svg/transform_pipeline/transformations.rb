@@ -44,8 +44,8 @@ module InlineSvg::TransformPipeline::Transformations
     }.compact
   end
 
-  def self.in_priority_order(params)
-    params.sort_by { |k, v| v.fetch(:priority, params.size) }
+  def self.in_priority_order(transforms)
+    transforms.sort_by { |_, options| options.fetch(:priority, transforms.size) }
   end
 
   def self.params_with_defaults(params)
@@ -61,7 +61,7 @@ module InlineSvg::TransformPipeline::Transformations
       .values
       .select {|opt| opt[:default_value] != nil}
       .map {|opt| [opt[:attribute], opt[:default_value]]}
-      .inject({}) {|transforms, array| transforms.merge!(array[0] => array[1])}
+      .inject({}) {|options, attrs| options.merge!(attrs[0] => attrs[1])}
   end
 
   def self.no_transform
