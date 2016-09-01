@@ -36,7 +36,7 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.params_with_defaults(params)
-    all_default_values.merge(without_empty_values(params))
+    without_empty_values(all_default_values.merge(params))
   end
 
   def self.without_empty_values(params)
