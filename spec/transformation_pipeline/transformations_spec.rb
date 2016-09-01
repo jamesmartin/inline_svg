@@ -7,6 +7,8 @@ class ACustomTransform < InlineSvg::CustomTransformation
   end
 end
 
+class ASecondCustomTransform < ACustomTransform; end
+
 describe InlineSvg::TransformPipeline::Transformations do
   context "looking up transformations" do
     it "returns built-in transformations when parameters are supplied" do
@@ -85,7 +87,8 @@ describe InlineSvg::TransformPipeline::Transformations do
   context "custom transformations" do
     before(:each) do
       InlineSvg.configure do |config|
-        config.add_custom_transformation({transform: ACustomTransform, attribute: :my_transform})
+        config.add_custom_transformation({transform: ACustomTransform, attribute: :my_transform, priority: 2})
+        config.add_custom_transformation({transform: ASecondCustomTransform, attribute: :my_other_transform, priority: 1})
       end
     end
 
@@ -99,6 +102,16 @@ describe InlineSvg::TransformPipeline::Transformations do
       )
 
       expect(transformations.map(&:class)).to match_array([ACustomTransform])
+    end
+
+    it "returns configured custom transformations in priority order" do
+      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+        my_transform: :irrelevant,
+        my_other_transform: :irrelevant
+      )
+
+      # Use `eq` here because we care about order:
+      expect(transformations.map(&:class)).to eq([ASecondCustomTransform, ACustomTransform])
     end
   end
 

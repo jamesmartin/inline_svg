@@ -1,4 +1,5 @@
 module InlineSvg::TransformPipeline::Transformations
+  # Transformations are run in priority order, lowest number first:
   def self.built_in_transformations
     {
       id: { transform: IdAttribute, priority: 1 },
