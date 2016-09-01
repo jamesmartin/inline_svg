@@ -39,14 +39,38 @@ describe InlineSvg::TransformPipeline::Transformations do
       ])
     end
 
-    it "returns a benign transformation when asked for an unknown transform" do
+    it "returns transformations in priority order" do
+      built_ins = {
+        desc:   { transform: InlineSvg::TransformPipeline::Transformations::Description, priority: 1 },
+        size:   { transform: InlineSvg::TransformPipeline::Transformations::Size },
+        title:  { transform: InlineSvg::TransformPipeline::Transformations::Title, priority: 2 }
+      }
+
+      allow(InlineSvg::TransformPipeline::Transformations).to \
+        receive(:built_in_transformations).and_return(built_ins)
+
+      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+        {
+          desc: "irrelevant",
+          size: "irrelevant",
+          title: "irrelevant",
+        }
+      )
+
+      # Use `eq` here because we care about order
+      expect(transformations.map(&:class)).to eq([
+        InlineSvg::TransformPipeline::Transformations::Description,
+        InlineSvg::TransformPipeline::Transformations::Title,
+        InlineSvg::TransformPipeline::Transformations::Size,
+      ])
+    end
+
+    it "returns no transformations when asked for an unknown transform" do
       transformations = InlineSvg::TransformPipeline::Transformations.lookup(
         not_a_real_transform: 'irrelevant'
       )
 
-      expect(transformations.map(&:class)).to match_array([
-        InlineSvg::TransformPipeline::Transformations::NullTransformation
-      ])
+      expect(transformations.map(&:class)).to match_array([])
     end
 
     it "does not return a transformation when a value is not supplied" do

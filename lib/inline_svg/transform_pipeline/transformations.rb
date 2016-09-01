@@ -1,17 +1,17 @@
 module InlineSvg::TransformPipeline::Transformations
   def self.built_in_transformations
     {
-      nocomment: { transform: NoComment },
+      id: { transform: IdAttribute, priority: 1 },
+      desc: { transform: Description, priority: 2 },
+      title: { transform: Title, priority: 3 },
+      aria: { transform: AriaAttributes },
       class: { transform: ClassAttribute },
-      title: { transform: Title },
-      desc: { transform: Description },
-      size: { transform: Size },
-      height: { transform: Height },
-      width: { transform: Width },
-      id: { transform: IdAttribute },
       data: { transform: DataAttributes },
+      height: { transform: Height },
+      nocomment: { transform: NoComment },
       preserve_aspect_ratio: { transform: PreserveAspectRatio },
-      aria: { transform: AriaAttributes }
+      size: { transform: Size },
+      width: { transform: Width },
     }
   end
 
@@ -20,14 +20,22 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.all_transformations
-    built_in_transformations.merge(custom_transformations)
+    in_priority_order(built_in_transformations.merge(custom_transformations))
   end
 
   def self.lookup(transform_params)
-    all_default_values.merge(without_empty_values(transform_params)).map do |key, value|
-      options = all_transformations.fetch(key, { transform: NullTransformation })
-      options.fetch(:transform, no_transform).create_with_value(value)
-    end
+    all_transformations.map { |name, definition|
+      value = params_with_defaults(transform_params)[name]
+      definition.fetch(:transform, no_transform).create_with_value(value) if value
+    }.compact
+  end
+
+  def self.in_priority_order(params)
+    params.sort_by { |k, v| v.fetch(:priority, params.size) }
+  end
+
+  def self.params_with_defaults(params)
+    all_default_values.merge(without_empty_values(params))
   end
 
   def self.without_empty_values(params)
@@ -39,7 +47,7 @@ module InlineSvg::TransformPipeline::Transformations
       .values
       .select {|opt| opt[:default_value] != nil}
       .map {|opt| [opt[:attribute], opt[:default_value]]}
-      .inject({}) {|hash, array| hash.merge!(array[0] => array[1])}
+      .inject({}) {|transforms, array| transforms.merge!(array[0] => array[1])}
   end
 
   def self.no_transform
