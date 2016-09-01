@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Priority ordering for transformations
+- Prevent duplicate desc elements being created
+  [#46](https://github.com/jamesmartin/inline_svg/issues/46)
 
 ## [0.10.0] - 2016-07-24
 ### Added

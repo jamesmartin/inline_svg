@@ -188,6 +188,23 @@ And
 <svg custom="some value">...</svg>
 ```
 
+***Coming Soon***
+
+Passing a `priority` option with your custom transformation allows you to
+control the order that transformations are applied to the SVG document:
+
+```ruby
+InlineSvg.configure do |config|
+  config.add_custom_transformation(attribute: :custom_one, transform: MyCustomTransform, priority: 1)
+  config.add_custom_transformation(attribute: :custom_two, transform: MyOtherCustomTransform, priority: 2)
+end
+```
+
+Transforms are applied in ascending order (lowest number first).
+
+***Note***: Custom transformations are always applied *after* all built-in
+transformations, regardless of priority.
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
