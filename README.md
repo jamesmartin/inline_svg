@@ -188,8 +188,6 @@ And
 <svg custom="some value">...</svg>
 ```
 
-***Coming Soon***
-
 Passing a `priority` option with your custom transformation allows you to
 control the order that transformations are applied to the SVG document:
 
