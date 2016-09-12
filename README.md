@@ -13,7 +13,7 @@ Want to embed SVGs with Javascript? You might like [RemoteSvg](https://github.co
 
 ## Changelog
 
-This project adheres to [Semantic Versioning](http://sermver.org). All notable changes are documented in the
+This project adheres to [Semantic Versioning](http://semver.org). All notable changes are documented in the
 [CHANGELOG](https://github.com/jamesmartin/inline_svg/blob/master/CHANGELOG.md).
 
 ## Installation
