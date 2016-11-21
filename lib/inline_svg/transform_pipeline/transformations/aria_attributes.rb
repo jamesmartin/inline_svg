@@ -26,9 +26,9 @@ module InlineSvg::TransformPipeline::Transformations
 
     def element_id_for(base, element)
       if element['id'].nil?
-        InlineSvg::IdGenerator.generate(base, value)
+        InlineSvg::IdGenerator.generate(base, element.text)
       else
-        InlineSvg::IdGenerator.generate(element['id'], value)
+        InlineSvg::IdGenerator.generate(element['id'], element.text)
       end
     end
   end
