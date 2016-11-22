@@ -19,6 +19,15 @@ describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
     )
   end
 
+  it "dasherizes a data attribute name with multiple parts" do
+    document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
+    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({some_other_name: "value"})
+
+    expect(transformation.transform(document).to_html).to eq(
+      "<svg data-some-other-name=\"value\">Some document</svg>\n"
+    )
+  end
+
   context "when multiple data attributes are supplied" do
     it "adds data attributes to the SVG for each supplied value" do
       document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
