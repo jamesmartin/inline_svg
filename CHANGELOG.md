@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 - Nothing
 
+## [0.11.1] - 2016-11-22
+### Fixed
+- Dasherize data attribute names:
+  [#51](https://github.com/jamesmartin/inline_svg/issues/51)
+- Prevent ID collisions between `desc` and `title` attrs:
+  [#52](https://github.com/jamesmartin/inline_svg/pull/52)
+
 ## [0.11.0] - 2016-07-24
 ### Added
 - Priority ordering for transformations
@@ -117,7 +124,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.11.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.11.1...HEAD
+[0.11.1]: https://github.com/jamesmartin/inline_svg/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/jamesmartin/inline_svg/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/jamesmartin/inline_svg/compare/v0.9.1...v0.10.0
 [0.9.1]: https://github.com/jamesmartin/inline_svg/compare/v0.9.0...v0.9.1
