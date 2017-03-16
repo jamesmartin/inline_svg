@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec_junit_formatter", "0.2.2"
   spec.add_development_dependency "pry"
 
-  spec.add_runtime_dependency "activesupport", ">= 4.0"
+  spec.add_runtime_dependency "activesupport", ">= 3.0"
   spec.add_runtime_dependency "nokogiri", "~> 1.6", '~> 1.6'
   spec.add_runtime_dependency "loofah", ">= 2.0"
 end
