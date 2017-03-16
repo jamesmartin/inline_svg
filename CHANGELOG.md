@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Relax dependency on `ActiveSupport` to allow Rails 3 applications to use the
+  gem: [#54](https://github.com/jamesmartin/inline_svg/issues/54)
 
 ## [0.11.1] - 2016-11-22
 ### Fixed
