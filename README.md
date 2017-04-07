@@ -43,15 +43,18 @@ This means you can pre-process and fingerprint your SVG files like other Rails a
 Here's an example of embedding an SVG document and applying a 'class' attribute in
 HAML:
 
-```haml
- !!! 5 
-  %html
-    %head
-      %title Embedded SVG Documents
-    %body
-      %h1 Embedded SVG Documents
-      %div
-        = inline_svg "some-document.svg", class: 'some-class'
+```erb
+<html>
+  <head>
+    <title>Embedded SVG Documents<title>
+  </head>
+  <body>
+    <h1>Embedded SVG Documents</h1>
+    <div>
+      <%= inline_svg "some-document.svg", class: 'some-class' %>
+    </div>
+  </body>
+</html>
 ```
 
 Here's some CSS to target the SVG, resize it and turn it an attractive shade of
