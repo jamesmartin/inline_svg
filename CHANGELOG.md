@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 - Remove dependency on `Loofah` while maintaining basic `nocomment` transform
 
+## [0.12.1] - 2017-03-24
+### Added
+- Relax dependency on `Nokogiri` to allow users to upgrade to v1.7x, preventing
+  exposure to
+  [CVE-2016-4658](https://github.com/sparklemotion/nokogiri/issues/1615):
+  [#59](https://github.com/jamesmartin/inline_svg/issues/59)
+
 ## [0.12.0] - 2017-03-16
 ### Added
 - Relax dependency on `ActiveSupport` to allow Rails 3 applications to use the
@@ -129,7 +136,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.12.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v0.12.1...HEAD
+[0.12.1]: https://github.com/jamesmartin/inline_svg/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/jamesmartin/inline_svg/compare/v0.11.1...v0.12.0
 [0.11.1]: https://github.com/jamesmartin/inline_svg/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/jamesmartin/inline_svg/compare/v0.10.0...v0.11.0
