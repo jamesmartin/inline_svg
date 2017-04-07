@@ -41,7 +41,7 @@ describe InlineSvg::ActionView::Helpers do
       context "and no options" do
         it "returns a html safe version of the file's contents" do
           example_file = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(example_file)
           expect(helper.inline_svg('some-file')).to eq example_file
@@ -77,7 +77,7 @@ SVG
       context "and the 'nocomment' option" do
         it "strips comments and other unknown/unsafe nodes from the output" do
           input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
 SVG
           expected_output = <<-SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
@@ -90,11 +90,10 @@ SVG
       context "and all options" do
         it "applies all expected transformations to the output" do
           input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><!-- This is a comment --></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
 SVG
           expected_output = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><title>A title</title>
-<desc>A description</desc></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><title>A title</title><desc>A description</desc></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.inline_svg('some-file', title: 'A title', desc: 'A description', nocomment: true)).to eq expected_output

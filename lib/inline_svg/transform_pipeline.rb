@@ -10,6 +10,5 @@ module InlineSvg
 end
 
 require 'nokogiri'
-require 'loofah'
 require 'inline_svg/id_generator'
 require 'inline_svg/transform_pipeline/transformations'

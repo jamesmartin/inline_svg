@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Remove dependency on `Loofah` while maintaining basic `nocomment` transform
 
 ## [0.12.1] - 2017-03-24
 ### Added
