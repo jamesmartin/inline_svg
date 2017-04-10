@@ -12,7 +12,11 @@ module InlineSvg
       InlineSvg.configure do |config|
         # In default Rails apps, this will be a fully operational
         # Sprockets::Environment instance
-        config.asset_finder = app.instance_variable_get(:@assets)
+        # Only set this when a user-configured asset finder has not been
+        # configured already.
+        if config.asset_finder.nil?
+          config.asset_finder = app.instance_variable_get(:@assets)
+        end
       end
     end
   end
