@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [1.0.1] - 2017-04-10
 ### Fixed
 - Don't override custom asset finders in Railtie
 
@@ -141,7 +144,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/jamesmartin/inline_svg/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/jamesmartin/inline_svg/compare/v0.12.1...v1.0.0
 [0.12.1]: https://github.com/jamesmartin/inline_svg/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/jamesmartin/inline_svg/compare/v0.11.1...v0.12.0
