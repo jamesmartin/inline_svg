@@ -206,6 +206,32 @@ Transforms are applied in ascending order (lowest number first).
 ***Note***: Custom transformations are always applied *after* all built-in
 transformations, regardless of priority.
 
+## Custom asset file loader
+
+An asset file loader returns a `String` representing the SVG document given a
+filename. Custom asset loaders should be a Ruby object that responds to a
+method called `named`, that takes one argument (a string representing the
+filename of the SVG document).
+
+An simple example might look like this:
+
+```ruby
+class MyAssetFileLoader
+  def self.named(filename)
+    # ... load SVG document however you like
+    return "<svg>some document</svg>"
+  end
+end
+```
+
+Configure your custom asset file loader in an initializer like so:
+
+```ruby
+InlineSvg.configure do |config|
+  config.asset_file(MyAssetFileLoader)
+end
+```
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
