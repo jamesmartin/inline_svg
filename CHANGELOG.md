@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Allow configurable asset file implementations
+  [#61](https://github.com/jamesmartin/inline_svg/pull/61)
 
 ## [1.0.1] - 2017-04-10
 ### Fixed
