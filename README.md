@@ -228,7 +228,7 @@ Configure your custom asset file loader in an initializer like so:
 
 ```ruby
 InlineSvg.configure do |config|
-  config.asset_file(MyAssetFileLoader)
+  config.asset_file = MyAssetFileLoader
 end
 ```
 
