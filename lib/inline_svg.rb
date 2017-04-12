@@ -14,10 +14,24 @@ module InlineSvg
   class Configuration
     class Invalid < ArgumentError; end
 
-    attr_reader :asset_finder, :custom_transformations
+    attr_reader :asset_file, :asset_finder, :custom_transformations
 
     def initialize
       @custom_transformations = {}
+      @asset_file = InlineSvg::AssetFile
+    end
+
+    def asset_file=(custom_asset_file)
+      begin
+        method = custom_asset_file.method(:named)
+        if method.arity == 1
+          @asset_file = custom_asset_file
+        else
+          raise InlineSvg::Configuration::Invalid.new("asset_file should implement the #named method with arity 1")
+        end
+      rescue NameError
+        raise InlineSvg::Configuration::Invalid.new("asset_file should implement the #named method")
+      end
     end
 
     def asset_finder=(finder)
