@@ -208,12 +208,12 @@ transformations, regardless of priority.
 
 ## Custom asset file loader
 
-An asset file loader returns a `String` representing the SVG document given a
+An asset file loader returns a `String` representing a SVG document given a
 filename. Custom asset loaders should be a Ruby object that responds to a
 method called `named`, that takes one argument (a string representing the
 filename of the SVG document).
 
-An simple example might look like this:
+A simple example might look like this:
 
 ```ruby
 class MyAssetFileLoader
