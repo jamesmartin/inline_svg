@@ -13,6 +13,10 @@ class MyInvalidCustomTransformInstance
   def self.create_with_value(value); end
 end
 
+class MyCustomAssetFile
+  def self.named(filename); end
+end
+
 describe InlineSvg do
   describe "configuration" do
     context "when a block is not given" do
@@ -39,6 +43,40 @@ describe InlineSvg do
         end
 
         expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::StaticAssetFinder
+      end
+    end
+
+    context "configuring a custom asset file" do
+      it "falls back to the built-in asset file implementation by deafult" do
+        expect(InlineSvg.configuration.asset_file).to eq(InlineSvg::AssetFile)
+      end
+
+      it "adds a collaborator that meets the interface specification" do
+        InlineSvg.configure do |config|
+          config.asset_file = MyCustomAssetFile
+        end
+
+        expect(InlineSvg.configuration.asset_file).to eq MyCustomAssetFile
+      end
+
+      it "rejects a collaborator that does not conform to the interface spec" do
+        bad_asset_file = double("bad_asset_file")
+
+        expect do
+          InlineSvg.configure do |config|
+            config.asset_file = bad_asset_file
+          end
+        end.to raise_error(InlineSvg::Configuration::Invalid, /asset_file should implement the #named method/)
+      end
+
+      it "rejects a collaborator that implements the correct interface with the wrong arity" do
+        bad_asset_file = double("bad_asset_file", named: nil)
+
+        expect do
+          InlineSvg.configure do |config|
+            config.asset_file = bad_asset_file
+          end
+        end.to raise_error(InlineSvg::Configuration::Invalid, /asset_file should implement the #named method with arity 1/)
       end
     end
 
