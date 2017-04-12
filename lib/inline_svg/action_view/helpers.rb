@@ -9,7 +9,7 @@ module InlineSvg
           svg_file = if InlineSvg::IOResource === filename
             InlineSvg::IOResource.read filename
           else
-            InlineSvg::AssetFile.named filename
+            configured_asset_file.named filename
           end
         rescue InlineSvg::AssetFile::FileNotFound
           return "<svg><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
@@ -19,6 +19,10 @@ module InlineSvg
       end
 
       private
+
+      def configured_asset_file
+        InlineSvg.configuration.asset_file
+      end
 
       def extension_hint(filename)
         filename.ends_with?(".svg") ? "" : "(Try adding .svg to your filename) "
