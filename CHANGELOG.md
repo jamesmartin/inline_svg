@@ -3,7 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Cached asset file (load at boot time)
+- Nothing
+
+## [1.2.0] - 2017-04-20
+### Added
+- Cached asset file (load assets into memory at boot time)
+  [#62](https://github.com/jamesmartin/inline_svg/pull/62)
 
 ## [1.1.0] - 2017-04-12
 ### Added
@@ -149,7 +154,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/jamesmartin/inline_svg/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/jamesmartin/inline_svg/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/jamesmartin/inline_svg/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/jamesmartin/inline_svg/compare/v0.12.1...v1.0.0
