@@ -1,6 +1,7 @@
 require "inline_svg/version"
 require "inline_svg/action_view/helpers"
 require "inline_svg/asset_file"
+require "inline_svg/cached_asset_file"
 require "inline_svg/finds_asset_paths"
 require "inline_svg/static_asset_finder"
 require "inline_svg/transform_pipeline"

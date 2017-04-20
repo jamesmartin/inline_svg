@@ -231,6 +231,32 @@ InlineSvg.configure do |config|
 end
 ```
 
+## Caching all assets at boot time
+
+When your deployment strategy prevents dynamic asset file loading from disk it
+can be helpful to cache all possible SVG assets in memory at application boot
+time. In this case, you can configure the `InlineSvg::CachedAssetFile` to scan
+any number of paths on disks and load all the assets it finds into memory.
+
+For example, in this configuration we load every `*.svg` file found beneath the
+configured paths into memory:
+
+```ruby
+InlineSvg.configure do |config|
+  config.asset_file = InlineSvg::CachedAssetFile.new(
+    paths: [
+      "#{Rails.root}/public/path/to/assets",
+      "#{Rails.root}/public/other/path/to/assets"
+    ],
+    filters: /\.svg/
+  )
+end
+```
+
+**Note:** Paths are read recursively, so think about keeping your SVG assets
+restricted to as few paths as possible, and using the filter option to further
+restrict assets to only those likely to be used by `inline_svg`.
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
