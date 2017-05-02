@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+### Fixed
+- Select most exactly matching cached asset file when multiple files match
+  given asset name [#64](https://github.com/jamesmartin/inline_svg/pull/64)
 
 ## [1.2.0] - 2017-04-20
 ### Added
