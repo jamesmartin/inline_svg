@@ -31,11 +31,25 @@ module InlineSvg
     end
 
     private
-    # Internal: Finds the key for a given asset name (using a Regex).
+    # Internal: Finds the key for a given asset name (using a Regex). In the
+    # event of an ambiguous asset_name matching multiple assets, this method
+    # ranks the matches by their full file path, choosing the shortest (most
+    # exact) match over all others.
     #
-    # Returns a String representing the key for the named asset.
+    # Returns a String representing the key for the named asset or nil if there
+    # is no match.
     def key_for_asset(asset_name)
-      assets.keys.map { |k| k.to_s }.select { |k| /#{asset_name}/.match(k) }.first
+      match = all_keys_matching(asset_name).sort do |a, b|
+        a.string.size <=> b.string.size
+      end.first
+      match && match.string
+    end
+
+    # Internal: Find all potential asset keys matching the given asset name.
+    #
+    # Returns an array of MatchData objects for keys matching the asset name.
+    def all_keys_matching(asset_name)
+      assets.keys.map { |k| /(#{asset_name})/.match(k.to_s) }.compact
     end
 
     # Internal: Recursively descends through current_paths reading each file it
