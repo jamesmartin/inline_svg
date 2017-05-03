@@ -1,12 +1,13 @@
 module InlineSvg::TransformPipeline::Transformations
   class Title < Transformation
     def transform(doc)
-      doc = Nokogiri::XML::Document.parse(doc.to_html)
-      node = Nokogiri::XML::Node.new('title', doc)
-      node.content = value
-      doc.search('svg title').each { |node| node.remove }
-      doc.at_css('svg').prepend_child(node)
-      doc
+      with_svg(doc) do |svg|
+        node = Nokogiri::XML::Node.new("title", doc)
+        node.content = value
+
+        svg.search("title").each { |node| node.remove }
+        svg.prepend_child(node)
+      end
     end
   end
 end
