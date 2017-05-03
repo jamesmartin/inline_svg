@@ -9,4 +9,13 @@ describe InlineSvg::TransformPipeline::Transformations::Height do
       "<svg height=\"5%\">Some document</svg>\n"
     )
   end
+
+  it "handles documents without SVG root elements" do
+    document = Nokogiri::XML::Document.parse("<foo>bar</foo><svg>Some document</svg>")
+    transformation = InlineSvg::TransformPipeline::Transformations::Height.create_with_value("5%")
+
+    expect(transformation.transform(document).to_html).to eq(
+      "<foo>bar</foo>\n"
+    )
+  end
 end
