@@ -11,5 +11,16 @@ describe InlineSvg::TransformPipeline::Transformations::Transformation do
         "<svg>Some document</svg>\n"
       )
     end
+
+    it "yields to the block when the document contains an SVG element" do
+      document = Nokogiri::XML::Document.parse("<svg>Some document</svg>")
+      svg = document.at_css("svg")
+
+      transformation = InlineSvg::TransformPipeline::Transformations::Transformation.new(:irrelevant)
+
+      expect do |b|
+        transformation.with_svg(document, &b)
+      end.to yield_with_args(svg)
+    end
   end
 end
