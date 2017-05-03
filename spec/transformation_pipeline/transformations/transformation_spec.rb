@@ -22,5 +22,15 @@ describe InlineSvg::TransformPipeline::Transformations::Transformation do
         transformation.with_svg(document, &b)
       end.to yield_with_args(svg)
     end
+
+    it "does not yield if the document does not contain an SVG element at the root" do
+      document = Nokogiri::XML::Document.parse("<foo>bar</foo><svg>Some document</svg>")
+
+      transformation = InlineSvg::TransformPipeline::Transformations::Transformation.new(:irrelevant)
+
+      expect do |b|
+        transformation.with_svg(document, &b)
+      end.not_to yield_control
+    end
   end
 end
