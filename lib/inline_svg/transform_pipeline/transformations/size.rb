@@ -1,11 +1,10 @@
 module InlineSvg::TransformPipeline::Transformations
   class Size < Transformation
     def transform(doc)
-      doc = Nokogiri::XML::Document.parse(doc.to_html)
-      svg = doc.at_css 'svg'
-      svg['width'] = width_of(self.value)
-      svg['height'] = height_of(self.value)
-      doc
+      with_svg(doc) do |svg|
+        svg["width"] = width_of(self.value)
+        svg["height"] = height_of(self.value)
+      end
     end
 
     def width_of(value)
