@@ -1,12 +1,11 @@
 module InlineSvg::TransformPipeline::Transformations
   class DataAttributes < Transformation
     def transform(doc)
-      doc = Nokogiri::XML::Document.parse(doc.to_html)
-      svg = doc.at_css 'svg'
-      with_valid_hash_from(self.value).each_pair do |name, data|
-        svg["data-#{dasherize(name)}"] = data
+      with_svg(doc) do |svg|
+        with_valid_hash_from(self.value).each_pair do |name, data|
+          svg["data-#{dasherize(name)}"] = data
+        end
       end
-      doc
     end
 
     private
