@@ -20,6 +20,9 @@ module InlineSvg::TransformPipeline::Transformations
     # Returns a Nokogiri::XML::Document.
     def with_svg(doc)
       doc = Nokogiri::XML::Document.parse(doc.to_html)
+      svg = doc.at_css "svg"
+      yield svg if svg && block_given?
+      doc
     end
   end
 
