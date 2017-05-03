@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Handle malformed documents that don't contain a root SVG element
+  [#60](https://github.com/jamesmartin/inline_svg/pull/65)
 
 ## [1.2.1] - 2017-05-02
 ### Fixed

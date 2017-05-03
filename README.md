@@ -133,10 +133,9 @@ For example, inherit from `InlineSvg::CustomTransformation` and implement the `#
 
 class MyCustomTransform < InlineSvg::CustomTransformation
   def transform(doc)
-    doc = Nokogiri::XML::Document.parse(doc.to_html)
-    svg = doc.at_css 'svg'
-    svg['custom'] = value
-    doc
+    with_svg(doc) do |svg|
+      svg["custom"] = value
+    end
   end
 end
 ```

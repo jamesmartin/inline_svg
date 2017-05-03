@@ -13,6 +13,17 @@ module InlineSvg::TransformPipeline::Transformations
     def transform(*)
       raise "#transform should be implemented by subclasses of Transformation"
     end
+
+    # Parses a document and yields the contained SVG nodeset to the given block
+    # if it exists.
+    #
+    # Returns a Nokogiri::XML::Document.
+    def with_svg(doc)
+      doc = Nokogiri::XML::Document.parse(doc.to_html)
+      svg = doc.at_css "svg"
+      yield svg if svg && block_given?
+      doc
+    end
   end
 
   class NullTransformation < Transformation
