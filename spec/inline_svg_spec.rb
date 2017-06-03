@@ -80,6 +80,16 @@ describe InlineSvg do
       end
     end
 
+    context "configuring the default svg-not-found class" do
+      it "sets the class name" do
+        InlineSvg.configure do |config|
+          config.svg_not_found_css_class = 'missing-svg'
+        end
+
+        expect(InlineSvg.configuration.svg_not_found_css_class).to eq 'missing-svg'
+      end
+    end
+
     context "configuring custom transformation" do
       it "allows a custom transformation to be added" do
         InlineSvg.configure do |config|

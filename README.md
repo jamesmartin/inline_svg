@@ -71,10 +71,10 @@ blue:
 }
 ```
 
-## Options 
+## Options
 
 key                     | description
-:---------------------- | :---------- 
+:---------------------- | :----------
 `id`                    | set a ID attribute on the SVG
 `class`                 | set a CSS class attribute on the SVG
 `data`                  | add data attributes to the SVG (supply as a hash)
@@ -255,6 +255,31 @@ end
 **Note:** Paths are read recursively, so think about keeping your SVG assets
 restricted to as few paths as possible, and using the filter option to further
 restrict assets to only those likely to be used by `inline_svg`.
+
+## Missing SVG Files
+
+If the specified SVG file cannot be found a helpful, empty SVG document is
+embedded into the page instead. The embedded document contains a single comment
+displaying the filename of the SVG image the helper tried to render:
+
+```html
+<svg><!-- SVG file not found: 'some-missing-file.svg' --></svg>
+```
+
+You may apply a class to this empty SVG document by specifying the following
+configuration:
+
+```rb
+InlineSvg.configure do |config|
+  config.svg_not_found_css_class = 'svg-not-found'
+end
+```
+
+Which would instead render:
+
+```html
+<svg class='svg-not-found'><!-- SVG file not found: 'some-missing-file.svg' --></svg>
+```
 
 ## Contributing
 

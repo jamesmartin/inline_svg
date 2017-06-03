@@ -15,11 +15,12 @@ module InlineSvg
   class Configuration
     class Invalid < ArgumentError; end
 
-    attr_reader :asset_file, :asset_finder, :custom_transformations
+    attr_reader :asset_file, :asset_finder, :custom_transformations, :svg_not_found_css_class
 
     def initialize
       @custom_transformations = {}
       @asset_file = InlineSvg::AssetFile
+      @svg_not_found_css_class = nil
     end
 
     def asset_file=(custom_asset_file)
@@ -45,6 +46,12 @@ module InlineSvg
         @asset_finder = InlineSvg::StaticAssetFinder
       end
       asset_finder
+    end
+
+    def svg_not_found_css_class=(css_class)
+      if css_class.present? && css_class.is_a?(String)
+        @svg_not_found_css_class = css_class
+      end
     end
 
     def add_custom_transformation(options)

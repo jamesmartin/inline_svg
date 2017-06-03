@@ -12,7 +12,11 @@ module InlineSvg
             configured_asset_file.named filename
           end
         rescue InlineSvg::AssetFile::FileNotFound
-          return "<svg><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
+          if InlineSvg.configuration.svg_not_found_css_class.nil?
+            return "<svg><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
+          else
+            return "<svg class='#{InlineSvg.configuration.svg_not_found_css_class}'><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
+          end
         end
 
         InlineSvg::TransformPipeline.generate_html_from(svg_file, transform_params).html_safe
