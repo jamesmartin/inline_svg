@@ -1,6 +1,6 @@
 # Inline SVG
 
-[![CircleCI](https://circleci.com/gh/jamesmartin/inline_svg.svg?style=svg)](https://circleci.com/gh/jamesmartin/inline_svg)
+[![Build Status](https://travis-ci.org/jamesmartin/inline_svg.svg?branch=master)](https://travis-ci.org/jamesmartin/inline_svg)
 
 Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
