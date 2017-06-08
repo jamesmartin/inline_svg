@@ -14,8 +14,12 @@ describe InlineSvg::ActionView::Helpers do
   let(:helper) { ( Class.new { include InlineSvg::ActionView::Helpers } ).new }
 
   describe "#inline_svg" do
-    
+
     context "when passed the name of an SVG that does not exist" do
+      after(:each) do
+        InlineSvg.reset_configuration!
+      end
+
       it "returns an empty, html safe, SVG document as a placeholder" do
         allow(InlineSvg::AssetFile).to receive(:named).
           with('some-missing-file.svg').
@@ -33,6 +37,20 @@ describe InlineSvg::ActionView::Helpers do
 
         output = helper.inline_svg('missing-file-with-no-extension')
         expect(output).to eq "<svg><!-- SVG file not found: 'missing-file-with-no-extension' (Try adding .svg to your filename) --></svg>"
+      end
+
+      it "allows the CSS class on the empty SVG document to be changed" do
+        InlineSvg.configure do |config|
+          config.svg_not_found_css_class = 'missing-svg'
+        end
+
+        allow(InlineSvg::AssetFile).to receive(:named).
+          with('some-other-missing-file.svg').
+          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+        output = helper.inline_svg('some-other-missing-file.svg')
+        expect(output).to eq "<svg class='missing-svg'><!-- SVG file not found: 'some-other-missing-file.svg' --></svg>"
+        expect(output).to be_html_safe
       end
     end
 
