@@ -3,8 +3,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [1.2.2] - 2017-07-06
+### Fixed
 - Handle malformed documents that don't contain a root SVG element
   [#60](https://github.com/jamesmartin/inline_svg/pull/65)
+### Added
+- Add configurable CSS class to empty SVG document
+  [#67](https://github.com/jamesmartin/inline_svg/pull/67)
 
 ## [1.2.1] - 2017-05-02
 ### Fixed
@@ -160,7 +167,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.1...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/jamesmartin/inline_svg/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/jamesmartin/inline_svg/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/jamesmartin/inline_svg/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/jamesmartin/inline_svg/compare/v1.0.1...v1.1.0
