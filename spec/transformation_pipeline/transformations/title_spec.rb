@@ -27,4 +27,13 @@ describe InlineSvg::TransformPipeline::Transformations::Title do
       "<svg><title>Some Title</title></svg>\n"
     )
   end
+
+  it "handles non-ASCII characters" do
+    document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
+    transformation = InlineSvg::TransformPipeline::Transformations::Title.create_with_value("åäö")
+
+    expect(transformation.transform(document).to_html).to eq(
+      "<svg><title>åäö</title>Some document</svg>\n"
+    )
+  end
 end
