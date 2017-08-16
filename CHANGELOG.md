@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+### Fixed
+- Handle UTF-8 characters in SVG documents
+  [#60](https://github.com/jamesmartin/inline_svg/pull/69)
 
 ## [1.2.2] - 2017-07-06
 ### Fixed
