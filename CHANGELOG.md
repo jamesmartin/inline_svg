@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [1.2.3] - 2017-08-17
 ### Fixed
 - Handle UTF-8 characters in SVG documents
   [#60](https://github.com/jamesmartin/inline_svg/pull/69)
@@ -169,7 +172,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.2...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/jamesmartin/inline_svg/compare/v1.2.1...v1.2.3
 [1.2.2]: https://github.com/jamesmartin/inline_svg/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/jamesmartin/inline_svg/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/jamesmartin/inline_svg/compare/v1.1.0...v1.2.0
