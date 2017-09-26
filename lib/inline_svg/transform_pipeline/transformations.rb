@@ -7,6 +7,7 @@ module InlineSvg::TransformPipeline::Transformations
       title: { transform: Title, priority: 3 },
       aria: { transform: AriaAttributes },
       class: { transform: ClassAttribute },
+      style: { transform: StyleAttribute },
       data: { transform: DataAttributes },
       height: { transform: Height },
       nocomment: { transform: NoComment },
@@ -72,6 +73,7 @@ end
 require 'inline_svg/transform_pipeline/transformations/transformation'
 require 'inline_svg/transform_pipeline/transformations/no_comment'
 require 'inline_svg/transform_pipeline/transformations/class_attribute'
+require 'inline_svg/transform_pipeline/transformations/style_attribute'
 require 'inline_svg/transform_pipeline/transformations/title'
 require 'inline_svg/transform_pipeline/transformations/description'
 require 'inline_svg/transform_pipeline/transformations/size'

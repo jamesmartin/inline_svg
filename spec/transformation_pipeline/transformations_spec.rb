@@ -15,6 +15,7 @@ describe InlineSvg::TransformPipeline::Transformations do
       transformations = InlineSvg::TransformPipeline::Transformations.lookup(
         nocomment: 'irrelevant',
         class: 'irrelevant',
+        style: 'irrelevant',
         title: 'irrelevant',
         desc: 'irrelevant',
         size: 'irrelevant',
@@ -29,6 +30,7 @@ describe InlineSvg::TransformPipeline::Transformations do
       expect(transformations.map(&:class)).to match_array([
         InlineSvg::TransformPipeline::Transformations::NoComment,
         InlineSvg::TransformPipeline::Transformations::ClassAttribute,
+        InlineSvg::TransformPipeline::Transformations::StyleAttribute,
         InlineSvg::TransformPipeline::Transformations::Title,
         InlineSvg::TransformPipeline::Transformations::Description,
         InlineSvg::TransformPipeline::Transformations::Size,
