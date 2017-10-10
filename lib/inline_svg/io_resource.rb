@@ -10,6 +10,7 @@ module InlineSvg
       when IO then 1
       end
     end
+
     def self.read object
       start = object.pos
       str = object.read
