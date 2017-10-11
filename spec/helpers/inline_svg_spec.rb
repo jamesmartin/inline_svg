@@ -52,6 +52,20 @@ describe InlineSvg::ActionView::Helpers do
         expect(output).to eq "<svg class='missing-svg'><!-- SVG file not found: 'some-other-missing-file.svg' --></svg>"
         expect(output).to be_html_safe
       end
+
+      context "and a fallback that does exist" do
+        it "displays the fallback" do
+          allow(InlineSvg::AssetFile).to receive(:named).
+            with('missing.svg').
+            and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+          fallback_file = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
+SVG
+          allow(InlineSvg::AssetFile).to receive(:named).with('fallback.svg').and_return(fallback_file)
+          expect(helper.inline_svg('missing.svg', fallback: 'fallback.svg')).to eq fallback_file
+        end
+      end
     end
 
     context "when passed an existing SVG file" do

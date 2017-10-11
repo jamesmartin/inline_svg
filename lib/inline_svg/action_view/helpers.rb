@@ -6,16 +6,16 @@ module InlineSvg
     module Helpers
       def inline_svg(filename, transform_params={})
         begin
-          svg_file = if InlineSvg::IOResource === filename
-            InlineSvg::IOResource.read filename
-          else
-            configured_asset_file.named filename
-          end
+          svg_file = read_svg(filename)
         rescue InlineSvg::AssetFile::FileNotFound
-          if InlineSvg.configuration.svg_not_found_css_class.nil?
-            return "<svg><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
-          else
-            return "<svg class='#{InlineSvg.configuration.svg_not_found_css_class}'><!-- SVG file not found: '#{filename}' #{extension_hint(filename)}--></svg>".html_safe
+          return placeholder(filename) unless transform_params[:fallback].present?
+
+          if transform_params[:fallback].present?
+            begin
+              svg_file = read_svg(transform_params[:fallback])
+            rescue InlineSvg::AssetFile::FileNotFound
+              placeholder(filename)
+            end
           end
         end
 
@@ -23,6 +23,25 @@ module InlineSvg
       end
 
       private
+
+      def read_svg(filename)
+        if InlineSvg::IOResource === filename
+          InlineSvg::IOResource.read filename
+        else
+          configured_asset_file.named filename
+        end
+      end
+
+      def placeholder(filename)
+        css_class = InlineSvg.configuration.svg_not_found_css_class
+        not_found_message = "'#{filename}' #{extension_hint(filename)}"
+
+        if css_class.nil?
+          return "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
+        else
+          return "<svg class='#{css_class}'><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
+        end
+      end
 
       def configured_asset_file
         InlineSvg.configuration.asset_file
