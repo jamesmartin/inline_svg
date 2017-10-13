@@ -90,8 +90,19 @@ key                     | description
 Example:
 
 ```ruby
-inline_svg("some-document.svg", id: 'some-id', class: 'some-class', data: {some: "value"}, size: '30% * 20%', title: 'Some Title', desc:
-'Some description', nocomment: true, preserve_aspect_ratio: 'xMaxYMax meet', aria: true)
+inline_svg(
+  "some-document.svg",
+  id: 'some-id',
+  class: 'some-class',
+  data: {some: "value"},
+  size: '30% * 20%',
+  title: 'Some Title',
+  desc: 'Some description',
+  nocomment: true,
+  preserve_aspect_ratio: 'xMaxYMax meet',
+  aria: true,
+  aria_hidden: true
+)
 ```
 
 ## Accessibility
