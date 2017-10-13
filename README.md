@@ -85,6 +85,7 @@ key                     | description
 `nocomment`             | remove comment tags from the SVG document
 `preserve_aspect_ratio` | adds a `preserveAspectRatio` attribute to the SVG
 `aria`                  | adds common accessibility attributes to the SVG (see [PR #34](https://github.com/jamesmartin/inline_svg/pull/34#issue-152062674) for details)
+`aria_hidden`           | adds the `aria-hidden=true` attribute to the SVG
 
 Example:
 
