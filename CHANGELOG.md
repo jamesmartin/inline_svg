@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 - Make aria ID attributes unique
   [#77](https://github.com/jamesmartin/inline_svg/pull/77)
+- In-line CSS style attribute
+  [#71](https://github.com/jamesmartin/inline_svg/pull/71)
 
 ## [1.2.3] - 2017-08-17
 ### Fixed
