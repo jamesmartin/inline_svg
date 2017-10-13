@@ -119,6 +119,19 @@ SVG
         end
       end
 
+      context "and the 'aria_hidden' option" do
+        it "sets 'aria-hidden=true' in the output" do
+          input_svg = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
+SVG
+          expected_output = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en" aria-hidden="true"></svg>
+SVG
+          allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
+          expect(helper.inline_svg('some-file', aria_hidden: true)).to eq expected_output
+        end
+      end
+
       context "and all options" do
         it "applies all expected transformations to the output" do
           input_svg = <<-SVG
