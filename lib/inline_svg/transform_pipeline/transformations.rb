@@ -83,3 +83,4 @@ require 'inline_svg/transform_pipeline/transformations/id_attribute'
 require 'inline_svg/transform_pipeline/transformations/data_attributes'
 require 'inline_svg/transform_pipeline/transformations/preserve_aspect_ratio'
 require 'inline_svg/transform_pipeline/transformations/aria_attributes'
+require "inline_svg/transform_pipeline/transformations/aria_hidden_attribute"
