@@ -6,6 +6,7 @@ module InlineSvg::TransformPipeline::Transformations
       desc: { transform: Description, priority: 2 },
       title: { transform: Title, priority: 3 },
       aria: { transform: AriaAttributes },
+      aria_hidden: { transform: AriaHidden },
       class: { transform: ClassAttribute },
       style: { transform: StyleAttribute },
       data: { transform: DataAttributes },
@@ -83,3 +84,4 @@ require 'inline_svg/transform_pipeline/transformations/id_attribute'
 require 'inline_svg/transform_pipeline/transformations/data_attributes'
 require 'inline_svg/transform_pipeline/transformations/preserve_aspect_ratio'
 require 'inline_svg/transform_pipeline/transformations/aria_attributes'
+require 'inline_svg/transform_pipeline/transformations/aria_hidden'
