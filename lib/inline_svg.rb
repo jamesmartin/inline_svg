@@ -37,14 +37,14 @@ module InlineSvg
     end
 
     def asset_finder=(finder)
-      if finder.respond_to?(:find_asset)
-        @asset_finder = finder
-      else
-        # fallback to a naive static asset finder (sprokects >= 3.0 &&
-        # config.assets.precompile = false
-        # See: https://github.com/jamesmartin/inline_svg/issues/25
-        @asset_finder = InlineSvg::StaticAssetFinder
-      end
+      @asset_finder = if finder.respond_to?(:find_asset)
+                        finder
+                      else
+                        # fallback to a naive static asset finder
+                        # (sprokects >= 3.0 && config.assets.precompile = false
+                        # See: https://github.com/jamesmartin/inline_svg/issues/25
+                        InlineSvg::StaticAssetFinder
+                      end
       asset_finder
     end
 

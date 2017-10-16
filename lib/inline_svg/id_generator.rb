@@ -1,7 +1,14 @@
 module InlineSvg
   class IdGenerator
-    def self.generate(base, salt)
-      bytes = Digest::SHA1.digest("#{base}-#{salt}")
+    class Randomness
+      require "securerandom"
+      def self.call
+        SecureRandom.hex(10)
+      end
+    end
+
+    def self.generate(base, salt, randomness: Randomness)
+      bytes = Digest::SHA1.digest("#{base}-#{salt}-#{randomness.call}")
       Digest.hexencode(bytes).to_i(16).to_s(36)
     end
   end

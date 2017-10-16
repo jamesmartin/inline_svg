@@ -52,6 +52,20 @@ describe InlineSvg::ActionView::Helpers do
         expect(output).to eq "<svg class='missing-svg'><!-- SVG file not found: 'some-other-missing-file.svg' --></svg>"
         expect(output).to be_html_safe
       end
+
+      context "and a fallback that does exist" do
+        it "displays the fallback" do
+          allow(InlineSvg::AssetFile).to receive(:named).
+            with('missing.svg').
+            and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+          fallback_file = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
+SVG
+          allow(InlineSvg::AssetFile).to receive(:named).with('fallback.svg').and_return(fallback_file)
+          expect(helper.inline_svg('missing.svg', fallback: 'fallback.svg')).to eq fallback_file
+        end
+      end
     end
 
     context "when passed an existing SVG file" do
@@ -102,6 +116,19 @@ SVG
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.inline_svg('some-file', nocomment: true)).to eq expected_output
+        end
+      end
+
+      context "and the 'aria_hidden' option" do
+        it "sets 'aria-hidden=true' in the output" do
+          input_svg = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
+SVG
+          expected_output = <<-SVG
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en" aria-hidden="true"></svg>
+SVG
+          allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
+          expect(helper.inline_svg('some-file', aria_hidden: true)).to eq expected_output
         end
       end
 
