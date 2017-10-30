@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [1.2.4] - 2017-10-30
 ### Added
 - Aria hidden attribute
   [#78](https://github.com/jamesmartin/inline_svg/pull/78)
@@ -181,8 +184,9 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.3...HEAD
-[1.2.3]: https://github.com/jamesmartin/inline_svg/compare/v1.2.1...v1.2.3
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.2.4...HEAD
+[1.2.4]: https://github.com/jamesmartin/inline_svg/compare/v1.2.3...v1.2.4
+[1.2.3]: https://github.com/jamesmartin/inline_svg/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/jamesmartin/inline_svg/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/jamesmartin/inline_svg/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/jamesmartin/inline_svg/compare/v1.1.0...v1.2.0
