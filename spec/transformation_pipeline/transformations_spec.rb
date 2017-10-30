@@ -25,6 +25,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         data: 'irrelevant',
         preserve_aspect_ratio: 'irrelevant',
         aria: 'irrelevant',
+        aria_hidden: "true"
       )
 
       expect(transformations.map(&:class)).to match_array([
@@ -39,7 +40,8 @@ describe InlineSvg::TransformPipeline::Transformations do
         InlineSvg::TransformPipeline::Transformations::IdAttribute,
         InlineSvg::TransformPipeline::Transformations::DataAttributes,
         InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio,
-        InlineSvg::TransformPipeline::Transformations::AriaAttributes
+        InlineSvg::TransformPipeline::Transformations::AriaAttributes,
+        InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute
       ])
     end
 
