@@ -14,7 +14,7 @@ module InlineSvg
     #           Note: Specifying no filters will cache every file found in
     #           paths.
     #
-    def initialize(paths:, filters: [])
+    def initialize(paths: [], filters: [])
       @paths = Array(paths).compact.map { |p| Pathname.new(p) }
       @filters = Array(filters).map { |f| Regexp.new(f) }
       @assets = @paths.reduce({}) { |assets, p| assets.merge(read_assets(assets, p)) }
