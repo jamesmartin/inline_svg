@@ -1,3 +1,5 @@
+require 'digest'
+
 module InlineSvg
   class IdGenerator
     class Randomness
