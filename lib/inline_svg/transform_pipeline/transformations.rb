@@ -40,8 +40,11 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.lookup(transform_params)
+    return [] unless transform_params.any? || custom_transformations.any?
+
+    transform_params_with_defaults = params_with_defaults(transform_params)
     all_transformations.map { |name, definition|
-      value = params_with_defaults(transform_params)[name]
+      value = transform_params_with_defaults[name]
       definition.fetch(:transform, no_transform).create_with_value(value) if value
     }.compact
   end
