@@ -11,7 +11,7 @@ module InlineSvg
 
     def self.generate(base, salt, randomness: Randomness)
       bytes = Digest::SHA1.digest("#{base}-#{salt}-#{randomness.call}")
-      Digest.hexencode(bytes).to_i(16).to_s(36)
+      'a' + Digest.hexencode(bytes).to_i(16).to_s(36)
     end
   end
 end

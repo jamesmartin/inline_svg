@@ -5,6 +5,6 @@ describe InlineSvg::IdGenerator do
     randomizer = -> { "some-random-value" }
 
     expect(InlineSvg::IdGenerator.generate("some-base", "some-salt", randomness: randomizer)).
-      to eq("t2c17mkqnvopy36iccxspura7wnreqf")
+      to eq("at2c17mkqnvopy36iccxspura7wnreqf")
   end
 end
