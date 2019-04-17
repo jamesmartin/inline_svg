@@ -294,6 +294,15 @@ Which would instead render:
 <svg class='svg-not-found'><!-- SVG file not found: 'some-missing-file.svg' --></svg>
 ```
 
+Alternatively, `inline_svg` can be configured to raise an exception when a file
+is not found:
+
+```ruby
+InlineSvg.configure do |config|
+  config.raise_on_file_not_found = true
+end
+```
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
