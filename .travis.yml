@@ -3,4 +3,6 @@ rvm:
   - 2.3
   - 2.4
   - 2.5
+before_install:
+  - gem install -v 2.0.1 bundler --no-rdoc --no-ri
 script: bundle exec rspec
