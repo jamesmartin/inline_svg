@@ -20,6 +20,22 @@ describe InlineSvg::ActionView::Helpers do
         InlineSvg.reset_configuration!
       end
 
+      context "and configured to raise" do
+        it "raises an exception" do
+          InlineSvg.configure do |config|
+            config.raise_on_file_not_found = true
+          end
+
+          allow(InlineSvg::AssetFile).to receive(:named).
+            with('some-missing-file.svg').
+            and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+          expect {
+            helper.inline_svg('some-missing-file.svg')
+          }.to raise_error(InlineSvg::AssetFile::FileNotFound)
+        end
+      end
+
       it "returns an empty, html safe, SVG document as a placeholder" do
         allow(InlineSvg::AssetFile).to receive(:named).
           with('some-missing-file.svg').
