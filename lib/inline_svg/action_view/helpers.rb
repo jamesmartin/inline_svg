@@ -7,7 +7,8 @@ module InlineSvg
       def inline_svg(filename, transform_params={})
         begin
           svg_file = read_svg(filename)
-        rescue InlineSvg::AssetFile::FileNotFound
+        rescue InlineSvg::AssetFile::FileNotFound => error
+          raise error if InlineSvg.configuration.raise_on_file_not_found?
           return placeholder(filename) unless transform_params[:fallback].present?
 
           if transform_params[:fallback].present?
