@@ -21,6 +21,7 @@ module InlineSvg
       @custom_transformations = {}
       @asset_file = InlineSvg::AssetFile
       @svg_not_found_css_class = nil
+      @raise_on_file_not_found = false
     end
 
     def asset_file=(custom_asset_file)
@@ -59,6 +60,14 @@ module InlineSvg
         raise InlineSvg::Configuration::Invalid.new("#{options.fetch(:transform)} should implement the .create_with_value and #transform methods")
       end
       @custom_transformations.merge!(Hash[ *[options.fetch(:attribute, :no_attribute), options] ])
+    end
+
+    def raise_on_file_not_found=(value)
+      @raise_on_file_not_found = value
+    end
+
+    def raise_on_file_not_found?
+      !!@raise_on_file_not_found
     end
 
     private
