@@ -3,9 +3,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [1.4.0] - 2019-04-19
+### Fixed
 - Prevent invalid XML names being generated via IdGenerator
   [#87](https://github.com/jamesmartin/inline_svg/issues/87)
   Thanks, [@endorfin](https://github.com/endorfin)
+
+### Added
 - Raise error on file not found (if configured)
   [#93](https://github.com/jamesmartin/inline_svg/issues/93)
 
