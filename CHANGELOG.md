@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+### Added
+- Support for finding assets bundled by Webpacker
+  [#96](https://github.com/jamesmartin/inline_svg/pull/96)
 
 ## [1.4.0] - 2019-04-19
 ### Fixed
