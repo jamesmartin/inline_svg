@@ -15,7 +15,11 @@ module InlineSvg
         # Only set this when a user-configured asset finder has not been
         # configured already.
         if config.asset_finder.nil?
-          config.asset_finder = app.instance_variable_get(:@assets)
+          if assets = app.instance_variable_get(:@assets)
+            config.asset_finder = assets
+          elsif defined?(Webpacker)
+            config.asset_finder = InlineSvg::WebpackAssetFinder
+          end
         end
       end
     end
