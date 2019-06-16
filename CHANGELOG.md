@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+- Nothing
+
+## [1.5.0] - 2019-06-17
 ### Added
 - Support for finding assets bundled by Webpacker
   [#96](https://github.com/jamesmartin/inline_svg/pull/96)
@@ -201,7 +204,9 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.3.1...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/jamesmartin/inline_svg/compare/v1.4.0...v1.5.0
+[1.4.0]: https://github.com/jamesmartin/inline_svg/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/jamesmartin/inline_svg/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/jamesmartin/inline_svg/compare/v1.2.3...v1.3.0
 [1.2.3]: https://github.com/jamesmartin/inline_svg/compare/v1.2.2...v1.2.3
