@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 - Nothing
 
+## [1.5.1] - 2019-06-18
+### Fixed
+- Prevent nil asset finder when neither Sprockets or Webpacker are available
+  [#97](https://github.com/jamesmartin/inline_svg/issues/97)
+
 ## [1.5.0] - 2019-06-17
 ### Added
 - Support for finding assets bundled by Webpacker
@@ -204,7 +209,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.5.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.5.1...HEAD
+[1.5.1]: https://github.com/jamesmartin/inline_svg/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jamesmartin/inline_svg/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/jamesmartin/inline_svg/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/jamesmartin/inline_svg/compare/v1.3.0...v1.3.1
