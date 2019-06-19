@@ -16,6 +16,18 @@ Inline SVG supports:
 - [Rails 5](http://weblog.rubyonrails.org/2016/6/30/Rails-5-0-final/) (from [v0.10.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.10.0))
 - [Rails 6](https://weblog.rubyonrails.org/2019/4/24/Rails-6-0-rc1-released/) with Sprockets or Webpacker (from [v1.5.0](https://github.com/jamesmartin/inline_svg/releases/tag/v1.5.0)).
 
+⚠️***A Note about Sprockets and Webpacker***⚠️
+
+The following only applies if you're using _both_ Sprockets and Webpacker in your App:
+
+Inline SVG supports assets bundled by either Sprockets or Webpacker, however, if assets are precompiled and served statically in production (E.g. `rake assets:precompile` on Heroku) then you should manually configure the `InlineSvg::StaticAssetFinder`, because it's impossible for `InlineSvg` to know that Webpacker is _not_ bundling your assets:
+
+```ruby
+InlineSvg.configure do |config|
+  config.asset_finder = InlineSvg::StaticAssetFinder
+end
+```
+
 ## Changelog
 
 This project adheres to [Semantic Versioning](http://semver.org). All notable changes are documented in the
@@ -305,29 +317,6 @@ is not found:
 ```ruby
 InlineSvg.configure do |config|
   config.raise_on_file_not_found = true
-end
-```
-
-## Sprockets and Webpacker
-
-Inline SVG supports SVGs bundled by either Sprockets or Webpacker, however, be
-aware that the gem will *always* attempt to find SVGs using Sprockts if it is
-enabled.
-
-By default, Inline SVG will use Sprockets to find SVG files if it is enabled in
-your Rails project.
-
-If you have upgraded an older Rails project from Sprockets to Webpacker and you
-no longer want to use Sprockets at all, you should disable the Asset Pipeline
-and Inline SVG will use Webpacker automatically.
-
-If you have both Sprockets *and* Webpacker enabled for some reason and you want
-Inline SVG to use Webpacker to find SVGs then you should configure the
-`asset_finder` appropriately:
-
-```ruby
-InlineSvg.configure do |config|
-  config.asset_finder = InlineSvg::WebpackAssetFinder
 end
 ```
 
