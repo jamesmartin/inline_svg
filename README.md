@@ -14,17 +14,17 @@ Inline SVG supports:
 - [Rails 3](http://weblog.rubyonrails.org/2010/8/29/rails-3-0-it-s-done/) (from [v0.12.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.12.0))
 - [Rails 4](http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/)
 - [Rails 5](http://weblog.rubyonrails.org/2016/6/30/Rails-5-0-final/) (from [v0.10.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.10.0))
-- [Rails 6](https://weblog.rubyonrails.org/2019/4/24/Rails-6-0-rc1-released/) with Sprockets or Webpacker (from [v1.5.0](https://github.com/jamesmartin/inline_svg/releases/tag/v1.5.0)).
+- [Rails 6](https://weblog.rubyonrails.org/2019/4/24/Rails-6-0-rc1-released/) with Sprockets or Webpacker (from [v1.5.2](https://github.com/jamesmartin/inline_svg/releases/tag/v1.5.2)).
 
-⚠️***A Note about Sprockets and Webpacker***⚠️
+## Webpacker
 
-The following only applies if you're using _both_ Sprockets and Webpacker in your App:
 
-Inline SVG supports assets bundled by either Sprockets or Webpacker, however, if assets are precompiled and served statically in production (E.g. `rake assets:precompile` on Heroku) then you should manually configure the `InlineSvg::StaticAssetFinder`, because it's impossible for `InlineSvg` to know that Webpacker is _not_ bundling your assets:
+Webpacker support is currently "opt-in" and must be manually configured like
+so:
 
 ```ruby
 InlineSvg.configure do |config|
-  config.asset_finder = InlineSvg::StaticAssetFinder
+  config.asset_finder = InlineSvg::WebpackAssetFinder
 end
 ```
 
