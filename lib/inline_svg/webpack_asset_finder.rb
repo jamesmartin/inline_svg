@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module InlineSvg
   class WebpackAssetFinder
     def self.find_asset(filename)
