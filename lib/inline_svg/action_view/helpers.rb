@@ -17,6 +17,10 @@ module InlineSvg
       end
 
       def inline_svg(filename, transform_params={})
+        ActiveSupport::Deprecation.warn(
+          '`inline_svg` is deprecated and will be removed from inline_svg 2.0 (use `inline_svg_tag` or `inline_svg_pack_tag` instead)'
+        )
+
         render_inline_svg(filename, transform_params)
       end
 
