@@ -5,7 +5,7 @@ module InlineSvg
   module ActionView
     module Helpers
       def inline_svg_tag(filename, transform_params={})
-        with_asset_finder(nil) do
+        with_asset_finder(InlineSvg.configuration.asset_finder) do
           render_inline_svg(filename, transform_params)
         end
       end
