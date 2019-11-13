@@ -13,7 +13,7 @@ describe InlineSvg::ActionView::Helpers do
 
   let(:helper) { ( Class.new { include InlineSvg::ActionView::Helpers } ).new }
 
-  describe "#inline_svg" do
+  shared_examples "inline_svg helper" do |helper_method:|
 
     context "when passed the name of an SVG that does not exist" do
       after(:each) do
@@ -31,7 +31,7 @@ describe InlineSvg::ActionView::Helpers do
             and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
           expect {
-            helper.inline_svg('some-missing-file.svg')
+            helper.send(helper_method, 'some-missing-file.svg')
           }.to raise_error(InlineSvg::AssetFile::FileNotFound)
         end
       end
@@ -41,7 +41,7 @@ describe InlineSvg::ActionView::Helpers do
           with('some-missing-file.svg').
           and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
-        output = helper.inline_svg('some-missing-file.svg')
+        output = helper.send(helper_method, 'some-missing-file.svg')
         expect(output).to eq "<svg><!-- SVG file not found: 'some-missing-file.svg' --></svg>"
         expect(output).to be_html_safe
       end
@@ -51,7 +51,7 @@ describe InlineSvg::ActionView::Helpers do
           with('missing-file-with-no-extension').
           and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
-        output = helper.inline_svg('missing-file-with-no-extension')
+        output = helper.send(helper_method, 'missing-file-with-no-extension')
         expect(output).to eq "<svg><!-- SVG file not found: 'missing-file-with-no-extension' (Try adding .svg to your filename) --></svg>"
       end
 
@@ -64,7 +64,7 @@ describe InlineSvg::ActionView::Helpers do
           with('some-other-missing-file.svg').
           and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
-        output = helper.inline_svg('some-other-missing-file.svg')
+        output = helper.send(helper_method, 'some-other-missing-file.svg')
         expect(output).to eq "<svg class='missing-svg'><!-- SVG file not found: 'some-other-missing-file.svg' --></svg>"
         expect(output).to be_html_safe
       end
@@ -79,7 +79,7 @@ describe InlineSvg::ActionView::Helpers do
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('fallback.svg').and_return(fallback_file)
-          expect(helper.inline_svg('missing.svg', fallback: 'fallback.svg')).to eq fallback_file
+          expect(helper.send(helper_method, 'missing.svg', fallback: 'fallback.svg')).to eq fallback_file
         end
       end
     end
@@ -92,7 +92,7 @@ SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(example_file)
-          expect(helper.inline_svg('some-file')).to eq example_file
+          expect(helper.send(helper_method, 'some-file')).to eq example_file
         end
       end
 
@@ -105,7 +105,7 @@ SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><title>A title</title></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-          expect(helper.inline_svg('some-file', title: 'A title')).to eq expected_output
+          expect(helper.send(helper_method, 'some-file', title: 'A title')).to eq expected_output
         end
       end
 
@@ -118,7 +118,7 @@ SVG
 <svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><desc>A description</desc></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-          expect(helper.inline_svg('some-file', desc: 'A description')).to eq expected_output
+          expect(helper.send(helper_method, 'some-file', desc: 'A description')).to eq expected_output
         end
       end
 
@@ -131,7 +131,7 @@ SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-          expect(helper.inline_svg('some-file', nocomment: true)).to eq expected_output
+          expect(helper.send(helper_method, 'some-file', nocomment: true)).to eq expected_output
         end
       end
 
@@ -144,7 +144,7 @@ SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en" aria-hidden="true"></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-          expect(helper.inline_svg('some-file', aria_hidden: true)).to eq expected_output
+          expect(helper.send(helper_method, 'some-file', aria_hidden: true)).to eq expected_output
         end
       end
 
@@ -157,7 +157,7 @@ SVG
 <svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><title>A title</title><desc>A description</desc></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-          expect(helper.inline_svg('some-file', title: 'A title', desc: 'A description', nocomment: true)).to eq expected_output
+          expect(helper.send(helper_method, 'some-file', title: 'A title', desc: 'A description', nocomment: true)).to eq expected_output
         end
       end
 
@@ -180,7 +180,7 @@ SVG
 <svg custom="some value"></svg>
 SVG
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-          expect(helper.inline_svg('some-file', custom: 'some value')).to eq expected_output
+          expect(helper.send(helper_method, 'some-file', custom: 'some value')).to eq expected_output
         end
       end
 
@@ -201,7 +201,7 @@ SVG
 
             allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
 
-            expect(helper.inline_svg('some-file')).to eq "<svg custom=\"default value\"></svg>\n"
+            expect(helper.send(helper_method, 'some-file')).to eq "<svg custom=\"default value\"></svg>\n"
           end
         end
 
@@ -211,7 +211,7 @@ SVG
 
             allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
 
-            expect(helper.inline_svg('some-file', custom: 'some value')).to eq "<svg custom=\"some value\"></svg>\n"
+            expect(helper.send(helper_method, 'some-file', custom: 'some value')).to eq "<svg custom=\"some value\"></svg>\n"
           end
         end
       end
@@ -223,13 +223,13 @@ SVG
         expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(true)
         expect(InlineSvg::IOResource).to receive(:read).with(argument)
         expect(InlineSvg::AssetFile).to_not receive(:named)
-        helper.inline_svg(argument)
+        helper.send(helper_method, argument)
       end
       it 'accept filename' do
         expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(false)
         expect(InlineSvg::IOResource).to_not receive(:read)
         expect(InlineSvg::AssetFile).to receive(:named).with(argument)
-        helper.inline_svg(argument)
+        helper.send(helper_method, argument)
       end
     end
     context 'when passed IO object argument' do
@@ -239,17 +239,29 @@ SVG
       it 'return valid svg' do
         expect(InlineSvg::IOResource).to receive(:===).with(io_object).and_return(true)
         expect(InlineSvg::IOResource).to receive(:read).with(io_object).and_return("<svg><!-- Test IO --></svg>")
-        output = helper.inline_svg(io_object)
+        output = helper.send(helper_method, io_object)
         expect(output).to eq "<svg><!-- Test IO --></svg>\n"
         expect(output).to be_html_safe
       end
 
       it 'return valid svg for file' do
-        output = helper.inline_svg(File.new(file_path))
+        output = helper.send(helper_method, File.new(file_path))
         expect(output).to eq "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:lang=\"en\" role=\"presentation\"><!-- This is a test comment --></svg>\n"
         expect(output).to be_html_safe
       end
 
     end
+  end
+
+  describe '#inline_svg' do
+    it_behaves_like "inline_svg helper", helper_method: :inline_svg
+  end
+
+  describe '#inline_svg_tag' do
+    it_behaves_like "inline_svg helper", helper_method: :inline_svg_tag
+  end
+
+  describe '#inline_svg_tag' do
+    it_behaves_like "inline_svg helper", helper_method: :inline_svg_pack_tag
   end
 end

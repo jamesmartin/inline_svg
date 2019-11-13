@@ -4,7 +4,29 @@ require 'action_view/context' if defined?(Rails)
 module InlineSvg
   module ActionView
     module Helpers
+      def inline_svg_tag(filename, transform_params={})
+        with_asset_finder(InlineSvg.configuration.asset_finder) do
+          render_inline_svg(filename, transform_params)
+        end
+      end
+
+      def inline_svg_pack_tag(filename, transform_params={})
+        with_asset_finder(InlineSvg::WebpackAssetFinder) do
+          render_inline_svg(filename, transform_params)
+        end
+      end
+
       def inline_svg(filename, transform_params={})
+        ActiveSupport::Deprecation.warn(
+          '`inline_svg` is deprecated and will be removed from inline_svg 2.0 (use `inline_svg_tag` or `inline_svg_pack_tag` instead)'
+        )
+
+        render_inline_svg(filename, transform_params)
+      end
+
+      private
+
+      def render_inline_svg(filename, transform_params={})
         begin
           svg_file = read_svg(filename)
         rescue InlineSvg::AssetFile::FileNotFound => error
@@ -22,8 +44,6 @@ module InlineSvg
 
         InlineSvg::TransformPipeline.generate_html_from(svg_file, transform_params).html_safe
       end
-
-      private
 
       def read_svg(filename)
         if InlineSvg::IOResource === filename
@@ -46,6 +66,16 @@ module InlineSvg
 
       def configured_asset_file
         InlineSvg.configuration.asset_file
+      end
+
+      def with_asset_finder(asset_finder)
+        initial_asset_finder = InlineSvg.configuration.asset_finder
+
+        InlineSvg.configuration.asset_finder = asset_finder
+        output = yield
+        InlineSvg.configuration.asset_finder = initial_asset_finder
+
+        output
       end
 
       def extension_hint(filename)

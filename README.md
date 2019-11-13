@@ -6,7 +6,7 @@ Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
 embedding](http://css-tricks.com/using-svg/) it inline in the HTML.
 
-This gem adds a Rails helper method (`inline_svg`) that reads an SVG document (via Sprockets or Webpacker, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
+This gem adds Rails helper methods (`inline_svg_tag` and `inline_svg_pack_tag`) that read an SVG document (via Sprockets or Webpacker, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
 Inline SVG supports:
@@ -15,18 +15,6 @@ Inline SVG supports:
 - [Rails 4](http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/)
 - [Rails 5](http://weblog.rubyonrails.org/2016/6/30/Rails-5-0-final/) (from [v0.10.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.10.0))
 - [Rails 6](https://weblog.rubyonrails.org/2019/4/24/Rails-6-0-rc1-released/) with Sprockets or Webpacker (from [v1.5.2](https://github.com/jamesmartin/inline_svg/releases/tag/v1.5.2)).
-
-## Webpacker
-
-
-Webpacker support is currently "opt-in" and must be manually configured like
-so:
-
-```ruby
-InlineSvg.configure do |config|
-  config.asset_finder = InlineSvg::WebpackAssetFinder
-end
-```
 
 ## Changelog
 
@@ -49,9 +37,15 @@ Or install it yourself as:
 
 ## Usage
 
+```ruby
+# Sprockets
+inline_svg_tag(file_name, options={})
+
+# Webpacker
+inline_svg_pack_tag(file_name, options={})
 ```
-inline_svg(file_name, options={})
-```
+
+_**Note:** The remainder of this README uses `inline_svg_tag` for examples, but the exact same principles work for `inline_svg_pack_tag`._
 
 The `file_name` can be a full path to a file, the file's basename or an `IO`
 object. The
@@ -69,7 +63,7 @@ Here's an example of embedding an SVG document and applying a 'class' attribute:
   <body>
     <h1>Embedded SVG Documents</h1>
     <div>
-      <%= inline_svg "some-document.svg", class: 'some-class' %>
+      <%= inline_svg_tag "some-document.svg", class: 'some-class' %>
     </div>
   </body>
 </html>
@@ -107,7 +101,7 @@ key                     | description
 Example:
 
 ```ruby
-inline_svg(
+inline_svg_tag(
   "some-document.svg",
   id: 'some-id',
   class: 'some-class',
@@ -124,7 +118,7 @@ inline_svg(
 
 ## Accessibility
 
-Use the `aria: true` option to make `inline_svg` add the following
+Use the `aria: true` option to make `inline_svg_tag` add the following
 accessibility (a11y) attributes to your embedded SVG:
 
 * Adds a `role="img"` attribute to the root SVG element
@@ -135,7 +129,7 @@ Here's an example:
 
 ```erb
 <%=
-  inline_svg('iconmonstr-glasses-12-icon.svg',
+  inline_svg_tag('iconmonstr-glasses-12-icon.svg',
     aria: true, title: 'An SVG',
     desc: 'This is my SVG. There are many like it. You get the picture')
 %>
@@ -149,11 +143,11 @@ Here's an example:
 </svg>
 ```
 
-***Note:*** The title and desc `id` attributes generated for, and referenced by, `aria-labelled-by` are one-way digests based on the value of the title and desc elements and an optional "salt" value using the SHA1 algorithm. This reduces the chance of `inline_svg` embedding elements inside the SVG with `id` attributes that clash with other elements elsewhere on the page.
+***Note:*** The title and desc `id` attributes generated for, and referenced by, `aria-labelled-by` are one-way digests based on the value of the title and desc elements and an optional "salt" value using the SHA1 algorithm. This reduces the chance of `inline_svg_tag` embedding elements inside the SVG with `id` attributes that clash with other elements elsewhere on the page.
 
 ## Custom Transformations
 
-The transformation behavior of `inline_svg` can be customized by creating custom transformation classes.
+The transformation behavior of `inline_svg_tag` can be customized by creating custom transformation classes.
 
 For example, inherit from `InlineSvg::CustomTransformation` and implement the `#transform` method:
 
@@ -182,7 +176,7 @@ end
 The custom transformation can then be called like so:
 ```haml
 %div
-  = inline_svg "some-document.svg", my_custom_attribute: 'some value'
+  = inline_svg_tag "some-document.svg", my_custom_attribute: 'some value'
 ```
 
 In this example, the following transformation would be applied to a SVG document:
@@ -203,8 +197,8 @@ end
 The custom transformation will be triggered even if you don't pass any attribute value
 ```haml
 %div
-  = inline_svg "some-document.svg"
-  = inline_svg "some-document.svg", my_custom_attribute: 'some value'
+  = inline_svg_tag "some-document.svg"
+  = inline_svg_tag "some-document.svg", my_custom_attribute: 'some value'
 ```
 
 In this example, the following transformation would be applied to a SVG document:
@@ -284,7 +278,7 @@ end
 
 **Note:** Paths are read recursively, so think about keeping your SVG assets
 restricted to as few paths as possible, and using the filter option to further
-restrict assets to only those likely to be used by `inline_svg`.
+restrict assets to only those likely to be used by `inline_svg_tag`.
 
 ## Missing SVG Files
 
@@ -311,7 +305,7 @@ Which would instead render:
 <svg class='svg-not-found'><!-- SVG file not found: 'some-missing-file.svg' --></svg>
 ```
 
-Alternatively, `inline_svg` can be configured to raise an exception when a file
+Alternatively, `inline_svg_tag` can be configured to raise an exception when a file
 is not found:
 
 ```ruby
