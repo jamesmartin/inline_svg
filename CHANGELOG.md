@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- Support Webpack via the new `inline_svg_pack_tag` helper and deprecate `inline_svg` helper in preparation for v2.0.
+[#103](https://github.com/jamesmartin/inline_svg/pull/103)
+Thanks, [@kylefox](https://github.com/kylefox)
 
 ## [1.5.2] - 2019-06-20
 ### Fixed
