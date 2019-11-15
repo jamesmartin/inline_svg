@@ -1,7 +1,9 @@
+require "pathname"
+
 # Naive fallback asset finder for when sprockets >= 3.0 &&
 # config.assets.precompile = false
 # Thanks to @ryanswood for the original code:
-# https://github.com/AbleHealth/inline_svg/commit/661bbb3bef7d1b4bd6ccd63f5f018305797b9509
+# https://github.com/jamesmartin/inline_svg/commit/661bbb3bef7d1b4bd6ccd63f5f018305797b9509
 module InlineSvg
   class StaticAssetFinder
     def self.find_asset(filename)
@@ -14,7 +16,7 @@ module InlineSvg
 
     def pathname
       if ::Rails.application.config.assets.compile
-        ::Rails.application.assets[@filename].pathname
+        Pathname.new(::Rails.application.assets[@filename].filename)
       else
         manifest = ::Rails.application.assets_manifest
         asset_path = manifest.assets[@filename]
