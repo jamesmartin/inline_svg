@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-- Nothing
+- WebpackAssetFinder serves files from dev server if one is running. [#111](https://github.com/jamesmartin/inline_svg/pull/111). Thanks, [@connorshea](https://github.com/connorshea)
 
 ## [1.6.0] - 2019-11-13
 ### Added
