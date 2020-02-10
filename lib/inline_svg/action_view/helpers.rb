@@ -69,11 +69,9 @@ module InlineSvg
       end
 
       def with_asset_finder(asset_finder)
-        initial_asset_finder = InlineSvg.configuration.asset_finder
-
-        InlineSvg.configuration.asset_finder = asset_finder
+        Thread.current[:inline_svg_asset_finder] = asset_finder
         output = yield
-        InlineSvg.configuration.asset_finder = initial_asset_finder
+        Thread.current[:inline_svg_asset_finder] = nil
 
         output
       end
