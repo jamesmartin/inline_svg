@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+- Nothing
+
+## [1.7.0] - 2020-02-13
 ### Added
 - WebpackAssetFinder serves files from dev server if one is running. [#111](https://github.com/jamesmartin/inline_svg/pull/111). Thanks, [@connorshea](https://github.com/connorshea)
 
@@ -228,7 +231,9 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.5.2...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/jamesmartin/inline_svg/compare/v1.6.0...v1.7.0
+[1.6.0]: https://github.com/jamesmartin/inline_svg/compare/v1.5.2...v1.6.0
 [1.5.2]: https://github.com/jamesmartin/inline_svg/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/jamesmartin/inline_svg/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jamesmartin/inline_svg/compare/v1.4.0...v1.5.0
