@@ -13,7 +13,10 @@ module InlineSvg
       return unless file_path
 
       if Webpacker.dev_server.running?
-        asset = Net::HTTP.get(Webpacker.dev_server.host, file_path, Webpacker.dev_server.port)
+        http = Net::HTTP.new(Webpacker.dev_server.host, Webpacker.dev_server.port)
+        http.use_ssl = Webpacker.dev_server.https?
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        asset = http.request(Net::HTTP::Get.new(file_path)).body
 
         begin
           Tempfile.new(file_path).tap do |file|
