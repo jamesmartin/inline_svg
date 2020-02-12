@@ -6,7 +6,7 @@ module InlineSvg
     end
 
     def self.configured_asset_finder
-      InlineSvg.configuration.asset_finder
+      Thread.current[:inline_svg_asset_finder] || InlineSvg.configuration.asset_finder
     end
   end
 end
