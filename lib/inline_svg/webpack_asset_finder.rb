@@ -6,19 +6,16 @@ module InlineSvg
 
     def initialize(filename)
       @filename = filename
+      @asset_path = Webpacker.manifest.lookup(@filename)
     end
 
     def pathname
-      file_path = Webpacker.instance.manifest.lookup(@filename)
-      return unless file_path
+      return if @asset_path.blank?
 
       if Webpacker.dev_server.running?
-        dev_server_asset(file_path)
-      else
-        public_path = Webpacker.config.public_path
-        return unless public_path
-
-        File.join(public_path, file_path)
+        dev_server_asset(@asset_path)
+      elsif Webpacker.config.public_path.present?
+        File.join(Webpacker.config.public_path, @asset_path)
       end
     end
 
