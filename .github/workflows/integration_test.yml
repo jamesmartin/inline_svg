@@ -1,0 +1,36 @@
+name: Integration Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Checkout test app
+      uses: actions/checkout@v2
+      with:
+        repository: jamesmartin/inline_svg_test_app
+        path: test_app
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: Build local gem
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rake build
+    - name: Use local gem in test app
+      run: |
+        cd {{github.workspace}}/test_app
+        GEM_PATH={{github.workspace}}/inline_svg/
+        sed -i '' -E "s+gem 'inline_svg'\$+gem 'inline_svg', path: '$GEM_PATH'+" Gemfile
+    - name: Build and test with Rake
+      run: |
+        cd test_app/
+        bundle install --jobs 4 --retry 3
+        bundle exec rake
