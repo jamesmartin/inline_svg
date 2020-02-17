@@ -27,8 +27,7 @@ jobs:
     - name: Use local gem in test app
       run: |
         cd $GITHUB_WORKSPACE/test_app
-        GEM_PATH=$GITHUB_WORKSPACE/inline_svg/
-        sed -i '' -E "s+gem 'inline_svg'\$+gem 'inline_svg', path: '$GEM_PATH'+" Gemfile
+        sed -i '' -E "s+gem 'inline_svg'\$+gem 'inline_svg', path: '$GITHUB_WORKSPACE/'+" Gemfile
     - name: Build and test with Rake
       run: |
         cd test_app/
