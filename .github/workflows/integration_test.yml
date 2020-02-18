@@ -28,7 +28,7 @@ jobs:
       id: uselocalgem
       uses: jacobtomlinson/gha-find-replace@0.1.1
       with:
-        find: "gem 'inline_svg'\$"
+        find: "gem 'inline_svg'"
         replace: "gem 'inline_svg', path: '${{github.workspace}}'"
     - name: Check local gem in use
       run: |
