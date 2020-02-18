@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test-branch: [master, rails6, rails6-webpacker]
+        test-branch: [rails3, rails4, master, rails6, rails6-webpacker]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
