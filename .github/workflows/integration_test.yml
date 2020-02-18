@@ -24,12 +24,14 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rake build
-    - name: Use local gem in test app
-      run: |
-        cd $GITHUB_WORKSPACE/test_app
-        sed -i '' -e "s#gem 'inline_svg'\$#gem 'inline_svg', path: '$GITHUB_WORKSPACE/'#" Gemfile
+    - name: Use the local gem in the test App
+      uses: jacobtomlinson/gha-find-replace@0.1.1
+      with:
+        find: "gem 'inline_svg'"
+        replace: "gem 'inline_svg', path: '$GITHUB_WORKSPACE/'"
+        include: "$GITHUB_WORKSPACE/test_app/Gemfile"
     - name: Build and test with Rake
       run: |
-        cd test_app/
+        cd $GITHUB_WORKSPACE/test_app
         bundle install --jobs 4 --retry 3
-        bundle exec rake
+        bundle exec rake test
