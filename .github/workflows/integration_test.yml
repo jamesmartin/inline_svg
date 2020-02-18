@@ -32,7 +32,7 @@ jobs:
         replace: "gem 'inline_svg', path: '$GITHUB_WORKSPACE'"
     - name: Check local gem in use
       run: |
-        test "${{ steps.uselocalgem.outputs.modifiedFiles }}" == "1"
+        test "${{ steps.uselocalgem.outputs.modifiedFiles }}" != "0"
         grep "inline_svg" $GITHUB_WORKSPACE/test_app/Gemfile
     - name: Build and test with Rake
       run: |
