@@ -6,7 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        test-branch: [rails3, rails4, master, rails6, rails6-webpacker]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -14,6 +16,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: jamesmartin/inline_svg_test_app
+        ref: ${{ matrix.test-branch }}
         path: test_app
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
@@ -34,8 +37,22 @@ jobs:
       run: |
         test "${{ steps.uselocalgem.outputs.modifiedFiles }}" != "0"
         grep "inline_svg" $GITHUB_WORKSPACE/test_app/Gemfile
-    - name: Build and test with Rake
+    - name: Bundle
       run: |
         cd $GITHUB_WORKSPACE/test_app
         bundle install --jobs 4 --retry 3
+    - name: Set up Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+      if: matrix.test-branch == 'rails6-webpacker'
+    - name: Generate Webpacker config
+      run: |
+        cd $GITHUB_WORKSPACE/test_app
+        yarn install --check-files
+        bundle exec rake webpacker:compile
+      if: matrix.test-branch == 'rails6-webpacker'
+    - name: Test
+      run: |
+        cd $GITHUB_WORKSPACE/test_app
         bundle exec rake test
