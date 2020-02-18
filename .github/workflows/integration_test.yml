@@ -25,11 +25,16 @@ jobs:
         bundle install --jobs 4 --retry 3
         bundle exec rake build
     - name: Use the local gem in the test App
+      id: uselocalgem
       uses: jacobtomlinson/gha-find-replace@0.1.1
       with:
         find: "gem 'inline_svg'"
         replace: "gem 'inline_svg', path: '$GITHUB_WORKSPACE/'"
         include: "$GITHUB_WORKSPACE/test_app/Gemfile"
+    - name: Check local gem in use
+      run: |
+        test "${{ steps.uselocalgem.outputs.modifiedFiles }}" == "1"
+        grep "inline_svg" $GITHUB_WORKSPACE/test_app/Gemfile
     - name: Build and test with Rake
       run: |
         cd $GITHUB_WORKSPACE/test_app
