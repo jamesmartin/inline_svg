@@ -45,7 +45,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/test_app
         bundle exec rake webpacker:compile
-      if: matrix.test_branch == "rails6-webpacker"
+      if: matrix.test-branch == 'rails6-webpacker'
     - name: Test
       run: |
         cd $GITHUB_WORKSPACE/test_app
