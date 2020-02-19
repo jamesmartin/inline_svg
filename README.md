@@ -1,6 +1,7 @@
 # Inline SVG
 
-[![Build Status](https://travis-ci.org/jamesmartin/inline_svg.svg?branch=master)](https://travis-ci.org/jamesmartin/inline_svg)
+![Unit tests](https://github.com/jamesmartin/inline_svg/workflows/Ruby/badge.svg)
+![Integration Tests](https://github.com/jamesmartin/inline_svg/workflows/Integration%20Tests/badge.svg)
 
 Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
