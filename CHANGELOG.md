@@ -11,10 +11,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - WebpackAssetFinder serves files from dev server if one is running. [#111](https://github.com/jamesmartin/inline_svg/pull/111). Thanks, [@connorshea](https://github.com/connorshea)
 
 ### Fixed
-- Using Webpacker and Asset Pipeline in a single App could result in SVGs not
-  being found because the wrong `AssetFinder` was used.
-  [#114](https://github.com/jamesmartin/inline_svg/pull/114). Thanks,
-  [@kylefox](https://github.com/kylefox)
+- Using Webpacker and Asset Pipeline in a single App could result in SVGs not being found because the wrong `AssetFinder` was used. [#114](https://github.com/jamesmartin/inline_svg/pull/114). Thanks, [@kylefox](https://github.com/kylefox)
+- Prevent "EOFError error" when using webpack dev server over HTTPS [#113](https://github.com/jamesmartin/inline_svg/pull/113). Thanks, [@kylefox](https://github.com/kylefox)
+
 
 ## [1.6.0] - 2019-11-13
 ### Added
