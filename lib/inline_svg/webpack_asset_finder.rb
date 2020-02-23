@@ -6,32 +6,45 @@ module InlineSvg
 
     def initialize(filename)
       @filename = filename
+      @asset_path = Webpacker.manifest.lookup(@filename)
     end
 
     def pathname
-      file_path = Webpacker.instance.manifest.lookup(@filename)
-      return unless file_path
+      return if @asset_path.blank?
 
       if Webpacker.dev_server.running?
-        asset = Net::HTTP.get(Webpacker.dev_server.host, file_path, Webpacker.dev_server.port)
-
-        begin
-          Tempfile.new(file_path).tap do |file|
-            file.binmode
-            file.write(asset)
-            file.rewind
-          end
-        rescue StandardError => e
-          Rails.logger.error "Error creating tempfile: #{e}"
-          raise
-        end
-
-      else
-        public_path = Webpacker.config.public_path
-        return unless public_path
-
-        File.join(public_path, file_path)
+        dev_server_asset(@asset_path)
+      elsif Webpacker.config.public_path.present?
+        File.join(Webpacker.config.public_path, @asset_path)
       end
+    end
+
+    private
+
+    def dev_server_asset(file_path)
+      asset = fetch_from_dev_server(file_path)
+
+      begin
+        Tempfile.new(file_path).tap do |file|
+          file.binmode
+          file.write(asset)
+          file.rewind
+        end
+      rescue StandardError => e
+        Rails.logger.error "[inline_svg] Error creating tempfile for #{@filename}: #{e}"
+        raise
+      end
+    end
+
+    def fetch_from_dev_server(file_path)
+      http = Net::HTTP.new(Webpacker.dev_server.host, Webpacker.dev_server.port)
+      http.use_ssl = Webpacker.dev_server.https?
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      http.request(Net::HTTP::Get.new(file_path)).body
+    rescue StandardError => e
+      Rails.logger.error "[inline_svg] Error fetching #{@filename} from webpack-dev-server: #{e}"
+      raise
     end
   end
 end
