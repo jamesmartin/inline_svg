@@ -55,7 +55,7 @@ module InlineSvg
 
       def placeholder(filename)
         css_class = InlineSvg.configuration.svg_not_found_css_class
-        not_found_message = "'#{filename}' #{extension_hint(filename)}"
+        not_found_message = "'#{ERB::Util.html_escape_once(filename)}' #{extension_hint(filename)}"
 
         if css_class.nil?
           return "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
