@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
-- Nothing
+### Fixed
+- Static Asset Finder uses pathname for compatibility with Sprockets 4+. [#106](https://github.com/jamesmartin/inline_svg/pull/106). Thanks [@subdigital](https://github.com/subdigital)
 
 ## [1.7.0] - 2020-02-13
 ### Added
