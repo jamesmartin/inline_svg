@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+- Nothing
+
+## [1.7.1] - 2020-03-17
 ### Fixed
 - Static Asset Finder uses pathname for compatibility with Sprockets 4+. [#106](https://github.com/jamesmartin/inline_svg/pull/106). Thanks [@subdigital](https://github.com/subdigital)
 
@@ -231,7 +234,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.7.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/jamesmartin/inline_svg/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/jamesmartin/inline_svg/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/jamesmartin/inline_svg/compare/v1.5.2...v1.6.0
 [1.5.2]: https://github.com/jamesmartin/inline_svg/compare/v1.5.1...v1.5.2
