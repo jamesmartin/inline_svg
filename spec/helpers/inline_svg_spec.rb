@@ -53,7 +53,7 @@ describe InlineSvg::ActionView::Helpers do
           and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
         output = helper.send(helper_method, malicious)
-        expect(output).to eq "<svg><!-- SVG file not found: '#{ERB::Util.html_escape_once(malicious)}' --></svg>"
+        expect(output).to eq "<svg><!-- SVG file not found: '--&gt;&lt;/svg&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;svg&gt;.svg' --></svg>"
         expect(output).to be_html_safe
       end
 
