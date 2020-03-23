@@ -18,6 +18,7 @@ module InlineSvg
       @paths = Array(paths).compact.map { |p| Pathname.new(p) }
       @filters = Array(filters).map { |f| Regexp.new(f) }
       @assets = @paths.reduce({}) { |assets, p| assets.merge(read_assets(assets, p)) }
+      @sorted_asset_keys = assets.keys.sort { |a, b| a.size <=> b.size }
     end
 
     # Public: Finds the named asset and returns the contents as a string.
@@ -39,17 +40,7 @@ module InlineSvg
     # Returns a String representing the key for the named asset or nil if there
     # is no match.
     def key_for_asset(asset_name)
-      match = all_keys_matching(asset_name).sort do |a, b|
-        a.string.size <=> b.string.size
-      end.first
-      match && match.string
-    end
-
-    # Internal: Find all potential asset keys matching the given asset name.
-    #
-    # Returns an array of MatchData objects for keys matching the asset name.
-    def all_keys_matching(asset_name)
-      assets.keys.map { |k| /(#{asset_name})/.match(k.to_s) }.compact
+      @sorted_asset_keys.find { |k| k.include?(asset_name) }
     end
 
     # Internal: Recursively descends through current_paths reading each file it
