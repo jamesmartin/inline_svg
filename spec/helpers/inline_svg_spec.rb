@@ -46,6 +46,17 @@ describe InlineSvg::ActionView::Helpers do
         expect(output).to be_html_safe
       end
 
+      it "escapes malicious input" do
+        malicious = "--></svg><script>alert(1)</script><svg>.svg"
+        allow(InlineSvg::AssetFile).to receive(:named).
+          with(malicious).
+          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+
+        output = helper.send(helper_method, malicious)
+        expect(output).to eq "<svg><!-- SVG file not found: '#{ERB::Util.html_escape_once(malicious)}' --></svg>"
+        expect(output).to be_html_safe
+      end
+
       it "gives a helpful hint when no .svg extension is provided in the filename" do
         allow(InlineSvg::AssetFile).to receive(:named).
           with('missing-file-with-no-extension').
