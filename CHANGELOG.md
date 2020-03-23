@@ -3,8 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-
-- Nothing
+### Fixed
+- Improve performance of `CachedAssetFile`. [#118](https://github.com/jamesmartin/inline_svg/pull/118). Thanks [@stevendaniels](https://github.com/stevendaniels)
+- Avoid XSS by preventing malicious input of filenames. [#117](https://github.com/jamesmartin/inline_svg/pull/117). Thanks [@pbyrne](https://github.com/pbyrne).
 
 ## [1.7.1] - 2020-03-17
 ### Fixed
