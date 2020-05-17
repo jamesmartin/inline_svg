@@ -25,7 +25,7 @@ module InlineSvg
       asset = fetch_from_dev_server(file_path)
 
       begin
-        Tempfile.new(file_path).tap do |file|
+        Tempfile.new(file_path.gsub('/', '_')).tap do |file|
           file.binmode
           file.write(asset)
           file.rewind
