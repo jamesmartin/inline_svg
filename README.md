@@ -98,6 +98,7 @@ key                     | description
 `preserve_aspect_ratio` | adds a `preserveAspectRatio` attribute to the SVG
 `aria`                  | adds common accessibility attributes to the SVG (see [PR #34](https://github.com/jamesmartin/inline_svg/pull/34#issue-152062674) for details)
 `aria_hidden`           | adds the `aria-hidden=true` attribute to the SVG
+`fallback`              | set fallback SVG document
 
 Example:
 
@@ -113,7 +114,8 @@ inline_svg_tag(
   nocomment: true,
   preserve_aspect_ratio: 'xMaxYMax meet',
   aria: true,
-  aria_hidden: true
+  aria_hidden: true,
+  fallback: 'fallback-document.svg'
 )
 ```
 
