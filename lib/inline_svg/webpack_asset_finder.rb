@@ -6,7 +6,7 @@ module InlineSvg
 
     def initialize(filename)
       @filename = filename
-      @asset_path = Webpacker.manifest.lookup(@filename)
+      @asset_path = URI(Webpacker.manifest.lookup(@filename)).path
     end
 
     def pathname
