@@ -3,6 +3,7 @@ require "inline_svg/action_view/helpers"
 require "inline_svg/asset_file"
 require "inline_svg/cached_asset_file"
 require "inline_svg/finds_asset_paths"
+require "inline_svg/propshaft_asset_finder"
 require "inline_svg/static_asset_finder"
 require "inline_svg/webpack_asset_finder"
 require "inline_svg/transform_pipeline"
@@ -41,6 +42,8 @@ module InlineSvg
     def asset_finder=(finder)
       @asset_finder = if finder.respond_to?(:find_asset)
                         finder
+                      elsif finder.class.name == "Propshaft::Assembly"
+                        InlineSvg::PropshaftAssetFinder
                       else
                         # fallback to a naive static asset finder
                         # (sprokects >= 3.0 && config.assets.precompile = false
