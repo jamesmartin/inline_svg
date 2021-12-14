@@ -12,10 +12,11 @@ then embeds it into a view.
 
 Inline SVG supports:
 
-- [Rails 3](http://weblog.rubyonrails.org/2010/8/29/rails-3-0-it-s-done/) (from [v0.12.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.12.0))
-- [Rails 4](http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/)
 - [Rails 5](http://weblog.rubyonrails.org/2016/6/30/Rails-5-0-final/) (from [v0.10.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.10.0))
 - [Rails 6](https://weblog.rubyonrails.org/2019/4/24/Rails-6-0-rc1-released/) with Sprockets or Webpacker (from [v1.5.2](https://github.com/jamesmartin/inline_svg/releases/tag/v1.5.2)).
+- [Rails 7](https://weblog.rubyonrails.org/2021/12/6/Rails-7-0-rc-1-released/) (experimental)
+
+Inline SVG no longer officially supports Rails 3 or Rails 4 (although they may still work). In order to reduce the maintenance cost of this project we now follow the [Rails Maintenance Policy](https://guides.rubyonrails.org/maintenance_policy.html).
 
 ## Changelog
 
