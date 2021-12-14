@@ -87,7 +87,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = webpacker
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
+      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('https://my-fancy-domain.test/full/path/to/some-file')
     end
   end
 end
