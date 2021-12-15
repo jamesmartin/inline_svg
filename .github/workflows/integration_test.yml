@@ -41,10 +41,10 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/test_app
         bundle install --jobs 4 --retry 3
-    - name: Set up Node.js 12.x
-      uses: actions/setup-node@v1
+    - name: Set up Node.js 16.x
+      uses: actions/setup-node@v2
       with:
-        node-version: 12.x
+        node-version: 16
       if: matrix.test-branch == 'rails6-webpacker'
     - name: Generate Webpacker config
       run: |
