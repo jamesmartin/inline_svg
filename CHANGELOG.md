@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 
 ### Added
+- Remove deprecation warning for `inline_svg`, as we intend to keep it in 2.0. [#131](https://github.com/jamesmartin/inline_svg/pull/131). Thanks [@DanielJackson-Oslo](https://github.com/DanielJackson-Oslo)
 - Add support for Webpacker 6 beta. [#129](https://github.com/jamesmartin/inline_svg/pull/129). Thanks [@Intrepidd](https://github.com/Intrepidd) and [@tessi](https://github.com/tessi)
 - Add support for Propshaft assets in Rails 7. [#134](https://github.com/jamesmartin/inline_svg/pull/134). Thanks, [@martinzamuner](https://github.com/martinzamuner)
 
