@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+Nothing.
+
+## [1.8.0] - 2022-01-09
 ### Added
 - Remove deprecation warning for `inline_svg`, as we intend to keep it in 2.0. [#131](https://github.com/jamesmartin/inline_svg/pull/131). Thanks [@DanielJackson-Oslo](https://github.com/DanielJackson-Oslo)
 - Add support for Webpacker 6 beta. [#129](https://github.com/jamesmartin/inline_svg/pull/129). Thanks [@Intrepidd](https://github.com/Intrepidd) and [@tessi](https://github.com/tessi)
@@ -25,7 +28,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Using Webpacker and Asset Pipeline in a single App could result in SVGs not being found because the wrong `AssetFinder` was used. [#114](https://github.com/jamesmartin/inline_svg/pull/114). Thanks, [@kylefox](https://github.com/kylefox)
 - Prevent "EOFError error" when using webpack dev server over HTTPS [#113](https://github.com/jamesmartin/inline_svg/pull/113). Thanks, [@kylefox](https://github.com/kylefox)
-
 
 ## [1.6.0] - 2019-11-13
 ### Added
@@ -242,7 +244,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.7.2...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/jamesmartin/inline_svg/compare/v1.7.2...v1.8.0
 [1.7.2]: https://github.com/jamesmartin/inline_svg/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/jamesmartin/inline_svg/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/jamesmartin/inline_svg/compare/v1.6.0...v1.7.0
