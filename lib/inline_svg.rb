@@ -46,7 +46,7 @@ module InlineSvg
                         InlineSvg::PropshaftAssetFinder
                       else
                         # fallback to a naive static asset finder
-                        # (sprokects >= 3.0 && config.assets.precompile = false
+                        # (sprockets >= 3.0 && config.assets.precompile = false
                         # See: https://github.com/jamesmartin/inline_svg/issues/25
                         InlineSvg::StaticAssetFinder
                       end
