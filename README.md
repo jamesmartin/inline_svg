@@ -50,10 +50,12 @@ inline_svg_pack_tag(file_name, options={})
 _**Note:** The remainder of this README uses `inline_svg_tag` for examples, but the exact same principles work for `inline_svg_pack_tag`._
 
 The `file_name` can be a full path to a file, the file's basename or an `IO`
-object. The
-actual path of the file on disk is resolved using
-[Sprockets](://github.com/sstephenson/sprockets) (when available), a naive file finder (`/public/assets/...`) or in the case of `IO` objects the SVG data is read from the object.
-This means you can pre-process and fingerprint your SVG files like other Rails assets, or choose to find SVG data yourself.
+object. The actual path of the file on disk is resolved using a configurable
+finder class (Propshaft, Sprockets, Webpack) or a custom class, and will fall
+back to a naive static file finder (`/public/assets/...`) -- or in the case of
+`IO` objects the SVG data will be read from the object. This means you can
+pre-process and fingerprint your SVG files like other Rails assets, or choose to
+find SVG data yourself.
 
 Here's an example of embedding an SVG document and applying a 'class' attribute:
 
