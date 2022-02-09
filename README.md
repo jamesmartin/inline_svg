@@ -260,6 +260,20 @@ InlineSvg.configure do |config|
 end
 ```
 
+## Custom asset finder
+
+Similarly, an asset finder class should have a `find_asset` class method, and
+respond to a `pathname` instance method which returns the path to the file. If
+no class is configured, a default static file class will be used.
+
+A configuration example to use the Propshaft finder would look like:
+
+```ruby
+InlineSvg.configure do |config|
+  config.asset_finder = InlineSvg::PropshaftAssetFinder
+end
+```
+
 ## Caching all assets at boot time
 
 When your deployment strategy prevents dynamic asset file loading from disk it
