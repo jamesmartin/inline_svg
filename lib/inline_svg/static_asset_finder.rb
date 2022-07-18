@@ -16,7 +16,8 @@ module InlineSvg
 
     def pathname
       if ::Rails.application.config.assets.compile
-        Pathname.new(::Rails.application.assets[@filename].filename)
+        asset = ::Rails.application.assets[@filename]
+        Pathname.new(asset.filename) if asset.present?
       else
         manifest = ::Rails.application.assets_manifest
         asset_path = manifest.assets[@filename]
