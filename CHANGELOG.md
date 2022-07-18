@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
-Nothing.
+### Fixed
+- Allow Propshaft assets to use fallbacks. [#140](https://github.com/jamesmartin/inline_svg/pull/140). Thanks, [@ohrite](https://github.com/ohrite)
 
 ## [1.8.0] - 2022-01-09
 ### Added
