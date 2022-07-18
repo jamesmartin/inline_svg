@@ -9,7 +9,8 @@ module InlineSvg
     end
 
     def pathname
-      ::Rails.application.assets.load_path.find(@filename).path
+      asset_path = ::Rails.application.assets.load_path.find(@filename)
+      asset_path.path unless asset_path.nil?
     end
   end
 end
