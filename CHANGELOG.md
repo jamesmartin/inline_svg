@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Allow Propshaft assets to use fallbacks. [#140](https://github.com/jamesmartin/inline_svg/pull/140). Thanks, [@ohrite](https://github.com/ohrite)
+- Handling missing file when using static assets. [#141](https://github.com/jamesmartin/inline_svg/pull/141). Thanks, [@leighhalliday](https://github.com/leighhalliday)
 
 ## [1.8.0] - 2022-01-09
 ### Added
