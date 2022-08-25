@@ -2,8 +2,8 @@ module InlineSvg::TransformPipeline::Transformations
   class Size < Transformation
     def transform(doc)
       with_svg(doc) do |svg|
-        svg["width"] = width_of(self.value)
-        svg["height"] = height_of(self.value)
+        svg["width"] = width_of(value)
+        svg["height"] = height_of(value)
       end
     end
 

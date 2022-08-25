@@ -2,7 +2,7 @@ module InlineSvg::TransformPipeline::Transformations
   class Width < Transformation
     def transform(doc)
       with_svg(doc) do |svg|
-        svg["width"] = self.value
+        svg["width"] = value
       end
     end
   end
