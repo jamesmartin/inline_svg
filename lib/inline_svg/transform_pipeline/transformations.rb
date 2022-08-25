@@ -10,11 +10,12 @@ module InlineSvg::TransformPipeline::Transformations
       class: { transform: ClassAttribute },
       style: { transform: StyleAttribute },
       data: { transform: DataAttributes },
-      height: { transform: Height },
       nocomment: { transform: NoComment },
       preserve_aspect_ratio: { transform: PreserveAspectRatio },
       size: { transform: Size },
       width: { transform: Width },
+      height: { transform: Height },
+      view_box: { transform: ViewBox },
     }
   end
 
@@ -83,6 +84,7 @@ require 'inline_svg/transform_pipeline/transformations/description'
 require 'inline_svg/transform_pipeline/transformations/size'
 require 'inline_svg/transform_pipeline/transformations/height'
 require 'inline_svg/transform_pipeline/transformations/width'
+require 'inline_svg/transform_pipeline/transformations/view_box'
 require 'inline_svg/transform_pipeline/transformations/id_attribute'
 require 'inline_svg/transform_pipeline/transformations/data_attributes'
 require 'inline_svg/transform_pipeline/transformations/preserve_aspect_ratio'
