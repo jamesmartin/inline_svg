@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+### Added
+- A new option: `view_box` adds a `viewBox` attribute to the SVG. [#142](https://github.com/jamesmartin/inline_svg/pull/142). Thanks [@sunny](https://github.com/sunny)
 
 ### Fixed
 - Allow Propshaft assets to use fallbacks. [#140](https://github.com/jamesmartin/inline_svg/pull/140). Thanks, [@ohrite](https://github.com/ohrite)
