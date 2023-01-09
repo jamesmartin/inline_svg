@@ -97,6 +97,7 @@ key                     | description
 `desc`                  | add a \<desc\> node inside the top level of the SVG document
 `nocomment`             | remove comment tags from the SVG document
 `preserve_aspect_ratio` | adds a `preserveAspectRatio` attribute to the SVG
+`view_box`              | adds a `viewBox` attribute to the SVG
 `aria`                  | adds common accessibility attributes to the SVG (see [PR #34](https://github.com/jamesmartin/inline_svg/pull/34#issue-152062674) for details)
 `aria_hidden`           | adds the `aria-hidden=true` attribute to the SVG
 `fallback`              | set fallback SVG document
@@ -114,6 +115,7 @@ inline_svg_tag(
   desc: 'Some description',
   nocomment: true,
   preserve_aspect_ratio: 'xMaxYMax meet',
+  view_box: '0 0 100 100',
   aria: true,
   aria_hidden: true,
   fallback: 'fallback-document.svg'
