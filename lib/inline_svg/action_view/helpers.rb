@@ -47,7 +47,7 @@ module InlineSvg
           end
         end
 
-        InlineSvg::TransformPipeline.generate_html_from(svg_file, transform_params).html_safe
+        InlineSvg::TransformPipeline.generate_html_from(svg_file, transform_params)
       end
 
       def read_svg(filename)
