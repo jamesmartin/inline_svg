@@ -18,10 +18,10 @@ jobs:
         repository: jamesmartin/inline_svg_test_app
         ref: ${{ matrix.test-branch }}
         path: test_app
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby 3.1
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.7
+        ruby-version: 3.1
     - name: Build local gem
       run: |
         gem install bundler
