@@ -4,11 +4,11 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         test-branch: [rails5, rails6, rails7]
+    timeout-minutes: 20
     steps:
     - name: Checkout
       uses: actions/checkout@v2
