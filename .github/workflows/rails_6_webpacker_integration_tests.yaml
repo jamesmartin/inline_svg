@@ -46,6 +46,10 @@ jobs:
       with:
         node-version: 16
       if: matrix.test-branch == 'rails6-webpacker'
+    - name: Set up Python 2.7
+      uses: actions/setup-python@v4
+      with:
+        python-version: '2.7'
     - name: Generate Webpacker config
       run: |
         cd $GITHUB_WORKSPACE/test_app
