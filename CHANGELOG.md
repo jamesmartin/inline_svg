@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
+Nothing.
+
+## [1.9.0] - 2023-03-29
 ### Added
 - A new option: `view_box` adds a `viewBox` attribute to the SVG. [#142](https://github.com/jamesmartin/inline_svg/pull/142). Thanks [@sunny](https://github.com/sunny)
 
@@ -249,7 +253,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.8.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.9.0...HEAD
+[1.9.0]: https://github.com/jamesmartin/inline_svg/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/jamesmartin/inline_svg/compare/v1.7.2...v1.8.0
 [1.7.2]: https://github.com/jamesmartin/inline_svg/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/jamesmartin/inline_svg/compare/v1.7.0...v1.7.1
