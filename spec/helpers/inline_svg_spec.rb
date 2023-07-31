@@ -86,9 +86,7 @@ describe InlineSvg::ActionView::Helpers do
             with('missing.svg').
             and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
-          fallback_file = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
-SVG
+          fallback_file = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('fallback.svg').and_return(fallback_file)
           expect(helper.send(helper_method, 'missing.svg', fallback: 'fallback.svg')).to eq fallback_file
         end
@@ -99,9 +97,7 @@ SVG
 
       context "and no options" do
         it "returns a html safe version of the file's contents" do
-          example_file = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
-SVG
+          example_file = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(example_file)
           expect(helper.send(helper_method, 'some-file')).to eq example_file
         end
@@ -109,12 +105,8 @@ SVG
 
       context "and the 'title' option" do
         it "adds the title node to the SVG output" do
-          input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>
-SVG
-          expected_output = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><title>A title</title></svg>
-SVG
+          input_svg = '<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>'
+          expected_output = '<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><title>A title</title></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.send(helper_method, 'some-file', title: 'A title')).to eq expected_output
         end
@@ -122,12 +114,8 @@ SVG
 
       context "and the 'desc' option" do
         it "adds the description node to the SVG output" do
-          input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>
-SVG
-          expected_output = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><desc>A description</desc></svg>
-SVG
+          input_svg = '<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"></svg>'
+          expected_output = '<svg xmlns="http://www.w3.org/2000/svg" role="presentation" xml:lang="en"><desc>A description</desc></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.send(helper_method, 'some-file', desc: 'A description')).to eq expected_output
         end
@@ -135,12 +123,8 @@ SVG
 
       context "and the 'nocomment' option" do
         it "strips comments and other unknown/unsafe nodes from the output" do
-          input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
-SVG
-          expected_output = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
-SVG
+          input_svg = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>'
+          expected_output = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.send(helper_method, 'some-file', nocomment: true)).to eq expected_output
         end
@@ -148,12 +132,8 @@ SVG
 
       context "and the 'aria_hidden' option" do
         it "sets 'aria-hidden=true' in the output" do
-          input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>
-SVG
-          expected_output = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en" aria-hidden="true"></svg>
-SVG
+          input_svg = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"></svg>'
+          expected_output = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en" aria-hidden="true"></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.send(helper_method, 'some-file', aria_hidden: true)).to eq expected_output
         end
@@ -161,12 +141,8 @@ SVG
 
       context "and all options" do
         it "applies all expected transformations to the output" do
-          input_svg = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>
-SVG
-          expected_output = <<-SVG
-<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><title>A title</title><desc>A description</desc></svg>
-SVG
+          input_svg = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>'
+          expected_output = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><title>A title</title><desc>A description</desc></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.send(helper_method, 'some-file', title: 'A title', desc: 'A description', nocomment: true)).to eq expected_output
         end
@@ -184,12 +160,8 @@ SVG
         end
 
         it "applies custm transformations to the output" do
-          input_svg = <<-SVG
-<svg></svg>
-SVG
-          expected_output = <<-SVG
-<svg custom="some value"></svg>
-SVG
+          input_svg = '<svg></svg>'
+          expected_output = '<svg custom="some value"></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
           expect(helper.send(helper_method, 'some-file', custom: 'some value')).to eq expected_output
         end
@@ -212,7 +184,7 @@ SVG
 
             allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
 
-            expect(helper.send(helper_method, 'some-file')).to eq "<svg custom=\"default value\"></svg>\n"
+            expect(helper.send(helper_method, 'some-file')).to eq "<svg custom=\"default value\"></svg>"
           end
         end
 
@@ -222,7 +194,7 @@ SVG
 
             allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
 
-            expect(helper.send(helper_method, 'some-file', custom: 'some value')).to eq "<svg custom=\"some value\"></svg>\n"
+            expect(helper.send(helper_method, 'some-file', custom: 'some value')).to eq "<svg custom=\"some value\"></svg>"
           end
         end
       end
@@ -251,16 +223,26 @@ SVG
         expect(InlineSvg::IOResource).to receive(:===).with(io_object).and_return(true)
         expect(InlineSvg::IOResource).to receive(:read).with(io_object).and_return("<svg><!-- Test IO --></svg>")
         output = helper.send(helper_method, io_object)
-        expect(output).to eq "<svg><!-- Test IO --></svg>\n"
+        expect(output).to eq "<svg><!-- Test IO --></svg>"
         expect(output).to be_html_safe
       end
 
       it 'return valid svg for file' do
         output = helper.send(helper_method, File.new(file_path))
-        expect(output).to eq "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:lang=\"en\" role=\"presentation\"><!-- This is a test comment --></svg>\n"
+        expect(output).to eq "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:lang=\"en\" role=\"presentation\"><!-- This is a test comment --></svg>"
         expect(output).to be_html_safe
       end
 
+    end
+    
+    context 'default output' do
+      it "returns an SVG tag without any pre or post whitespace characters" do
+        input_svg = '<svg></svg>'
+        
+        allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
+        
+        expect(helper.send(helper_method, 'some-file')).to eq "<svg></svg>"
+      end
     end
   end
 
