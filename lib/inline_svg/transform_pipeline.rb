@@ -4,7 +4,7 @@ module InlineSvg
       document = Nokogiri::XML::Document.parse(svg_file)
       Transformations.lookup(transform_params).reduce(document) do |doc, transformer|
         transformer.transform(doc)
-      end.to_html
+      end.to_html.strip!
     end
   end
 end
