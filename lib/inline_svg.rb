@@ -11,6 +11,7 @@ require "inline_svg/io_resource"
 
 require "inline_svg/railtie" if defined?(Rails)
 require 'active_support'
+require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string'
 require 'nokogiri'
 
