@@ -10,14 +10,12 @@ module InlineSvg
 
     config.after_initialize do |app|
       InlineSvg.configure do |config|
-        # Configure the asset_finder:
-        # Only set this when a user-configured asset finder has not been
-        # configured already.
-        if config.asset_finder.nil?
-          # In default Rails apps, this will be a fully operational
-          # Sprockets::Environment instance
-          config.asset_finder = app.instance_variable_get(:@assets)
-        end
+        # Configure an asset finder for Rails. This will be evaluated when the
+        # first SVG is rendered, giving time to the asset pipeline to be done
+        # loading.
+        config.asset_finder = proc {
+          app.instance_variable_get(:@assets)
+        }
       end
     end
   end

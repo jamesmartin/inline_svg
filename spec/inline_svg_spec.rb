@@ -19,6 +19,10 @@ end
 
 describe InlineSvg do
   describe "configuration" do
+    before do
+      InlineSvg.reset_configuration!
+    end
+
     context "when a block is not given" do
       it "complains" do
         expect do
@@ -29,12 +33,22 @@ describe InlineSvg do
 
     context "asset finder" do
       it "allows an asset finder to be assigned" do
-        sprockets = double('SomethingLikeSprockets', find_asset: 'some asset')
+        sprockets = double("Something like sprockets", find_asset: "some asset")
         InlineSvg.configure do |config|
           config.asset_finder = sprockets
         end
 
         expect(InlineSvg.configuration.asset_finder).to eq sprockets
+      end
+
+      it "allows to give a callable object that returns an asset finder" do
+        propshaft = double("Something like propshaft", class: double(name: "Propshaft::Assembly"))
+        callable = -> { propshaft }
+        InlineSvg.configure do |config|
+          config.asset_finder = callable
+        end
+
+        expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::PropshaftAssetFinder
       end
 
       it "falls back to StaticAssetFinder when the provided asset finder does not implement #find_asset" do

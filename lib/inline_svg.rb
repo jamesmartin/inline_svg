@@ -11,6 +11,7 @@ require "inline_svg/io_resource"
 
 require "inline_svg/railtie" if defined?(Rails)
 require 'active_support'
+require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string'
 require 'nokogiri'
 
@@ -18,7 +19,7 @@ module InlineSvg
   class Configuration
     class Invalid < ArgumentError; end
 
-    attr_reader :asset_file, :asset_finder, :custom_transformations, :svg_not_found_css_class
+    attr_reader :asset_file, :custom_transformations, :svg_not_found_css_class
 
     def initialize
       @custom_transformations = {}
@@ -40,8 +41,15 @@ module InlineSvg
       end
     end
 
+    def asset_finder
+      set_asset_finder_from_callable
+      @asset_finder
+    end
+
     def asset_finder=(finder)
-      @asset_finder = if finder.respond_to?(:find_asset)
+      @asset_finder = if finder.respond_to?(:call)
+                        finder
+                      elsif finder.respond_to?(:find_asset)
                         finder
                       elsif finder.class.name == "Propshaft::Assembly"
                         InlineSvg::PropshaftAssetFinder
@@ -51,7 +59,6 @@ module InlineSvg
                         # See: https://github.com/jamesmartin/inline_svg/issues/25
                         InlineSvg::StaticAssetFinder
                       end
-      asset_finder
     end
 
     def svg_not_found_css_class=(css_class)
@@ -81,6 +88,11 @@ module InlineSvg
       !klass.is_a?(Class) || !klass.respond_to?(:create_with_value) || !klass.instance_methods.include?(:transform)
     end
 
+    def set_asset_finder_from_callable
+      while @asset_finder&.respond_to?(:call)
+        self.asset_finder = @asset_finder.call
+      end
+    end
   end
 
   @configuration = InlineSvg::Configuration.new
