@@ -47,9 +47,7 @@ module InlineSvg
     end
 
     def asset_finder=(finder)
-      @asset_finder = if finder.respond_to?(:call)
-                        finder
-                      elsif finder.respond_to?(:find_asset)
+      @asset_finder = if finder.respond_to?(:call) || finder.respond_to?(:find_asset)
                         finder
                       elsif finder.class.name == "Propshaft::Assembly"
                         InlineSvg::PropshaftAssetFinder
