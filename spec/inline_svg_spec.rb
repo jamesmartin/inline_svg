@@ -51,6 +51,16 @@ describe InlineSvg do
         expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::PropshaftAssetFinder
       end
 
+      it "allows giving a callable object that returns a callable" do
+        finder = double("A custom asset finder", find_asset: "some asset")
+        callable = -> { -> { finder } }
+        InlineSvg.configure do |config|
+          config.asset_finder = callable
+        end
+
+        expect(InlineSvg.configuration.asset_finder).to eq finder
+      end
+
       it "falls back to StaticAssetFinder when the provided asset finder does not implement #find_asset" do
         InlineSvg.configure do |config|
           config.asset_finder = 'Not a real asset finder'
