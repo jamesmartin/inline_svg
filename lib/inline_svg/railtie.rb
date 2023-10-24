@@ -13,9 +13,7 @@ module InlineSvg
         # Configure an asset finder for Rails. This will be evaluated when the
         # first SVG is rendered, giving time to the asset pipeline to be done
         # loading.
-        config.asset_finder = proc {
-          app.instance_variable_get(:@assets)
-        }
+        config.asset_finder = proc { app.assets }
       end
     end
   end
