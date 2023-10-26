@@ -28,21 +28,51 @@ describe InlineSvg do
     end
 
     context "asset finder" do
-      it "allows an asset finder to be assigned" do
-        sprockets = double('SomethingLikeSprockets', find_asset: 'some asset')
-        InlineSvg.configure do |config|
-          config.asset_finder = sprockets
-        end
+      context "when Sprockets is detected" do
+        it "uses the Sprockets asset finder" do
+          sprockets = double("Sprockets", find_asset: "some asset")
+          stub_const("Rails", double("Rails"))
+          allow(Rails).to receive_message_chain(:application, :assets).and_return(sprockets)
 
-        expect(InlineSvg.configuration.asset_finder).to eq sprockets
+          expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::SprocketsAssetFinder
+        end
       end
 
-      it "falls back to StaticAssetFinder when the provided asset finder does not implement #find_asset" do
+      context "when Propshaft is detected" do
+        it "uses the Propshaft asset finder" do
+          stub_const("Propshaft::Assembly", Class.new)
+          stub_const("Rails", double("Rails"))
+          allow(Rails).to receive_message_chain(:application, :assets).and_return(Propshaft::Assembly.new)
+
+          expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::PropshaftAssetFinder
+        end
+      end
+
+      context "when Sprockets and Propshaft are not detected" do
+        it "uses the static asset finder" do
+          expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::StaticAssetFinder
+        end
+      end
+
+      it "allows an asset finder to be assigned" do
+        asset_finder = double("An asset finder", find_asset: "some asset")
         InlineSvg.configure do |config|
-          config.asset_finder = 'Not a real asset finder'
+          config.asset_finder = asset_finder
         end
 
-        expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::StaticAssetFinder
+        expect(InlineSvg.configuration.asset_finder).to eq asset_finder
+      end
+
+      it "raises an error if the asset finder does not implement the find_asset method" do
+        expect {
+          InlineSvg.configure do |config|
+            config.asset_finder = "Not a real asset finder"
+          end
+        }.to raise_error(InlineSvg::Configuration::Invalid, /asset_finder should implement the #find_asset method/)
+      end
+
+      after do
+        InlineSvg.reset_configuration!
       end
     end
 
@@ -122,7 +152,6 @@ describe InlineSvg do
           end
         end.to raise_error(InlineSvg::Configuration::Invalid, /#{:not_a_class} should implement the .create_with_value and #transform methods/)
       end
-
     end
   end
 end

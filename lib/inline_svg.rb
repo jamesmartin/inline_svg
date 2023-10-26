@@ -4,6 +4,7 @@ require "inline_svg/asset_file"
 require "inline_svg/cached_asset_file"
 require "inline_svg/finds_asset_paths"
 require "inline_svg/propshaft_asset_finder"
+require "inline_svg/sprockets_asset_finder"
 require "inline_svg/static_asset_finder"
 require "inline_svg/webpack_asset_finder"
 require "inline_svg/transform_pipeline"
@@ -19,7 +20,15 @@ module InlineSvg
   class Configuration
     class Invalid < ArgumentError; end
 
-    attr_reader :asset_file, :asset_finder, :custom_transformations, :svg_not_found_css_class
+    attr_reader :asset_file, :custom_transformations, :svg_not_found_css_class
+
+    # Asset finders are ordered by priority. Unless configured otherwise, the
+    # first asset finder that matches will be used.
+    ASSET_FINDERS = [
+      InlineSvg::SprocketsAssetFinder,
+      InlineSvg::PropshaftAssetFinder,
+      InlineSvg::StaticAssetFinder
+    ].freeze
 
     def initialize
       @custom_transformations = {}
@@ -41,18 +50,16 @@ module InlineSvg
       end
     end
 
-    def asset_finder=(finder)
-      @asset_finder = if finder.respond_to?(:find_asset)
-                        finder
-                      elsif finder.class.name == "Propshaft::Assembly"
-                        InlineSvg::PropshaftAssetFinder
-                      else
-                        # fallback to a naive static asset finder
-                        # (sprokects >= 3.0 && config.assets.precompile = false
-                        # See: https://github.com/jamesmartin/inline_svg/issues/25
-                        InlineSvg::StaticAssetFinder
-                      end
-      asset_finder
+    def asset_finder=(asset_finder)
+      if asset_finder.respond_to?(:find_asset)
+        @asset_finder = asset_finder
+      else
+        raise InlineSvg::Configuration::Invalid.new("asset_finder should implement the #find_asset method")
+      end
+    end
+
+    def asset_finder
+      @asset_finder ||= matching_asset_finder
     end
 
     def svg_not_found_css_class=(css_class)
@@ -68,9 +75,7 @@ module InlineSvg
       @custom_transformations.merge!(Hash[ *[options.fetch(:attribute, :no_attribute), options] ])
     end
 
-    def raise_on_file_not_found=(value)
-      @raise_on_file_not_found = value
-    end
+    attr_writer :raise_on_file_not_found
 
     def raise_on_file_not_found?
       !!@raise_on_file_not_found
@@ -82,6 +87,9 @@ module InlineSvg
       !klass.is_a?(Class) || !klass.respond_to?(:create_with_value) || !klass.instance_methods.include?(:transform)
     end
 
+    def matching_asset_finder
+      ASSET_FINDERS.detect(&:match?)
+    end
   end
 
   @configuration = InlineSvg::Configuration.new

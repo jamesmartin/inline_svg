@@ -10,6 +10,10 @@ module InlineSvg
       new(filename)
     end
 
+    def self.match?
+      true
+    end
+
     def initialize(filename)
       @filename = filename
     end
