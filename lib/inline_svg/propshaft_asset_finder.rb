@@ -1,25 +1,37 @@
 module InlineSvg
   class PropshaftAssetFinder
-    def self.assets
-      Rails.application.assets
+    class Asset
+      attr_reader :asset_finder, :filename
+
+      def initialize(filename, asset_finder)
+        @asset_finder = asset_finder
+        @filename = filename
+      end
+
+      delegate :assets, to: :asset_finder
+
+      def pathname
+        asset_path = assets.load_path.find(@filename)
+        asset_path&.path
+      end
     end
 
-    def self.find_asset(filename)
-      new(filename)
+    attr_reader :assets
+
+    def initialize(assets = ::Rails.application.assets)
+      @assets = assets
     end
 
-    def self.match?
-      assets.instance_of?(Propshaft::Assembly)
-    rescue NameError
+    class << self
+      delegate :find_asset, to: :new
     end
 
-    def initialize(filename)
-      @filename = filename
+    def find_asset(filename)
+      Asset.new(filename, self)
     end
 
-    def pathname
-      asset_path = self.class.assets.load_path.find(@filename)
-      asset_path&.path
+    def match?
+      defined?(::Propshaft) && assets.instance_of?(Propshaft::Assembly)
     end
   end
 end

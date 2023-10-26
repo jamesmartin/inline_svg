@@ -1,3 +1,5 @@
+require 'active_support/core_ext/module/delegation'
+
 require "inline_svg/version"
 require "inline_svg/action_view/helpers"
 require "inline_svg/asset_file"
@@ -88,7 +90,11 @@ module InlineSvg
     end
 
     def matching_asset_finder
-      ASSET_FINDERS.detect(&:match?)
+      ASSET_FINDERS.find do |klass|
+        asset_finder = klass.new
+        break asset_finder if asset_finder.match?
+      rescue NameError
+      end
     end
   end
 

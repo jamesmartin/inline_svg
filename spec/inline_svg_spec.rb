@@ -34,7 +34,7 @@ describe InlineSvg do
           stub_const("Rails", double("Rails"))
           allow(Rails).to receive_message_chain(:application, :assets).and_return(sprockets)
 
-          expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::SprocketsAssetFinder
+          expect(InlineSvg.configuration.asset_finder).to be_a InlineSvg::SprocketsAssetFinder
         end
       end
 
@@ -44,13 +44,16 @@ describe InlineSvg do
           stub_const("Rails", double("Rails"))
           allow(Rails).to receive_message_chain(:application, :assets).and_return(Propshaft::Assembly.new)
 
-          expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::PropshaftAssetFinder
+          expect(InlineSvg.configuration.asset_finder).to be_a InlineSvg::PropshaftAssetFinder
         end
       end
 
       context "when Sprockets and Propshaft are not detected" do
         it "uses the static asset finder" do
-          expect(InlineSvg.configuration.asset_finder).to eq InlineSvg::StaticAssetFinder
+          stub_const("Rails", double("Rails"))
+          allow(Rails).to receive_message_chain(:application, :assets).and_return(nil)
+
+          expect(InlineSvg.configuration.asset_finder).to be_a InlineSvg::StaticAssetFinder
         end
       end
 

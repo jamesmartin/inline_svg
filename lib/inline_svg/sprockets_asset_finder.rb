@@ -1,16 +1,19 @@
 module InlineSvg
-  module SprocketsAssetFinder
-    def self.assets
-      Rails.application.assets
+  class SprocketsAssetFinder
+    attr_reader :assets
+
+    def initialize(assets = ::Rails.application.assets)
+      @assets = assets
     end
 
-    def self.find_asset(*args, **options)
-      assets.find_asset(*args, **options)
+    class << self
+      delegate :find_asset, to: :new
     end
 
-    def self.match?
+    delegate :find_asset, to: :assets
+
+    def match?
       assets.respond_to?(:find_asset)
-    rescue NameError
     end
   end
 end
