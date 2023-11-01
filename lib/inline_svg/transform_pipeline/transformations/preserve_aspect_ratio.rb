@@ -2,7 +2,7 @@ module InlineSvg::TransformPipeline::Transformations
   class PreserveAspectRatio < Transformation
     def transform(doc)
       with_svg(doc) do |svg|
-        svg["preserveAspectRatio"] = self.value
+        svg["preserveAspectRatio"] = value
       end
     end
   end
