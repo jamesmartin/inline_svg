@@ -7,7 +7,7 @@ module InlineSvg
     def initialize(filename)
       @filename = filename
       manifest_lookup = Webpacker.manifest.lookup(@filename)
-      @asset_path =  manifest_lookup.present? ? URI(manifest_lookup).path : ""
+      @asset_path = manifest_lookup.present? ? URI(manifest_lookup).path : ""
     end
 
     def pathname
@@ -31,7 +31,7 @@ module InlineSvg
           file.write(asset)
           file.rewind
         end
-      rescue StandardError => e
+      rescue => e
         Rails.logger.error "[inline_svg] Error creating tempfile for #{@filename}: #{e}"
         raise
       end
@@ -43,7 +43,7 @@ module InlineSvg
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       http.request(Net::HTTP::Get.new(file_path)).body
-    rescue StandardError => e
+    rescue => e
       Rails.logger.error "[inline_svg] Error fetching #{@filename} from webpack-dev-server: #{e}"
       raise
     end
