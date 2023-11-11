@@ -9,7 +9,7 @@ module InlineSvg
     class Asset
       attr_reader :filename
 
-      def initialize(filename, _asset_finder)
+      def initialize(filename)
         @filename = filename
       end
 
@@ -32,7 +32,7 @@ module InlineSvg
     end
 
     def find_asset(filename)
-      Asset.new(filename, self)
+      Asset.new(filename)
     end
 
     def match?
