@@ -61,7 +61,7 @@ module InlineSvg
     end
 
     def asset_finder
-      @asset_finder ||= matching_asset_finder
+      @asset_finder ||= detect_asset_finder
     end
 
     def svg_not_found_css_class=(css_class)
@@ -85,16 +85,16 @@ module InlineSvg
 
     private
 
-    def incompatible_transformation?(klass)
-      !klass.is_a?(Class) || !klass.respond_to?(:create_with_value) || !klass.instance_methods.include?(:transform)
-    end
-
-    def matching_asset_finder
+    def detect_asset_finder
       ASSET_FINDERS.find do |klass|
         asset_finder = klass.new
         break asset_finder if asset_finder.match?
       rescue NameError
       end
+    end
+
+    def incompatible_transformation?(klass)
+      !klass.is_a?(Class) || !klass.respond_to?(:create_with_value) || !klass.instance_methods.include?(:transform)
     end
   end
 
