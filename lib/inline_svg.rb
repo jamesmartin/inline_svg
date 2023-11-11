@@ -86,7 +86,7 @@ module InlineSvg
     private
 
     def detect_asset_finder
-      ASSET_FINDERS.find do |klass|
+      ASSET_FINDERS.detect do |klass|
         asset_finder = klass.new
         break asset_finder if asset_finder.match?
       rescue NameError
