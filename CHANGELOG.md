@@ -212,7 +212,7 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 
 ## [0.5.1] - 2015-03-30
 ### Warning
-** This version is NOT comaptible with Sprockets >= 3. **
+** This version is NOT compatible with Sprockets >= 3. **
 
 ### Fixed
 - Support for ActiveSupport (and hence, Rails) 4.2.x. Thanks, @jmarceli.
