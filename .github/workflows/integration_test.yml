@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test-branch: [rails6, rails7, rails7-shakapacker]
+        test-branch: [rails7, rails7-shakapacker]
     timeout-minutes: 20
     steps:
     - name: Checkout
