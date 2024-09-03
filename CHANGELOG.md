@@ -6,6 +6,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Nothing.
 
+## [1.10.0] - 2024-09-03
+### Added
+- Support for Shakapacker.  [#158](https://github.com/jamesmartin/inline_svg/pull/158). Thanks, [@tagliala](https://github.com/tagliala)
+
+### Fixed
+- Fixed documentation typos.  [#157](https://github.com/jamesmartin/inline_svg/pull/157). Thanks, [@tagliala](https://github.com/tagliala)
+- Fixed missing ActiveSupport require.  [#152](https://github.com/jamesmartin/inline_svg/pull/152). Thanks, [@xymbol](https://github.com/xymbol)
+- Remove wrapping whitespace from SVG tags.  [#150](https://github.com/jamesmartin/inline_svg/pull/150). Thanks, [@fredboyle](https://github.com/fredboyle)
+
 ## [1.9.0] - 2023-03-29
 ### Added
 - A new option: `view_box` adds a `viewBox` attribute to the SVG. [#142](https://github.com/jamesmartin/inline_svg/pull/142). Thanks [@sunny](https://github.com/sunny)
