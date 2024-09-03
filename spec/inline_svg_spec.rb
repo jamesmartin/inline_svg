@@ -47,7 +47,7 @@ describe InlineSvg do
     end
 
     context "configuring a custom asset file" do
-      it "falls back to the built-in asset file implementation by deafult" do
+      it "falls back to the built-in asset file implementation by default" do
         expect(InlineSvg.configuration.asset_file).to eq(InlineSvg::AssetFile)
       end
 
