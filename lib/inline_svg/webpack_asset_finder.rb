@@ -23,12 +23,7 @@ module InlineSvg
     private
 
     def asset_helper
-      @asset_helper ||=
-        if defined?(::Shakapacker)
-          ::Shakapacker
-        else
-          ::Webpacker
-        end
+      @asset_helper ||= ::Shakapacker
     end
 
     def dev_server_asset(file_path)

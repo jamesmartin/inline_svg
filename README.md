@@ -7,7 +7,7 @@ Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
 embedding](http://css-tricks.com/using-svg/) it inline in the HTML.
 
-This gem adds Rails helper methods (`inline_svg_tag` and `inline_svg_pack_tag`) that read an SVG document (via Sprockets or Webpacker, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
+This gem adds Rails helper methods (`inline_svg_tag` and `inline_svg_pack_tag`) that read an SVG document (via Sprockets or Shakapacker, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
 Inline SVG supports:
@@ -43,7 +43,7 @@ Or install it yourself as:
 # Sprockets
 inline_svg_tag(file_name, options={})
 
-# Webpacker
+# Shakapacker
 inline_svg_pack_tag(file_name, options={})
 ```
 

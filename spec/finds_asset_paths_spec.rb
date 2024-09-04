@@ -63,13 +63,13 @@ describe InlineSvg::FindsAssetPaths do
 
   context "when webpack finder returns an object with a relative asset path" do
     it "returns the fully qualified file path" do
-      webpacker = double('WebpackerDouble')
+      shakapacker = double('ShakapackerDouble')
 
-      expect(webpacker).to receive(:find_asset).with('some-file').
+      expect(shakapacker).to receive(:find_asset).with('some-file').
         and_return(double(filename: Pathname('/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
-        config.asset_finder = webpacker
+        config.asset_finder = shakapacker
       end
 
       expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
@@ -78,13 +78,13 @@ describe InlineSvg::FindsAssetPaths do
 
   context "when webpack finder returns an object with an absolute http asset path" do
     it "returns the fully qualified file path" do
-      webpacker = double('WebpackerDouble')
+      shakapacker = double('ShakapackerDouble')
 
-      expect(webpacker).to receive(:find_asset).with('some-file').
+      expect(shakapacker).to receive(:find_asset).with('some-file').
         and_return(double(filename: Pathname('https://my-fancy-domain.test/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
-        config.asset_finder = webpacker
+        config.asset_finder = shakapacker
       end
 
       expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('https://my-fancy-domain.test/full/path/to/some-file')
