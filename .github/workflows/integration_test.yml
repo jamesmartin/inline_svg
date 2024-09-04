@@ -1,35 +1,41 @@
 name: Integration Tests
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test-branch: [rails5, rails6, rails7]
+        test-branch: [rails6, rails7, rails7-shakapacker]
     timeout-minutes: 20
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Checkout test app
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: jamesmartin/inline_svg_test_app
         ref: ${{ matrix.test-branch }}
         path: test_app
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.7
+        ruby-version: 3.3.4
+        bundler-cache: true
     - name: Build local gem
       run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
         bundle exec rake build
     - name: Use the local gem in the test App
       id: uselocalgem
-      uses: jacobtomlinson/gha-find-replace@0.1.1
+      uses: jacobtomlinson/gha-find-replace@v3
       with:
         find: "gem 'inline_svg'"
         replace: "gem 'inline_svg', path: '${{github.workspace}}'"
@@ -41,6 +47,17 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/test_app
         bundle install --jobs 4 --retry 3
+    - name: Set up Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+      if: matrix.test-branch == 'rails7-shakapacker'
+    - name: Generate Shakapacker config
+      run: |
+        cd $GITHUB_WORKSPACE/test_app
+        yarn install --check-files
+        bundle exec rake shakapacker:compile
+      if: matrix.test-branch == 'rails7-shakapacker'
     - name: Test
       run: |
         cd $GITHUB_WORKSPACE/test_app
