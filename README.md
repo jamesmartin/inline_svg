@@ -1,7 +1,8 @@
 # Inline SVG
 
-![Unit tests](https://github.com/jamesmartin/inline_svg/workflows/Ruby/badge.svg)
-![Integration Tests](https://github.com/jamesmartin/inline_svg/workflows/Integration%20Tests/badge.svg)
+[![Ruby](https://github.com/jamesmartin/inline_svg/actions/workflows/ruby.yml/badge.svg)](https://github.com/jamesmartin/inline_svg/actions/workflows/ruby.yml)
+[![Integration Tests](https://github.com/jamesmartin/inline_svg/actions/workflows/integration_test.yml/badge.svg)](https://github.com/jamesmartin/inline_svg/actions/workflows/integration_test.yml)
+[![RuboCop](https://github.com/jamesmartin/inline_svg/actions/workflows/rubocop.yml/badge.svg)](https://github.com/jamesmartin/inline_svg/actions/workflows/rubocop.yml)
 
 Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
