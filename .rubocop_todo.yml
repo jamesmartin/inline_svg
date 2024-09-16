@@ -78,7 +78,7 @@ Lint/UselessAssignment:
 
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 20
+  Max: 19
 
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 Metrics/MethodLength:
@@ -110,30 +110,10 @@ Packaging/RequireRelativeHardcodingLib:
     - 'spec/static_asset_finder_spec.rb'
     - 'spec/webpack_asset_finder_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Performance/CompareWithBlock:
-  Exclude:
-    - 'lib/inline_svg/cached_asset_file.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Performance/ConstantRegexp:
-  Exclude:
-    - 'spec/inline_svg_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
   Exclude:
     - 'lib/inline_svg/transform_pipeline/transformations.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Performance/RedundantSplitRegexpArgument:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations/size.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Performance/StringReplacement:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations/data_attributes.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AutoCorrect.
@@ -385,12 +365,6 @@ Style/RedundantConstantBase:
     - 'spec/propshaft_asset_finder_spec.rb'
     - 'spec/static_asset_finder_spec.rb'
     - 'spec/webpack_asset_finder_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantRegexpArgument:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations/data_attributes.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/size.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowMultipleReturnValues.

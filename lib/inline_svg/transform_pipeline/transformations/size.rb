@@ -8,11 +8,11 @@ module InlineSvg::TransformPipeline::Transformations
     end
 
     def width_of(value)
-      value.split(/\*/).map(&:strip)[0]
+      value.split("*").map(&:strip)[0]
     end
 
     def height_of(value)
-      value.split(/\*/).map(&:strip)[1] || width_of(value)
+      value.split("*").map(&:strip)[1] || width_of(value)
     end
   end
 end

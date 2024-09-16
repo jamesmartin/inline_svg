@@ -18,7 +18,7 @@ module InlineSvg
       @paths = Array(paths).compact.map { |p| Pathname.new(p) }
       @filters = Array(filters).map { |f| Regexp.new(f) }
       @assets = @paths.reduce({}) { |assets, p| assets.merge(read_assets(assets, p)) }
-      @sorted_asset_keys = assets.keys.sort { |a, b| a.size <=> b.size }
+      @sorted_asset_keys = assets.keys.sort_by(&:size)
     end
 
     # Public: Finds the named asset and returns the contents as a string.
