@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 
 - Drop Support for Webpacker, Legacy Ruby (< 3.1), and Legacy Rails (< 7.0).  [#163](https://github.com/jamesmartin/inline_svg/pull/163). Thanks, [@tagliala](https://github.com/tagliala)
+- Reduce production gem size from 31K to 18K.  [#165](https://github.com/jamesmartin/inline_svg/pull/165). Thanks, [@tagliala](https://github.com/tagliala)
 
 ## [1.10.0] - 2024-09-03
 ### Added

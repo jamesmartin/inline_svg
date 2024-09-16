@@ -7,13 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Severity, Include.
-# Include: **/*.gemspec
-Gemspec/DeprecatedAttributeAssignment:
-  Exclude:
-    - 'inline_svg.gemspec'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: leading, trailing
 Layout/DotPosition:
@@ -32,7 +25,6 @@ Layout/EmptyLineAfterGuardClause:
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterMagicComment:
   Exclude:
-    - 'inline_svg.gemspec'
     - 'spec/cached_asset_file_spec.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
@@ -206,10 +198,6 @@ Naming/RescuedExceptionsVariableName:
 Naming/VariableNumber:
   Exclude:
     - 'spec/cached_asset_file_spec.rb'
-
-Packaging/GemspecGit:
-  Exclude:
-    - 'inline_svg.gemspec'
 
 # This cop supports safe autocorrection (--autocorrect).
 Packaging/RequireRelativeHardcodingLib:
@@ -425,14 +413,8 @@ Style/EachWithObject:
     - 'lib/inline_svg/transform_pipeline/transformations.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-Style/Encoding:
-  Exclude:
-    - 'inline_svg.gemspec'
-
-# This cop supports safe autocorrection (--autocorrect).
 Style/ExpandPathArguments:
   Exclude:
-    - 'inline_svg.gemspec'
     - 'spec/cached_asset_file_spec.rb'
     - 'spec/helpers/inline_svg_spec.rb'
     - 'spec/io_resource_spec.rb'
@@ -497,12 +479,6 @@ Style/NonNilCheck:
   Exclude:
     - 'lib/inline_svg/transform_pipeline/transformations.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'inline_svg.gemspec'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, AllowedCompactTypes.
 # SupportedStyles: compact, exploded
@@ -529,11 +505,6 @@ Style/RedundantConstantBase:
     - 'spec/propshaft_asset_finder_spec.rb'
     - 'spec/static_asset_finder_spec.rb'
     - 'spec/webpack_asset_finder_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantPercentQ:
-  Exclude:
-    - 'inline_svg.gemspec'
 
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantRegexpArgument:
@@ -573,13 +544,6 @@ Style/RegexpLiteral:
 Style/SafeNavigation:
   Exclude:
     - 'lib/inline_svg/propshaft_asset_finder.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: RequireEnglish, EnforcedStyle.
-# SupportedStyles: use_perl_names, use_english_names, use_builtin_english_names
-Style/SpecialGlobalVars:
-  Exclude:
-    - 'inline_svg.gemspec'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
