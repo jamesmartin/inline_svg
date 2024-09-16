@@ -22,15 +22,6 @@ module InlineSvg
 
       private
 
-      def backwards_compatible_html_escape(filename)
-        # html_escape_once was introduced in newer versions of Rails.
-        if ERB::Util.respond_to?(:html_escape_once)
-          ERB::Util.html_escape_once(filename)
-        else
-          ERB::Util.html_escape(filename)
-        end
-      end
-
       def render_inline_svg(filename, transform_params={})
         begin
           svg_file = read_svg(filename)
@@ -60,7 +51,7 @@ module InlineSvg
 
       def placeholder(filename)
         css_class = InlineSvg.configuration.svg_not_found_css_class
-        not_found_message = "'#{backwards_compatible_html_escape(filename)}' #{extension_hint(filename)}"
+        not_found_message = "'#{ERB::Util.html_escape_once(filename)}' #{extension_hint(filename)}"
 
         if css_class.nil?
           return "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe

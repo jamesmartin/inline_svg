@@ -18,13 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec", "~> 3.2"
-  spec.add_development_dependency "rspec_junit_formatter", "0.2.2"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "rubocop"
+  spec.metadata['rubygems_mfa_required'] = 'true'
+  spec.required_ruby_version = '>= 3.1'
 
-  spec.add_runtime_dependency "activesupport", ">= 3.0"
-  spec.add_runtime_dependency "nokogiri", ">= 1.6"
+  spec.add_dependency "activesupport", ">= 7.0"
+  spec.add_dependency "nokogiri", ">= 1.16"
 end

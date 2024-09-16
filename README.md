@@ -7,16 +7,10 @@ Styling a SVG document with CSS for use on the web is most reliably achieved by
 [adding classes to the document and
 embedding](http://css-tricks.com/using-svg/) it inline in the HTML.
 
-This gem adds Rails helper methods (`inline_svg_tag` and `inline_svg_pack_tag`) that read an SVG document (via Sprockets or Webpacker, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
+This gem adds Rails helper methods (`inline_svg_tag` and `inline_svg_pack_tag`) that read an SVG document (via Sprockets or Shakapacker, so works with the Rails Asset Pipeline), applies a CSS class attribute to the root of the document and
 then embeds it into a view.
 
-Inline SVG supports:
-
-- [Rails 5](http://weblog.rubyonrails.org/2016/6/30/Rails-5-0-final/) (from [v0.10.0](https://github.com/jamesmartin/inline_svg/releases/tag/v0.10.0))
-- [Rails 6](https://weblog.rubyonrails.org/2019/4/24/Rails-6-0-rc1-released/) with Sprockets or Webpacker (from [v1.5.2](https://github.com/jamesmartin/inline_svg/releases/tag/v1.5.2)).
-- [Rails 7](https://weblog.rubyonrails.org/2021/12/6/Rails-7-0-rc-1-released/)
-
-Inline SVG no longer officially supports Rails 3 or Rails 4 (although they may still work). In order to reduce the maintenance cost of this project we now follow the [Rails Maintenance Policy](https://guides.rubyonrails.org/maintenance_policy.html).
+Inline SVG supports Rails 7.x with Propshaft, Sprockets, or Shakapacker
 
 ## Changelog
 
@@ -43,7 +37,7 @@ Or install it yourself as:
 # Sprockets
 inline_svg_tag(file_name, options={})
 
-# Webpacker
+# Shakapacker
 inline_svg_pack_tag(file_name, options={})
 ```
 
