@@ -65,7 +65,8 @@ module InlineSvg
       if incompatible_transformation?(options.fetch(:transform))
         raise InlineSvg::Configuration::Invalid.new("#{options.fetch(:transform)} should implement the .create_with_value and #transform methods")
       end
-      @custom_transformations.merge!(Hash[ *[options.fetch(:attribute, :no_attribute), options] ])
+
+      @custom_transformations.merge!(Hash[*[options.fetch(:attribute, :no_attribute), options]])
     end
 
     def raise_on_file_not_found=(value)
@@ -81,7 +82,6 @@ module InlineSvg
     def incompatible_transformation?(klass)
       !klass.is_a?(Class) || !klass.respond_to?(:create_with_value) || !klass.instance_methods.include?(:transform)
     end
-
   end
 
   @configuration = InlineSvg::Configuration.new

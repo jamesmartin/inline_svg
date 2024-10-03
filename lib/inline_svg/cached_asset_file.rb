@@ -32,6 +32,7 @@ module InlineSvg
     end
 
     private
+
     # Internal: Finds the key for a given asset name (using a Regex). In the
     # event of an ambiguous asset_name matching multiple assets, this method
     # ranks the matches by their full file path, choosing the shortest (most

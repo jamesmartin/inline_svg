@@ -23,6 +23,7 @@ describe InlineSvg::IOResource do
         expect(subject === File.new("#{Dir.tmpdir}/testfile", "w")).to be true
       end
     end
+
     context 'return false' do
       it "for String object" do
         expect(subject === "string/filename").to be false
@@ -31,11 +32,10 @@ describe InlineSvg::IOResource do
   end
 
   describe '#read' do
-
     tests = proc do
       it "closed raise error" do
         rio.close
-        expect do 
+        expect do
           subject.read(rio)
         end.to raise_error(IOError)
       end
@@ -51,7 +51,7 @@ describe InlineSvg::IOResource do
       end
 
       it "write only raise error" do
-        expect do 
+        expect do
           subject.read wio
         end.to raise_error(IOError)
       end
@@ -61,6 +61,7 @@ describe InlineSvg::IOResource do
       let(:answer) { 'read' }
       let(:rio) { StringIO.new(answer, 'r') }
       let(:wio) { StringIO.new('write', 'w') }
+
       instance_exec &tests
     end
 
@@ -69,12 +70,11 @@ describe InlineSvg::IOResource do
       let(:answer) { File.read(file_path) }
       let(:rio) { File.new(file_path, 'r') }
       let(:wio) { File.new('/dev/null', 'w') }
+
       instance_exec &tests
       it 'has non empty body' do
         expect(answer).to_not eq ''
       end
     end
-
-    
   end
 end

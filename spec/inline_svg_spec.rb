@@ -96,7 +96,7 @@ describe InlineSvg do
           config.add_custom_transformation(attribute: :my_transform, transform: MyCustomTransform)
         end
 
-        expect(InlineSvg.configuration.custom_transformations).to eq({my_transform: {attribute: :my_transform, transform: MyCustomTransform}})
+        expect(InlineSvg.configuration.custom_transformations).to eq({ my_transform: { attribute: :my_transform, transform: MyCustomTransform } })
       end
 
       it "rejects transformations that do not implement .create_with_value" do
@@ -122,7 +122,6 @@ describe InlineSvg do
           end
         end.to raise_error(InlineSvg::Configuration::Invalid, /#{:not_a_class} should implement the .create_with_value and #transform methods/)
       end
-
     end
   end
 end

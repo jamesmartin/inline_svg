@@ -3,7 +3,7 @@ require 'inline_svg/transform_pipeline'
 describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
   it "adds a data attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
-    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({some: "value"})
+    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({ some: "value" })
 
     expect(transformation.transform(document).to_html).to eq(
       "<svg data-some=\"value\">Some document</svg>\n"
@@ -12,7 +12,7 @@ describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
 
   it "dasherizes the data attribute name" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
-    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({some_name: "value"})
+    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({ some_name: "value" })
 
     expect(transformation.transform(document).to_html).to eq(
       "<svg data-some-name=\"value\">Some document</svg>\n"
@@ -21,7 +21,7 @@ describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
 
   it "dasherizes a data attribute name with multiple parts" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
-    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({some_other_name: "value"})
+    transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({ some_other_name: "value" })
 
     expect(transformation.transform(document).to_html).to eq(
       "<svg data-some-other-name=\"value\">Some document</svg>\n"
@@ -32,7 +32,7 @@ describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
     it "adds data attributes to the SVG for each supplied value" do
       document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
       transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.
-        create_with_value({some: "value", other: "thing"})
+        create_with_value({ some: "value", other: "thing" })
 
       expect(transformation.transform(document).to_html).to eq(
         "<svg data-some=\"value\" data-other=\"thing\">Some document</svg>\n"

@@ -10,11 +10,9 @@ class WorkingCustomTransform < InlineSvg::CustomTransformation
 end
 
 describe InlineSvg::ActionView::Helpers do
-
-  let(:helper) { ( Class.new { include InlineSvg::ActionView::Helpers } ).new }
+  let(:helper) { (Class.new { include InlineSvg::ActionView::Helpers }).new }
 
   shared_examples "inline_svg helper" do |helper_method:|
-
     context "when passed the name of an SVG that does not exist" do
       after(:each) do
         InlineSvg.reset_configuration!
@@ -94,7 +92,6 @@ describe InlineSvg::ActionView::Helpers do
     end
 
     context "when passed an existing SVG file" do
-
       context "and no options" do
         it "returns a html safe version of the file's contents" do
           example_file = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>'
@@ -151,7 +148,7 @@ describe InlineSvg::ActionView::Helpers do
       context "with custom transformations" do
         before(:each) do
           InlineSvg.configure do |config|
-            config.add_custom_transformation({attribute: :custom, transform: WorkingCustomTransform})
+            config.add_custom_transformation({ attribute: :custom, transform: WorkingCustomTransform })
           end
         end
 
@@ -170,7 +167,7 @@ describe InlineSvg::ActionView::Helpers do
       context "with custom transformations using a default value" do
         before(:each) do
           InlineSvg.configure do |config|
-            config.add_custom_transformation({attribute: :custom, transform: WorkingCustomTransform, default_value: 'default value'})
+            config.add_custom_transformation({ attribute: :custom, transform: WorkingCustomTransform, default_value: 'default value' })
           end
         end
 
@@ -198,16 +195,18 @@ describe InlineSvg::ActionView::Helpers do
           end
         end
       end
-
     end
+
     context 'argument polimorphizm' do
       let(:argument) { double('argument') }
+
       it 'accept IO' do
         expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(true)
         expect(InlineSvg::IOResource).to receive(:read).with(argument)
         expect(InlineSvg::AssetFile).to_not receive(:named)
         helper.send(helper_method, argument)
       end
+
       it 'accept filename' do
         expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(false)
         expect(InlineSvg::IOResource).to_not receive(:read)
@@ -215,10 +214,12 @@ describe InlineSvg::ActionView::Helpers do
         helper.send(helper_method, argument)
       end
     end
+
     context 'when passed IO object argument' do
       let(:io_object) { double('io_object') }
       let(:file_path) { File.expand_path('../../files/example.svg', __FILE__) }
       let(:answer) { File.read(file_path) }
+
       it 'return valid svg' do
         expect(InlineSvg::IOResource).to receive(:===).with(io_object).and_return(true)
         expect(InlineSvg::IOResource).to receive(:read).with(io_object).and_return("<svg><!-- Test IO --></svg>")
@@ -232,15 +233,14 @@ describe InlineSvg::ActionView::Helpers do
         expect(output).to eq "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:lang=\"en\" role=\"presentation\"><!-- This is a test comment --></svg>"
         expect(output).to be_html_safe
       end
-
     end
-    
+
     context 'default output' do
       it "returns an SVG tag without any pre or post whitespace characters" do
         input_svg = '<svg></svg>'
-        
+
         allow(InlineSvg::AssetFile).to receive(:named).with('some-file').and_return(input_svg)
-        
+
         expect(helper.send(helper_method, 'some-file')).to eq "<svg></svg>"
       end
     end

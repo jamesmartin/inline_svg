@@ -4,25 +4,25 @@ require 'action_view/context' if defined?(Rails)
 module InlineSvg
   module ActionView
     module Helpers
-      def inline_svg_tag(filename, transform_params={})
+      def inline_svg_tag(filename, transform_params = {})
         with_asset_finder(InlineSvg.configuration.asset_finder) do
           render_inline_svg(filename, transform_params)
         end
       end
 
-      def inline_svg_pack_tag(filename, transform_params={})
+      def inline_svg_pack_tag(filename, transform_params = {})
         with_asset_finder(InlineSvg::WebpackAssetFinder) do
           render_inline_svg(filename, transform_params)
         end
       end
 
-      def inline_svg(filename, transform_params={})
+      def inline_svg(filename, transform_params = {})
         render_inline_svg(filename, transform_params)
       end
 
       private
 
-      def render_inline_svg(filename, transform_params={})
+      def render_inline_svg(filename, transform_params = {})
         begin
           svg_file = read_svg(filename)
         rescue InlineSvg::AssetFile::FileNotFound => error
