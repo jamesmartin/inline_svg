@@ -7,7 +7,7 @@ module InlineSvg
     def initialize(filename)
       @filename = filename
       manifest_lookup = asset_helper.manifest.lookup(@filename)
-      @asset_path =  manifest_lookup.present? ? URI(manifest_lookup).path : ""
+      @asset_path = manifest_lookup.present? ? URI(manifest_lookup).path : ""
     end
 
     def pathname

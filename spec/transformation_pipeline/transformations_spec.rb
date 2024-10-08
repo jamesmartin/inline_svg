@@ -93,8 +93,8 @@ describe InlineSvg::TransformPipeline::Transformations do
   context "custom transformations" do
     before(:each) do
       InlineSvg.configure do |config|
-        config.add_custom_transformation({transform: ACustomTransform, attribute: :my_transform, priority: 2})
-        config.add_custom_transformation({transform: ASecondCustomTransform, attribute: :my_other_transform, priority: 1})
+        config.add_custom_transformation({ transform: ACustomTransform, attribute: :my_transform, priority: 2 })
+        config.add_custom_transformation({ transform: ASecondCustomTransform, attribute: :my_other_transform, priority: 1 })
       end
     end
 
@@ -137,5 +137,4 @@ describe InlineSvg::TransformPipeline::Transformations do
       )
     end
   end
-
 end

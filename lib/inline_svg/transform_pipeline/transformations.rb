@@ -27,12 +27,12 @@ module InlineSvg::TransformPipeline::Transformations
     transforms.inject({}) do |output, (name, definition)|
       priority = definition.fetch(:priority, built_in_transformations.size)
 
-      output[name] = definition.merge( { priority: magnify(priority) } )
+      output[name] = definition.merge({ priority: magnify(priority) })
       output
     end
   end
 
-  def self.magnify(priority=0)
+  def self.magnify(priority = 0)
     (priority + 1) * built_in_transformations.size
   end
 
@@ -59,15 +59,15 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.without_empty_values(params)
-    params.reject {|key, value| value.nil?}
+    params.reject { |key, value| value.nil? }
   end
 
   def self.all_default_values
     custom_transformations
       .values
-      .select {|opt| opt[:default_value] != nil}
-      .map {|opt| [opt[:attribute], opt[:default_value]]}
-      .inject({}) {|options, attrs| options.merge!(attrs[0] => attrs[1])}
+      .select { |opt| opt[:default_value] != nil }
+      .map { |opt| [opt[:attribute], opt[:default_value]] }
+      .inject({}) { |options, attrs| options.merge!(attrs[0] => attrs[1]) }
   end
 
   def self.no_transform
