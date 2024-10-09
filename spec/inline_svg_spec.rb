@@ -1,4 +1,4 @@
-require_relative '../lib/inline_svg'
+require "inline_svg"
 
 class MyCustomTransform
   def self.create_with_value(value); end
