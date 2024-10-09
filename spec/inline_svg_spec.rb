@@ -104,7 +104,7 @@ describe InlineSvg do
           InlineSvg.configure do |config|
             config.add_custom_transformation(attribute: :irrelevant, transform: MyInvalidCustomTransformKlass)
           end
-        end.to raise_error(InlineSvg::Configuration::Invalid, /#{MyInvalidCustomTransformKlass} should implement the .create_with_value and #transform methods/)
+        end.to raise_error(InlineSvg::Configuration::Invalid, /#{MyInvalidCustomTransformKlass} should implement the .create_with_value and #transform methods/o)
       end
 
       it "rejects transformations that does not implement #transform" do
@@ -112,7 +112,7 @@ describe InlineSvg do
           InlineSvg.configure do |config|
             config.add_custom_transformation(attribute: :irrelevant, transform: MyInvalidCustomTransformInstance)
           end
-        end.to raise_error(InlineSvg::Configuration::Invalid, /#{MyInvalidCustomTransformInstance} should implement the .create_with_value and #transform methods/)
+        end.to raise_error(InlineSvg::Configuration::Invalid, /#{MyInvalidCustomTransformInstance} should implement the .create_with_value and #transform methods/o)
       end
 
       it "rejects transformations that are not classes" do
