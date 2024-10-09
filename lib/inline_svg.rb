@@ -1,15 +1,16 @@
-require "inline_svg/version"
-require "inline_svg/action_view/helpers"
-require "inline_svg/asset_file"
-require "inline_svg/cached_asset_file"
-require "inline_svg/finds_asset_paths"
-require "inline_svg/propshaft_asset_finder"
-require "inline_svg/static_asset_finder"
-require "inline_svg/webpack_asset_finder"
-require "inline_svg/transform_pipeline"
-require "inline_svg/io_resource"
+require_relative "inline_svg/version"
+require_relative "inline_svg/action_view/helpers"
+require_relative "inline_svg/asset_file"
+require_relative "inline_svg/cached_asset_file"
+require_relative "inline_svg/finds_asset_paths"
+require_relative "inline_svg/propshaft_asset_finder"
+require_relative "inline_svg/static_asset_finder"
+require_relative "inline_svg/webpack_asset_finder"
+require_relative "inline_svg/transform_pipeline"
+require_relative "inline_svg/io_resource"
 
-require "inline_svg/railtie" if defined?(Rails)
+require_relative "inline_svg/railtie" if defined?(Rails)
+
 require 'active_support'
 require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string'

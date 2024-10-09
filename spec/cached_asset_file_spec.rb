@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require_relative '../lib/inline_svg'
+require "inline_svg"
 
 describe InlineSvg::CachedAssetFile do
   let(:fixture_path) { Pathname.new(File.expand_path("../files/static_assets", __FILE__)) }

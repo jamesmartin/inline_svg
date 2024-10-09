@@ -97,19 +97,6 @@ Naming/VariableNumber:
   Exclude:
     - 'spec/cached_asset_file_spec.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Packaging/RequireRelativeHardcodingLib:
-  Exclude:
-    - 'spec/asset_file_spec.rb'
-    - 'spec/cached_asset_file_spec.rb'
-    - 'spec/finds_asset_paths_spec.rb'
-    - 'spec/id_generator_spec.rb'
-    - 'spec/inline_svg_spec.rb'
-    - 'spec/io_resource_spec.rb'
-    - 'spec/propshaft_asset_finder_spec.rb'
-    - 'spec/static_asset_finder_spec.rb'
-    - 'spec/webpack_asset_finder_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Performance/MapCompact:
   Exclude:

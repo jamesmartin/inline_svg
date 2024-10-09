@@ -1,4 +1,4 @@
-require_relative '../lib/inline_svg'
+require "inline_svg"
 require "stringio"
 require "tempfile"
 
