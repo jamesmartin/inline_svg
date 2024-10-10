@@ -1,15 +1,16 @@
-require "inline_svg/version"
-require "inline_svg/action_view/helpers"
-require "inline_svg/asset_file"
-require "inline_svg/cached_asset_file"
-require "inline_svg/finds_asset_paths"
-require "inline_svg/propshaft_asset_finder"
-require "inline_svg/static_asset_finder"
-require "inline_svg/webpack_asset_finder"
-require "inline_svg/transform_pipeline"
-require "inline_svg/io_resource"
+require_relative "inline_svg/version"
+require_relative "inline_svg/action_view/helpers"
+require_relative "inline_svg/asset_file"
+require_relative "inline_svg/cached_asset_file"
+require_relative "inline_svg/finds_asset_paths"
+require_relative "inline_svg/propshaft_asset_finder"
+require_relative "inline_svg/static_asset_finder"
+require_relative "inline_svg/webpack_asset_finder"
+require_relative "inline_svg/transform_pipeline"
+require_relative "inline_svg/io_resource"
 
-require "inline_svg/railtie" if defined?(Rails)
+require_relative "inline_svg/railtie" if defined?(Rails)
+
 require 'active_support'
 require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string'
@@ -29,16 +30,14 @@ module InlineSvg
     end
 
     def asset_file=(custom_asset_file)
-      begin
-        method = custom_asset_file.method(:named)
-        if method.arity == 1
-          @asset_file = custom_asset_file
-        else
-          raise InlineSvg::Configuration::Invalid.new("asset_file should implement the #named method with arity 1")
-        end
-      rescue NameError
-        raise InlineSvg::Configuration::Invalid.new("asset_file should implement the #named method")
+      method = custom_asset_file.method(:named)
+      if method.arity == 1
+        @asset_file = custom_asset_file
+      else
+        raise InlineSvg::Configuration::Invalid.new("asset_file should implement the #named method with arity 1")
       end
+    rescue NameError
+      raise InlineSvg::Configuration::Invalid.new("asset_file should implement the #named method")
     end
 
     def asset_finder=(finder)
@@ -66,7 +65,7 @@ module InlineSvg
         raise InlineSvg::Configuration::Invalid.new("#{options.fetch(:transform)} should implement the .create_with_value and #transform methods")
       end
 
-      @custom_transformations.merge!(Hash[*[options.fetch(:attribute, :no_attribute), options]])
+      @custom_transformations.merge!(options.fetch(:attribute, :no_attribute) => options)
     end
 
     def raise_on_file_not_found=(value)

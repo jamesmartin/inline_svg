@@ -14,7 +14,7 @@ describe InlineSvg::ActionView::Helpers do
 
   shared_examples "inline_svg helper" do |helper_method:|
     context "when passed the name of an SVG that does not exist" do
-      after(:each) do
+      after do
         InlineSvg.reset_configuration!
       end
 
@@ -24,9 +24,9 @@ describe InlineSvg::ActionView::Helpers do
             config.raise_on_file_not_found = true
           end
 
-          allow(InlineSvg::AssetFile).to receive(:named).
-            with('some-missing-file.svg').
-            and_raise(InlineSvg::AssetFile::FileNotFound.new)
+          allow(InlineSvg::AssetFile).to receive(:named)
+            .with('some-missing-file.svg')
+            .and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
           expect {
             helper.send(helper_method, 'some-missing-file.svg')
@@ -35,9 +35,9 @@ describe InlineSvg::ActionView::Helpers do
       end
 
       it "returns an empty, html safe, SVG document as a placeholder" do
-        allow(InlineSvg::AssetFile).to receive(:named).
-          with('some-missing-file.svg').
-          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+        allow(InlineSvg::AssetFile).to receive(:named)
+          .with('some-missing-file.svg')
+          .and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
         output = helper.send(helper_method, 'some-missing-file.svg')
         expect(output).to eq "<svg><!-- SVG file not found: 'some-missing-file.svg' --></svg>"
@@ -46,9 +46,9 @@ describe InlineSvg::ActionView::Helpers do
 
       it "escapes malicious input" do
         malicious = "--></svg><script>alert(1)</script><svg>.svg"
-        allow(InlineSvg::AssetFile).to receive(:named).
-          with(malicious).
-          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+        allow(InlineSvg::AssetFile).to receive(:named)
+          .with(malicious)
+          .and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
         output = helper.send(helper_method, malicious)
         expect(output).to eq "<svg><!-- SVG file not found: '--&gt;&lt;/svg&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;svg&gt;.svg' --></svg>"
@@ -56,9 +56,9 @@ describe InlineSvg::ActionView::Helpers do
       end
 
       it "gives a helpful hint when no .svg extension is provided in the filename" do
-        allow(InlineSvg::AssetFile).to receive(:named).
-          with('missing-file-with-no-extension').
-          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+        allow(InlineSvg::AssetFile).to receive(:named)
+          .with('missing-file-with-no-extension')
+          .and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
         output = helper.send(helper_method, 'missing-file-with-no-extension')
         expect(output).to eq "<svg><!-- SVG file not found: 'missing-file-with-no-extension' (Try adding .svg to your filename) --></svg>"
@@ -69,9 +69,9 @@ describe InlineSvg::ActionView::Helpers do
           config.svg_not_found_css_class = 'missing-svg'
         end
 
-        allow(InlineSvg::AssetFile).to receive(:named).
-          with('some-other-missing-file.svg').
-          and_raise(InlineSvg::AssetFile::FileNotFound.new)
+        allow(InlineSvg::AssetFile).to receive(:named)
+          .with('some-other-missing-file.svg')
+          .and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
         output = helper.send(helper_method, 'some-other-missing-file.svg')
         expect(output).to eq "<svg class='missing-svg'><!-- SVG file not found: 'some-other-missing-file.svg' --></svg>"
@@ -80,9 +80,9 @@ describe InlineSvg::ActionView::Helpers do
 
       context "and a fallback that does exist" do
         it "displays the fallback" do
-          allow(InlineSvg::AssetFile).to receive(:named).
-            with('missing.svg').
-            and_raise(InlineSvg::AssetFile::FileNotFound.new)
+          allow(InlineSvg::AssetFile).to receive(:named)
+            .with('missing.svg')
+            .and_raise(InlineSvg::AssetFile::FileNotFound.new)
 
           fallback_file = '<svg xmlns="http://www.w3.org/2000/svg" xml:lang="en"><!-- This is a comment --></svg>'
           allow(InlineSvg::AssetFile).to receive(:named).with('fallback.svg').and_return(fallback_file)
@@ -146,13 +146,13 @@ describe InlineSvg::ActionView::Helpers do
       end
 
       context "with custom transformations" do
-        before(:each) do
+        before do
           InlineSvg.configure do |config|
             config.add_custom_transformation({ attribute: :custom, transform: WorkingCustomTransform })
           end
         end
 
-        after(:each) do
+        after do
           InlineSvg.reset_configuration!
         end
 
@@ -165,13 +165,13 @@ describe InlineSvg::ActionView::Helpers do
       end
 
       context "with custom transformations using a default value" do
-        before(:each) do
+        before do
           InlineSvg.configure do |config|
             config.add_custom_transformation({ attribute: :custom, transform: WorkingCustomTransform, default_value: 'default value' })
           end
         end
 
-        after(:each) do
+        after do
           InlineSvg.reset_configuration!
         end
 
@@ -203,13 +203,13 @@ describe InlineSvg::ActionView::Helpers do
       it 'accept IO' do
         expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(true)
         expect(InlineSvg::IOResource).to receive(:read).with(argument)
-        expect(InlineSvg::AssetFile).to_not receive(:named)
+        expect(InlineSvg::AssetFile).not_to receive(:named)
         helper.send(helper_method, argument)
       end
 
       it 'accept filename' do
         expect(InlineSvg::IOResource).to receive(:===).with(argument).and_return(false)
-        expect(InlineSvg::IOResource).to_not receive(:read)
+        expect(InlineSvg::IOResource).not_to receive(:read)
         expect(InlineSvg::AssetFile).to receive(:named).with(argument)
         helper.send(helper_method, argument)
       end
@@ -217,7 +217,7 @@ describe InlineSvg::ActionView::Helpers do
 
     context 'when passed IO object argument' do
       let(:io_object) { double('io_object') }
-      let(:file_path) { File.expand_path('../../files/example.svg', __FILE__) }
+      let(:file_path) { File.expand_path('../files/example.svg', __dir__) }
       let(:answer) { File.read(file_path) }
 
       it 'return valid svg' do

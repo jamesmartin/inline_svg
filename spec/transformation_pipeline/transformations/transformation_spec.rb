@@ -2,7 +2,7 @@ require 'inline_svg'
 require 'inline_svg/transform_pipeline'
 
 describe InlineSvg::TransformPipeline::Transformations::Transformation do
-  context "#with_svg" do
+  describe "#with_svg" do
     it "returns a Nokogiri::XML::Document representing the parsed document fragment" do
       document = Nokogiri::XML::Document.parse("<svg>Some document</svg>")
 
@@ -23,7 +23,7 @@ describe InlineSvg::TransformPipeline::Transformations::Transformation do
         returned_document = transformation.with_svg(document, &b)
       end.to yield_control
 
-      expect(returned_document.to_s).to match(/<svg>Some document<\/svg>/)
+      expect(returned_document.to_s).to match(%r{<svg>Some document</svg>})
     end
 
     it "does not yield if the document does not contain an SVG element at the root" do

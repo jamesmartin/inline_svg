@@ -24,11 +24,10 @@ module InlineSvg::TransformPipeline::Transformations
   end
 
   def self.magnify_priorities(transforms)
-    transforms.inject({}) do |output, (name, definition)|
+    transforms.each_with_object({}) do |(name, definition), output|
       priority = definition.fetch(:priority, built_in_transformations.size)
 
       output[name] = definition.merge({ priority: magnify(priority) })
-      output
     end
   end
 
@@ -65,7 +64,7 @@ module InlineSvg::TransformPipeline::Transformations
   def self.all_default_values
     custom_transformations
       .values
-      .select { |opt| opt[:default_value] != nil }
+      .reject { |opt| opt[:default_value].nil? }
       .map { |opt| [opt[:attribute], opt[:default_value]] }
       .inject({}) { |options, attrs| options.merge!(attrs[0] => attrs[1]) }
   end
@@ -75,18 +74,18 @@ module InlineSvg::TransformPipeline::Transformations
   end
 end
 
-require 'inline_svg/transform_pipeline/transformations/transformation'
-require 'inline_svg/transform_pipeline/transformations/no_comment'
-require 'inline_svg/transform_pipeline/transformations/class_attribute'
-require 'inline_svg/transform_pipeline/transformations/style_attribute'
-require 'inline_svg/transform_pipeline/transformations/title'
-require 'inline_svg/transform_pipeline/transformations/description'
-require 'inline_svg/transform_pipeline/transformations/size'
-require 'inline_svg/transform_pipeline/transformations/height'
-require 'inline_svg/transform_pipeline/transformations/width'
-require 'inline_svg/transform_pipeline/transformations/view_box'
-require 'inline_svg/transform_pipeline/transformations/id_attribute'
-require 'inline_svg/transform_pipeline/transformations/data_attributes'
-require 'inline_svg/transform_pipeline/transformations/preserve_aspect_ratio'
-require 'inline_svg/transform_pipeline/transformations/aria_attributes'
-require "inline_svg/transform_pipeline/transformations/aria_hidden_attribute"
+require_relative 'transformations/transformation'
+require_relative 'transformations/no_comment'
+require_relative 'transformations/class_attribute'
+require_relative 'transformations/style_attribute'
+require_relative 'transformations/title'
+require_relative 'transformations/description'
+require_relative 'transformations/size'
+require_relative 'transformations/height'
+require_relative 'transformations/width'
+require_relative 'transformations/view_box'
+require_relative 'transformations/id_attribute'
+require_relative 'transformations/data_attributes'
+require_relative 'transformations/preserve_aspect_ratio'
+require_relative 'transformations/aria_attributes'
+require_relative 'transformations/aria_hidden_attribute'

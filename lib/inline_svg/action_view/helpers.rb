@@ -54,9 +54,9 @@ module InlineSvg
         not_found_message = "'#{ERB::Util.html_escape_once(filename)}' #{extension_hint(filename)}"
 
         if css_class.nil?
-          return "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
+          "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
         else
-          return "<svg class='#{css_class}'><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
+          "<svg class='#{css_class}'><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
         end
       end
 
