@@ -1,5 +1,5 @@
 require 'pathname'
-require_relative '../lib/inline_svg'
+require "inline_svg"
 
 describe InlineSvg::FindsAssetPaths do
   context "when sprockets finder returns an object which supports only the pathname method" do

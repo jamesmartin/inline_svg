@@ -1,5 +1,5 @@
-require_relative '../lib/inline_svg/finds_asset_paths'
-require_relative '../lib/inline_svg/asset_file'
+require "inline_svg/finds_asset_paths"
+require "inline_svg/asset_file"
 
 describe InlineSvg::AssetFile do
   it "reads data from a file, after qualifying a full path" do
