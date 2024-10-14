@@ -120,7 +120,7 @@ describe InlineSvg do
           InlineSvg.configure do |config|
             config.add_custom_transformation(attribute: :irrelevant, transform: :not_a_class)
           end
-        end.to raise_error(InlineSvg::Configuration::Invalid, /#{:not_a_class} should implement the .create_with_value and #transform methods/)
+        end.to raise_error(InlineSvg::Configuration::Invalid, /not_a_class should implement the .create_with_value and #transform methods/)
       end
     end
   end

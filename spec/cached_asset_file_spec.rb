@@ -4,7 +4,7 @@ require 'pathname'
 require "inline_svg"
 
 describe InlineSvg::CachedAssetFile do
-  let(:fixture_path) { Pathname.new(File.expand_path("../files/static_assets", __FILE__)) }
+  let(:fixture_path) { Pathname.new(File.expand_path('files/static_assets', __dir__)) }
 
   it "loads assets under configured paths" do
     known_document = File.read(fixture_path.join("assets0", "known-document.svg"))

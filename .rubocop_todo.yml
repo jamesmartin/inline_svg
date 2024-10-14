@@ -7,17 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: leading, trailing
-Layout/DotPosition:
-  Exclude:
-    - 'spec/finds_asset_paths_spec.rb'
-    - 'spec/helpers/inline_svg_spec.rb'
-    - 'spec/id_generator_spec.rb'
-    - 'spec/transformation_pipeline/transformations/aria_attributes_spec.rb'
-    - 'spec/transformation_pipeline/transformations/data_attributes_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: IndentationWidth.
 # SupportedStyles: special_inside_parentheses, consistent, align_brackets
 Layout/FirstArrayElementIndentation:
@@ -40,22 +29,6 @@ Layout/MultilineMethodCallIndentation:
     - 'spec/transformation_pipeline/transformations/data_attributes_spec.rb'
     - 'spec/transformation_pipeline/transformations/style_attribute_spec.rb'
     - 'spec/transformation_pipeline/transformations/view_box_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Lint/AmbiguousOperator:
-  Exclude:
-    - 'spec/io_resource_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Lint/LiteralInInterpolation:
-  Exclude:
-    - 'spec/inline_svg_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowPercentLiteralArrayArgument.
-Lint/RedundantSplatExpansion:
-  Exclude:
-    - 'lib/inline_svg.rb'
 
 Lint/ShadowingOuterLocalVariable:
   Exclude:
@@ -102,17 +75,6 @@ Performance/MapCompact:
   Exclude:
     - 'lib/inline_svg/transform_pipeline/transformations.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AutoCorrect.
-RSpec/BeEmpty:
-  Exclude:
-    - 'spec/transformation_pipeline/transformations_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/ContextMethod:
-  Exclude:
-    - 'spec/transformation_pipeline/transformations/transformation_spec.rb'
-
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
 RSpec/ContextWording:
@@ -121,7 +83,6 @@ RSpec/ContextWording:
     - 'spec/inline_svg_spec.rb'
     - 'spec/io_resource_spec.rb'
     - 'spec/transformation_pipeline/transformations/aria_attributes_spec.rb'
-    - 'spec/transformation_pipeline/transformations/transformation_spec.rb'
     - 'spec/transformation_pipeline/transformations_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -141,22 +102,11 @@ RSpec/ExampleLength:
   Max: 32
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: .
-# SupportedStyles: implicit, each, example
-RSpec/HookArgument:
-  EnforcedStyle: each
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: single_line_only, single_statement_only, disallow, require_implicit
 RSpec/ImplicitSubject:
   Exclude:
     - 'spec/io_resource_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/MatchArray:
-  Exclude:
-    - 'spec/transformation_pipeline/transformations_spec.rb'
 
 # Configuration parameters: .
 # SupportedStyles: have_received, receive
@@ -175,14 +125,6 @@ RSpec/NamedSubject:
 # Configuration parameters: AllowedGroups.
 RSpec/NestedGroups:
   Max: 4
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: not_to, to_not
-RSpec/NotToNot:
-  Exclude:
-    - 'spec/helpers/inline_svg_spec.rb'
-    - 'spec/io_resource_spec.rb'
 
 RSpec/RepeatedExampleGroupDescription:
   Exclude:
@@ -254,18 +196,6 @@ Style/CollectionCompact:
 Style/Documentation:
   Enabled: false
 
-# This cop supports safe autocorrection (--autocorrect).
-Style/EachWithObject:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExpandPathArguments:
-  Exclude:
-    - 'spec/cached_asset_file_spec.rb'
-    - 'spec/helpers/inline_svg_spec.rb'
-    - 'spec/io_resource_spec.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: always, always_true, never
@@ -277,15 +207,6 @@ Style/FrozenStringLiteralComment:
 Style/GuardClause:
   Exclude:
     - 'lib/inline_svg.rb'
-    - 'lib/inline_svg/action_view/helpers.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-# SupportedShorthandSyntax: always, never, either, consistent, either_consistent
-Style/HashSyntax:
-  Exclude:
-    - 'Rakefile'
 
 # This cop supports safe autocorrection (--autocorrect).
 Style/IfUnlessModifier:
@@ -293,12 +214,6 @@ Style/IfUnlessModifier:
     - 'lib/inline_svg.rb'
     - 'lib/inline_svg/static_asset_finder.rb'
     - 'lib/inline_svg/transform_pipeline/transformations/aria_attributes.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: InverseMethods, InverseBlocks.
-Style/InverseMethods:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MapIntoArray:
@@ -312,19 +227,6 @@ Style/MutableConstant:
   Exclude:
     - 'lib/inline_svg/asset_file.rb'
     - 'lib/inline_svg/version.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: be, be_a, be_an, be_between, be_falsey, be_kind_of, be_instance_of, be_truthy, be_within, eq, eql, end_with, include, match, raise_error, respond_to, start_with
-Style/NestedParenthesizedCalls:
-  Exclude:
-    - 'spec/io_resource_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: IncludeSemanticChanges.
-Style/NonNilCheck:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, AllowedCompactTypes.
@@ -342,24 +244,6 @@ Style/RedundantArgument:
     - 'lib/inline_svg/transform_pipeline/transformations/class_attribute.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-Style/RedundantBegin:
-  Exclude:
-    - 'lib/inline_svg.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantConstantBase:
-  Exclude:
-    - 'spec/propshaft_asset_finder_spec.rb'
-    - 'spec/static_asset_finder_spec.rb'
-    - 'spec/webpack_asset_finder_spec.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'lib/inline_svg/action_view/helpers.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 Style/RedundantSelf:
   Exclude:
     - 'lib/inline_svg/transform_pipeline/transformations/aria_hidden.rb'
@@ -371,13 +255,6 @@ Style/RedundantSelf:
     - 'lib/inline_svg/transform_pipeline/transformations/size.rb'
     - 'lib/inline_svg/transform_pipeline/transformations/transformation.rb'
     - 'lib/inline_svg/transform_pipeline/transformations/width.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
-  Exclude:
-    - 'spec/transformation_pipeline/transformations/transformation_spec.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.

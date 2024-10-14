@@ -6,8 +6,8 @@ describe InlineSvg::FindsAssetPaths do
     it "returns fully qualified file paths from Sprockets" do
       sprockets = double('SprocketsDouble')
 
-      expect(sprockets).to receive(:find_asset).with('some-file').
-        and_return(double(pathname: Pathname('/full/path/to/some-file')))
+      expect(sprockets).to receive(:find_asset).with('some-file')
+                                               .and_return(double(pathname: Pathname('/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
         config.asset_finder = sprockets
@@ -21,8 +21,8 @@ describe InlineSvg::FindsAssetPaths do
     it "returns fully qualified file paths from Sprockets" do
       sprockets = double('SprocketsDouble')
 
-      expect(sprockets).to receive(:find_asset).with('some-file').
-        and_return(double(filename: Pathname('/full/path/to/some-file')))
+      expect(sprockets).to receive(:find_asset).with('some-file')
+                                               .and_return(double(filename: Pathname('/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
         config.asset_finder = sprockets
@@ -50,8 +50,8 @@ describe InlineSvg::FindsAssetPaths do
     it "returns fully qualified file paths from Propshaft" do
       propshaft = double('PropshaftDouble')
 
-      expect(propshaft).to receive(:find_asset).with('some-file').
-        and_return(double(pathname: Pathname('/full/path/to/some-file')))
+      expect(propshaft).to receive(:find_asset).with('some-file')
+                                               .and_return(double(pathname: Pathname('/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
         config.asset_finder = propshaft
@@ -65,8 +65,8 @@ describe InlineSvg::FindsAssetPaths do
     it "returns the fully qualified file path" do
       shakapacker = double('ShakapackerDouble')
 
-      expect(shakapacker).to receive(:find_asset).with('some-file').
-        and_return(double(filename: Pathname('/full/path/to/some-file')))
+      expect(shakapacker).to receive(:find_asset).with('some-file')
+                                                 .and_return(double(filename: Pathname('/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
         config.asset_finder = shakapacker
@@ -80,8 +80,8 @@ describe InlineSvg::FindsAssetPaths do
     it "returns the fully qualified file path" do
       shakapacker = double('ShakapackerDouble')
 
-      expect(shakapacker).to receive(:find_asset).with('some-file').
-        and_return(double(filename: Pathname('https://my-fancy-domain.test/full/path/to/some-file')))
+      expect(shakapacker).to receive(:find_asset).with('some-file')
+                                                 .and_return(double(filename: Pathname('https://my-fancy-domain.test/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
         config.asset_finder = shakapacker
