@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "pathname"
 
 # Naive fallback asset finder for when sprockets >= 3.0 &&

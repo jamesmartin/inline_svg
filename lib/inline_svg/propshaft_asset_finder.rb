@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   class PropshaftAssetFinder
     def self.find_asset(filename)

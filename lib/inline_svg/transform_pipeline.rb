@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   module TransformPipeline
     def self.generate_html_from(svg_file, transform_params)

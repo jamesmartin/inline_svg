@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "inline_svg/finds_asset_paths"
 require "inline_svg/asset_file"
 
