@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   class WebpackAssetFinder
     def self.find_asset(filename)

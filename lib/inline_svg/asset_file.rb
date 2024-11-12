@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   class AssetFile
     class FileNotFound < IOError; end
