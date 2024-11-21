@@ -29,7 +29,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         aria_hidden: "true"
       )
 
-      expect(transformations.map(&:class)).to match_array([
+      expect(transformations.map(&:class)).to contain_exactly(
         InlineSvg::TransformPipeline::Transformations::NoComment,
         InlineSvg::TransformPipeline::Transformations::ClassAttribute,
         InlineSvg::TransformPipeline::Transformations::StyleAttribute,
@@ -44,7 +44,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio,
         InlineSvg::TransformPipeline::Transformations::AriaAttributes,
         InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute
-      ])
+      )
     end
 
     it "returns transformations in priority order" do
@@ -78,7 +78,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         not_a_real_transform: 'irrelevant'
       )
 
-      expect(transformations.map(&:class)).to match_array([])
+      expect(transformations.map(&:class)).to be_empty
     end
 
     it "does not return a transformation when a value is not supplied" do
@@ -86,19 +86,19 @@ describe InlineSvg::TransformPipeline::Transformations do
         title: nil
       )
 
-      expect(transformations.map(&:class)).to match_array([])
+      expect(transformations.map(&:class)).to be_empty
     end
   end
 
   context "custom transformations" do
-    before(:each) do
+    before do
       InlineSvg.configure do |config|
         config.add_custom_transformation({ transform: ACustomTransform, attribute: :my_transform, priority: 2 })
         config.add_custom_transformation({ transform: ASecondCustomTransform, attribute: :my_other_transform, priority: 1 })
       end
     end
 
-    after(:each) do
+    after do
       InlineSvg.reset_configuration!
     end
 
@@ -107,7 +107,7 @@ describe InlineSvg::TransformPipeline::Transformations do
         my_transform: :irrelevant
       )
 
-      expect(transformations.map(&:class)).to match_array([ACustomTransform])
+      expect(transformations.map(&:class)).to contain_exactly(ACustomTransform)
     end
 
     it "returns configured custom transformations in priority order" do
