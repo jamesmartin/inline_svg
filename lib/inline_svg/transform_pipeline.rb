@@ -10,5 +10,6 @@ module InlineSvg
 end
 
 require 'nokogiri'
-require 'inline_svg/id_generator'
-require 'inline_svg/transform_pipeline/transformations'
+
+require_relative 'id_generator'
+require_relative 'transform_pipeline/transformations'
