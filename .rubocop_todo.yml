@@ -70,11 +70,6 @@ Naming/VariableNumber:
   Exclude:
     - 'spec/cached_asset_file_spec.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/MapCompact:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations.rb'
-
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
 RSpec/ContextWording:
