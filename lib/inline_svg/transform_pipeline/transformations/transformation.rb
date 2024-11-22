@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg::TransformPipeline::Transformations
   class Transformation
     def self.create_with_value(value)

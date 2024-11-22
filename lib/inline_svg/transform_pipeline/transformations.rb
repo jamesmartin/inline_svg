@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg::TransformPipeline::Transformations
   # Transformations are run in priority order, lowest number first:
   def self.built_in_transformations

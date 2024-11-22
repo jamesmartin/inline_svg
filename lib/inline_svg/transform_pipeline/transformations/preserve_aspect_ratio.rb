@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg::TransformPipeline::Transformations
   class PreserveAspectRatio < Transformation
     def transform(doc)

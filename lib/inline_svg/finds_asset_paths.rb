@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   class FindsAssetPaths
     def self.by_filename(filename)

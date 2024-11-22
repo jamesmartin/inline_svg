@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   module TransformPipeline
     def self.generate_html_from(svg_file, transform_params)
@@ -10,5 +12,6 @@ module InlineSvg
 end
 
 require 'nokogiri'
-require 'inline_svg/id_generator'
-require 'inline_svg/transform_pipeline/transformations'
+
+require_relative 'id_generator'
+require_relative 'transform_pipeline/transformations'
