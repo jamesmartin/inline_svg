@@ -69,7 +69,7 @@ describe InlineSvg::IOResource do
       let(:file_path) { File.expand_path('files/example.svg', __dir__) }
       let(:answer) { File.read(file_path) }
       let(:rio) { File.new(file_path, 'r') }
-      let(:wio) { File.new('/dev/null', 'w') }
+      let(:wio) { File.new(File::NULL, 'w') }
 
       instance_exec(&tests)
       it 'has non empty body' do
