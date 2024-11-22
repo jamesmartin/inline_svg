@@ -238,19 +238,6 @@ Style/RedundantArgument:
   Exclude:
     - 'lib/inline_svg/transform_pipeline/transformations/class_attribute.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantSelf:
-  Exclude:
-    - 'lib/inline_svg/transform_pipeline/transformations/aria_hidden.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/aria_hidden_attribute.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/data_attributes.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/height.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/id_attribute.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/preserve_aspect_ratio.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/size.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/transformation.rb'
-    - 'lib/inline_svg/transform_pipeline/transformations/width.rb'
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
 # AllowedMethods: present?, blank?, presence, try, try!
