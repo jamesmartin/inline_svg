@@ -2,7 +2,7 @@ module InlineSvg::TransformPipeline::Transformations
   class DataAttributes < Transformation
     def transform(doc)
       with_svg(doc) do |svg|
-        with_valid_hash_from(self.value).each_pair do |name, data|
+        with_valid_hash_from(value).each_pair do |name, data|
           svg["data-#{dasherize(name)}"] = data
         end
       end

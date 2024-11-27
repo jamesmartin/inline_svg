@@ -73,7 +73,7 @@ module InlineSvg
       end
 
       def extension_hint(filename)
-        filename.ends_with?(".svg") ? "" : "(Try adding .svg to your filename) "
+        filename.end_with?(".svg") ? "" : "(Try adding .svg to your filename) "
       end
     end
   end
