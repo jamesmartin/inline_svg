@@ -56,6 +56,8 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 Metrics/MethodLength:
   Max: 16
+  Exclude:
+    - 'lib/inline_svg/transform_pipeline/transformations.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: PreferredName.

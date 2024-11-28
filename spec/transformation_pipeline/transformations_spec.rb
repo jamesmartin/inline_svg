@@ -10,24 +10,30 @@ end
 class ASecondCustomTransform < ACustomTransform; end
 
 describe InlineSvg::TransformPipeline::Transformations do
+  let(:transformation_values) do
+    {
+      nocomment: 'irrelevant',
+      class: 'irrelevant',
+      style: 'irrelevant',
+      title: 'irrelevant',
+      desc: 'irrelevant',
+      size: 'irrelevant',
+      height: 'irrelevant',
+      width: 'irrelevant',
+      view_box: 'irrelevant',
+      id: 'irrelevant',
+      data: 'irrelevant',
+      preserve_aspect_ratio: 'irrelevant',
+      aria: 'irrelevant',
+      aria_hidden: 'true',
+      stroke_path: 'white',
+      fill_path: 'white'
+    }
+  end
+
   context "looking up transformations" do
     it "returns built-in transformations when parameters are supplied" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
-        nocomment: 'irrelevant',
-        class: 'irrelevant',
-        style: 'irrelevant',
-        title: 'irrelevant',
-        desc: 'irrelevant',
-        size: 'irrelevant',
-        height: 'irrelevant',
-        width: 'irrelevant',
-        view_box: 'irrelevant',
-        id: 'irrelevant',
-        data: 'irrelevant',
-        preserve_aspect_ratio: 'irrelevant',
-        aria: 'irrelevant',
-        aria_hidden: "true"
-      )
+      transformations = InlineSvg::TransformPipeline::Transformations.lookup(transformation_values)
 
       expect(transformations.map(&:class)).to contain_exactly(
         InlineSvg::TransformPipeline::Transformations::NoComment,
@@ -43,7 +49,9 @@ describe InlineSvg::TransformPipeline::Transformations do
         InlineSvg::TransformPipeline::Transformations::DataAttributes,
         InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio,
         InlineSvg::TransformPipeline::Transformations::AriaAttributes,
-        InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute
+        InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute,
+        InlineSvg::TransformPipeline::Transformations::StrokePath,
+        InlineSvg::TransformPipeline::Transformations::FillPath
       )
     end
 

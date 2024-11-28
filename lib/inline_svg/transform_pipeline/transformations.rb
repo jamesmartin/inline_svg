@@ -16,6 +16,8 @@ module InlineSvg::TransformPipeline::Transformations
       width: { transform: Width },
       height: { transform: Height },
       view_box: { transform: ViewBox },
+      stroke_path: { transform: StrokePath },
+      fill_path: { transform: FillPath },
     }
   end
 
@@ -90,3 +92,5 @@ require_relative 'transformations/data_attributes'
 require_relative 'transformations/preserve_aspect_ratio'
 require_relative 'transformations/aria_attributes'
 require_relative 'transformations/aria_hidden_attribute'
+require_relative 'transformations/stroke_path'
+require_relative 'transformations/fill_path'
