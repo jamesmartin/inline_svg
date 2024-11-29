@@ -44,10 +44,10 @@ module InlineSvg::TransformPipeline::Transformations
     return [] unless transform_params.any? || custom_transformations.any?
 
     transform_params_with_defaults = params_with_defaults(transform_params)
-    all_transformations.map { |name, definition|
+    all_transformations.filter_map do |name, definition|
       value = transform_params_with_defaults[name]
       definition.fetch(:transform, no_transform).create_with_value(value) if value
-    }.compact
+    end
   end
 
   def self.in_priority_order(transforms)

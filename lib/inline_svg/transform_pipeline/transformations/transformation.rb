@@ -1,7 +1,7 @@
 module InlineSvg::TransformPipeline::Transformations
   class Transformation
     def self.create_with_value(value)
-      self.new(value)
+      new(value)
     end
 
     attr_reader :value
