@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'inline_svg/transform_pipeline'
 
 describe InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute do

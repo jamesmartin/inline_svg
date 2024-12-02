@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "inline_svg/version"
 require_relative "inline_svg/action_view/helpers"
 require_relative "inline_svg/asset_file"

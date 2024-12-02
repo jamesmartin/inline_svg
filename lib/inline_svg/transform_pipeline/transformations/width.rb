@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg::TransformPipeline::Transformations
   class Width < Transformation
     def transform(doc)

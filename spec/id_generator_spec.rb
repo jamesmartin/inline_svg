@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "inline_svg/id_generator"
 
 describe InlineSvg::IdGenerator do

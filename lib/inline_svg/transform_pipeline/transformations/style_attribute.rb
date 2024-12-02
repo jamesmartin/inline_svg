@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg::TransformPipeline::Transformations
   class StyleAttribute < Transformation
     def transform(doc)

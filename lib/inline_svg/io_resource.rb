@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InlineSvg
   module IOResource
     def self.===(object)

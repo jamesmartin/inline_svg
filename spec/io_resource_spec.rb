@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "inline_svg"
 require "stringio"
 require "tempfile"
@@ -60,7 +62,7 @@ describe InlineSvg::IOResource do
     context 'IO object' do
       let(:answer) { 'read' }
       let(:rio) { StringIO.new(answer, 'r') }
-      let(:wio) { StringIO.new('write', 'w') }
+      let(:wio) { StringIO.new(+'write', 'w') }
 
       instance_exec(&tests)
     end

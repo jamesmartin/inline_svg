@@ -191,12 +191,6 @@ Style/CollectionCompact:
 Style/Documentation:
   Enabled: false
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
@@ -214,14 +208,6 @@ Style/IfUnlessModifier:
 Style/MapIntoArray:
   Exclude:
     - 'lib/inline_svg/transform_pipeline/transformations/aria_attributes.rb'
-
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/inline_svg/asset_file.rb'
-    - 'lib/inline_svg/version.rb'
 
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, AllowedCompactTypes.
