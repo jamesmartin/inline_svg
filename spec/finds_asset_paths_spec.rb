@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require "inline_svg"
+require 'spec_helper'
 
-describe InlineSvg::FindsAssetPaths do
+RSpec.describe InlineSvg::FindsAssetPaths do
   context "when sprockets finder returns an object which supports only the pathname method" do
     it "returns fully qualified file paths from Sprockets" do
       sprockets = double('SprocketsDouble')
@@ -15,7 +14,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = sprockets
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
+      expect(described_class.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
     end
   end
 
@@ -30,7 +29,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = sprockets
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
+      expect(described_class.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
     end
   end
 
@@ -44,7 +43,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = sprockets
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to be_nil
+      expect(described_class.by_filename('some-file')).to be_nil
     end
   end
 
@@ -59,7 +58,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = propshaft
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
+      expect(described_class.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
     end
   end
 
@@ -74,7 +73,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = shakapacker
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
+      expect(described_class.by_filename('some-file')).to eq Pathname('/full/path/to/some-file')
     end
   end
 
@@ -89,7 +88,7 @@ describe InlineSvg::FindsAssetPaths do
         config.asset_finder = shakapacker
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('https://my-fancy-domain.test/full/path/to/some-file')
+      expect(described_class.by_filename('some-file')).to eq Pathname('https://my-fancy-domain.test/full/path/to/some-file')
     end
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "inline_svg/transform_pipeline"
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::ClassAttribute do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::ClassAttribute do
   it "adds a style attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation =

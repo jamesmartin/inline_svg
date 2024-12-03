@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio do
   it "adds preserveAspectRatio attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
-    transformation = InlineSvg::TransformPipeline::Transformations::PreserveAspectRatio.create_with_value("xMaxYMax meet")
+    transformation = described_class.create_with_value("xMaxYMax meet")
     expect(transformation.transform(document).to_html).to eq(
       "<svg preserveAspectRatio=\"xMaxYMax meet\">Some document</svg>\n"
     )

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'inline_svg'
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
 class ACustomTransform < InlineSvg::CustomTransformation
   def transform(doc)
@@ -11,10 +10,10 @@ end
 
 class ASecondCustomTransform < ACustomTransform; end
 
-describe InlineSvg::TransformPipeline::Transformations do
+RSpec.describe InlineSvg::TransformPipeline::Transformations do
   context "looking up transformations" do
     it "returns built-in transformations when parameters are supplied" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         nocomment: 'irrelevant',
         class: 'irrelevant',
         style: 'irrelevant',
@@ -56,10 +55,10 @@ describe InlineSvg::TransformPipeline::Transformations do
         title:  { transform: InlineSvg::TransformPipeline::Transformations::Title, priority: 2 }
       }
 
-      allow(InlineSvg::TransformPipeline::Transformations).to \
+      allow(described_class).to \
         receive(:built_in_transformations).and_return(built_ins)
 
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         {
           desc: "irrelevant",
           size: "irrelevant",
@@ -76,7 +75,7 @@ describe InlineSvg::TransformPipeline::Transformations do
     end
 
     it "returns no transformations when asked for an unknown transform" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         not_a_real_transform: 'irrelevant'
       )
 
@@ -84,7 +83,7 @@ describe InlineSvg::TransformPipeline::Transformations do
     end
 
     it "does not return a transformation when a value is not supplied" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         title: nil
       )
 
@@ -105,7 +104,7 @@ describe InlineSvg::TransformPipeline::Transformations do
     end
 
     it "returns configured custom transformations" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         my_transform: :irrelevant
       )
 
@@ -113,7 +112,7 @@ describe InlineSvg::TransformPipeline::Transformations do
     end
 
     it "returns configured custom transformations in priority order" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         my_transform: :irrelevant,
         my_other_transform: :irrelevant
       )
@@ -123,7 +122,7 @@ describe InlineSvg::TransformPipeline::Transformations do
     end
 
     it "always prioritizes built-in transforms before custom transforms" do
-      transformations = InlineSvg::TransformPipeline::Transformations.lookup(
+      transformations = described_class.lookup(
         my_transform: :irrelevant,
         my_other_transform: :irrelevant,
         desc: "irrelevant"

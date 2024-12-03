@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require "inline_svg"
+require 'spec_helper'
 
-describe InlineSvg::CachedAssetFile do
+RSpec.describe InlineSvg::CachedAssetFile do
   let(:fixture_path) { Pathname.new(File.expand_path('files/static_assets', __dir__)) }
 
   it "loads assets under configured paths" do
     known_document = File.read(fixture_path.join("assets0", "known-document.svg"))
 
-    asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path.join("assets0"))
+    asset_loader = described_class.new(paths: fixture_path.join("assets0"))
 
     expect(asset_loader.named("known-document.svg")).to eq(known_document)
   end
 
   it "does not include assets outside of configured paths" do
-    asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path.join("assets0"))
+    asset_loader = described_class.new(paths: fixture_path.join("assets0"))
 
     expect(fixture_path.join("assets1", "other-document.svg")).to be_file
     expect do
@@ -29,7 +28,7 @@ describe InlineSvg::CachedAssetFile do
 
     expect(known_document_0).not_to eq(known_document_1)
 
-    asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path)
+    asset_loader = described_class.new(paths: fixture_path)
 
     expect(known_document_0).to eq(asset_loader.named("assets0/known-document.svg"))
     expect(known_document_1).to eq(asset_loader.named("assets1/known-document.svg"))
@@ -41,17 +40,16 @@ describe InlineSvg::CachedAssetFile do
 
     expect(known_document).not_to eq(known_document_2)
 
-    asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path.join("assets0"), filters: /\.svg/)
+    asset_loader = described_class.new(paths: fixture_path.join("assets0"), filters: /\.svg/)
 
     expect(asset_loader.named("known-document")).to eq(known_document)
     expect(asset_loader.named("known-document-two")).to eq(known_document_2)
   end
 
   it "filters wanted files by simple string matching" do
-    known_document_0 = File.read(fixture_path.join("assets0", "known-document.svg"))
     known_document_1 = File.read(fixture_path.join("assets1", "known-document.svg"))
 
-    asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path, filters: "assets1")
+    asset_loader = described_class.new(paths: fixture_path, filters: "assets1")
 
     expect do
       asset_loader.named("assets0/known-document.svg")
@@ -63,7 +61,7 @@ describe InlineSvg::CachedAssetFile do
   it "filters wanted files by regex matching" do
     known_document_1 = File.read(fixture_path.join("assets1", "known-document.svg"))
 
-    asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path, filters: ["assets1", /\.svg/])
+    asset_loader = described_class.new(paths: fixture_path, filters: ["assets1", /\.svg/])
 
     expect do
       asset_loader.named("assets1/some-file.txt")
