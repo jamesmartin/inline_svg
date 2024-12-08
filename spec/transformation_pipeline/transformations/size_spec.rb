@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::Size do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Size do
   it "adds width and height attributes to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
-    transformation = InlineSvg::TransformPipeline::Transformations::Size.create_with_value("5% * 5%")
+    transformation = described_class.create_with_value("5% * 5%")
 
     expect(transformation.transform(document).to_html).to eq(
       "<svg width=\"5%\" height=\"5%\">Some document</svg>\n"
@@ -14,7 +14,7 @@ describe InlineSvg::TransformPipeline::Transformations::Size do
 
   it "adds the same width and height value when only passed one attribute" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
-    transformation = InlineSvg::TransformPipeline::Transformations::Size.create_with_value("5%")
+    transformation = described_class.create_with_value("5%")
 
     expect(transformation.transform(document).to_html).to eq(
       "<svg width=\"5%\" height=\"5%\">Some document</svg>\n"

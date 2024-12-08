@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-require 'inline_svg'
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::Transformation do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Transformation do
   describe "#with_svg" do
     it "returns a Nokogiri::XML::Document representing the parsed document fragment" do
       document = Nokogiri::XML::Document.parse("<svg>Some document</svg>")
 
-      transformation = InlineSvg::TransformPipeline::Transformations::Transformation.new(:irrelevant)
+      transformation = described_class.new(:irrelevant)
       expect(transformation.with_svg(document).to_html).to eq(
         "<svg>Some document</svg>\n"
       )
@@ -18,20 +17,20 @@ describe InlineSvg::TransformPipeline::Transformations::Transformation do
       document = Nokogiri::XML::Document.parse("<svg>Some document</svg>")
       svg = document.at_css("svg")
 
-      transformation = InlineSvg::TransformPipeline::Transformations::Transformation.new(:irrelevant)
+      transformation = described_class.new(:irrelevant)
 
       returned_document = nil
       expect do |b|
         returned_document = transformation.with_svg(document, &b)
       end.to yield_control
 
-      expect(returned_document.to_s).to match(%r{<svg>Some document</svg>})
+      expect(returned_document.to_s).to match(svg)
     end
 
     it "does not yield if the document does not contain an SVG element at the root" do
       document = Nokogiri::XML::Document.parse("<foo>bar</foo><svg>Some document</svg>")
 
-      transformation = InlineSvg::TransformPipeline::Transformations::Transformation.new(:irrelevant)
+      transformation = described_class.new(:irrelevant)
 
       expect do |b|
         transformation.with_svg(document, &b)
