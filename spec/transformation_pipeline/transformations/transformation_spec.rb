@@ -25,7 +25,7 @@ describe InlineSvg::TransformPipeline::Transformations::Transformation do
         returned_document = transformation.with_svg(document, &b)
       end.to yield_control
 
-      expect(returned_document.to_s).to match(%r{<svg>Some document</svg>})
+      expect(returned_document.to_s).to match(svg)
     end
 
     it "does not yield if the document does not contain an SVG element at the root" do
