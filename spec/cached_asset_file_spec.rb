@@ -48,7 +48,6 @@ describe InlineSvg::CachedAssetFile do
   end
 
   it "filters wanted files by simple string matching" do
-    known_document_0 = File.read(fixture_path.join("assets0", "known-document.svg"))
     known_document_1 = File.read(fixture_path.join("assets1", "known-document.svg"))
 
     asset_loader = InlineSvg::CachedAssetFile.new(paths: fixture_path, filters: "assets1")
