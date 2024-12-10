@@ -21,6 +21,10 @@ end
 
 describe InlineSvg do
   describe "configuration" do
+    after do
+      InlineSvg.reset_configuration!
+    end
+
     context "when a block is not given" do
       it "complains" do
         expect do

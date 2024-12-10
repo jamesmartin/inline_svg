@@ -4,6 +4,10 @@ require 'pathname'
 require "inline_svg"
 
 describe InlineSvg::FindsAssetPaths do
+  after do
+    InlineSvg.reset_configuration!
+  end
+
   context "when sprockets finder returns an object which supports only the pathname method" do
     it "returns fully qualified file paths from Sprockets" do
       sprockets = double('SprocketsDouble')
