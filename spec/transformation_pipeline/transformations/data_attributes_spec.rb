@@ -2,7 +2,7 @@
 
 require 'inline_svg/transform_pipeline'
 
-describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::DataAttributes do
   it "adds a data attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation = InlineSvg::TransformPipeline::Transformations::DataAttributes.create_with_value({ some: "value" })

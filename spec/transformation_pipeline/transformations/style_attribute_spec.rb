@@ -2,7 +2,7 @@
 
 require "inline_svg/transform_pipeline"
 
-describe InlineSvg::TransformPipeline::Transformations::ClassAttribute do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::ClassAttribute do
   it "adds a style attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation =

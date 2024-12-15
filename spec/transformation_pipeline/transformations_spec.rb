@@ -11,7 +11,7 @@ end
 
 class ASecondCustomTransform < ACustomTransform; end
 
-describe InlineSvg::TransformPipeline::Transformations do
+RSpec.describe InlineSvg::TransformPipeline::Transformations do
   context "looking up transformations" do
     it "returns built-in transformations when parameters are supplied" do
       transformations = InlineSvg::TransformPipeline::Transformations.lookup(
