@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require 'inline_svg'
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::Transformation do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Transformation do
   describe "#with_svg" do
     it "returns a Nokogiri::XML::Document representing the parsed document fragment" do
       document = Nokogiri::XML::Document.parse("<svg>Some document</svg>")

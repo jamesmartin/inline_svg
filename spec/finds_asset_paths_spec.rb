@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require "inline_svg"
+require 'spec_helper'
 
-describe InlineSvg::FindsAssetPaths do
+RSpec.describe InlineSvg::FindsAssetPaths do
   after do
     InlineSvg.reset_configuration!
   end

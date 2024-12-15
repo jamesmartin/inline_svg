@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "inline_svg"
+require 'spec_helper'
 
-describe InlineSvg::PropshaftAssetFinder do
+RSpec.describe InlineSvg::PropshaftAssetFinder do
   context "when the file is not found" do
     it "returns nil" do
       stub_const('Rails', double('Rails').as_null_object)

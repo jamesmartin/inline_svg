@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::Height do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Height do
   it "adds height attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation = InlineSvg::TransformPipeline::Transformations::Height.create_with_value("5%")

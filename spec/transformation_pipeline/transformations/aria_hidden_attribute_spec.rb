@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
-describe InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute do
   it "adds an aria-hidden='true' attribute to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation = InlineSvg::TransformPipeline::Transformations::AriaHiddenAttribute.create_with_value(true)
