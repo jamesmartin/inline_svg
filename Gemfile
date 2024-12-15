@@ -10,8 +10,8 @@ gem "pry"
 gem "rake"
 gem "rspec"
 
-gem "rubocop", "1.66.1"
-gem "rubocop-packaging", "0.5.2"
-gem "rubocop-performance", "1.22.1"
-gem "rubocop-rake", "0.6.0"
-gem "rubocop-rspec", "3.0.5"
+gem "rubocop", "1.69.2", require: false
+gem "rubocop-packaging", "0.5.2", require: false
+gem "rubocop-performance", "1.23.0", require: false
+gem "rubocop-rake", "0.6.0", require: false
+gem "rubocop-rspec", "3.3.0", require: false

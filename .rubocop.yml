@@ -15,3 +15,7 @@ AllCops:
 # https://github.com/jamesmartin/inline_svg/pull/171/files#r1798763446
 Style/EachWithObject:
   Enabled: false
+
+# https://github.com/jamesmartin/inline_svg/pull/177#issuecomment-2530239552
+RSpec/DescribedClass:
+  EnforcedStyle: explicit

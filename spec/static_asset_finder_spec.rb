@@ -8,7 +8,7 @@ describe InlineSvg::StaticAssetFinder do
       stub_const('Rails', double('Rails').as_null_object)
       expect(Rails.application.config.assets).to receive(:compile).and_return(true)
 
-      expect(described_class.find_asset('some-file').pathname).to be_nil
+      expect(InlineSvg::StaticAssetFinder.find_asset('some-file').pathname).to be_nil
     end
   end
 
@@ -21,7 +21,7 @@ describe InlineSvg::StaticAssetFinder do
       expect(asset).to receive(:filename).and_return(pathname)
       expect(Rails.application.assets).to receive(:[]).with('some-file').and_return(asset)
 
-      expect(described_class.find_asset('some-file').pathname).to eq(pathname)
+      expect(InlineSvg::StaticAssetFinder.find_asset('some-file').pathname).to eq(pathname)
     end
   end
 end
