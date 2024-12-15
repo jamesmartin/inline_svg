@@ -2,7 +2,7 @@
 
 require 'inline_svg/transform_pipeline'
 
-describe InlineSvg::TransformPipeline::Transformations::Description do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Description do
   it "adds a desc element to the SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation = InlineSvg::TransformPipeline::Transformations::Description.create_with_value("Some Description")

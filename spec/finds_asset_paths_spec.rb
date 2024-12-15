@@ -3,7 +3,7 @@
 require 'pathname'
 require "inline_svg"
 
-describe InlineSvg::FindsAssetPaths do
+RSpec.describe InlineSvg::FindsAssetPaths do
   after do
     InlineSvg.reset_configuration!
   end

@@ -2,7 +2,7 @@
 
 require "inline_svg"
 
-describe InlineSvg::StaticAssetFinder do
+RSpec.describe InlineSvg::StaticAssetFinder do
   context "when the file is not found" do
     it "returns nil" do
       stub_const('Rails', double('Rails').as_null_object)

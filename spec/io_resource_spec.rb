@@ -4,7 +4,7 @@ require "inline_svg"
 require "stringio"
 require "tempfile"
 
-describe InlineSvg::IOResource do
+RSpec.describe InlineSvg::IOResource do
   it "support api methods" do
     is_expected.to respond_to(:===, :read)
   end
