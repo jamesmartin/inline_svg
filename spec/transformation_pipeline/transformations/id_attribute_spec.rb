@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
 RSpec.describe InlineSvg::TransformPipeline::Transformations::IdAttribute do
   it "adds an id attribute to a SVG document" do

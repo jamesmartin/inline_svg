@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
 RSpec.describe InlineSvg::TransformPipeline::Transformations::ViewBox do
   it "adds viewBox attribute to a SVG document" do

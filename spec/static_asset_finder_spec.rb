@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "inline_svg"
+require 'spec_helper'
 
 RSpec.describe InlineSvg::StaticAssetFinder do
   context "when the file is not found" do

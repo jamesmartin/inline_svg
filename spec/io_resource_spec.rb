@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "inline_svg"
-require "stringio"
-require "tempfile"
+require 'tempfile'
+
+require 'spec_helper'
 
 RSpec.describe InlineSvg::IOResource do
   it "support api methods" do

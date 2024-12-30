@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
 RSpec.describe InlineSvg::TransformPipeline::Transformations::Description do
   it "adds a desc element to the SVG document" do

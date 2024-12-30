@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require "inline_svg"
+require 'spec_helper'
 
 RSpec.describe InlineSvg::CachedAssetFile do
   let(:fixture_path) { Pathname.new(File.expand_path('files/static_assets', __dir__)) }
