@@ -19,7 +19,7 @@ class MyCustomAssetFile
   def self.named(filename); end
 end
 
-describe InlineSvg do
+RSpec.describe InlineSvg do
   describe "configuration" do
     after do
       InlineSvg.reset_configuration!

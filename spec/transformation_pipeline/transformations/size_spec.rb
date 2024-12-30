@@ -2,7 +2,7 @@
 
 require 'inline_svg/transform_pipeline'
 
-describe InlineSvg::TransformPipeline::Transformations::Size do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Size do
   it "adds width and height attributes to a SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation = InlineSvg::TransformPipeline::Transformations::Size.create_with_value("5% * 5%")

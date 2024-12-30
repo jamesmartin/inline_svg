@@ -2,7 +2,7 @@
 
 require 'inline_svg/transform_pipeline'
 
-describe InlineSvg::TransformPipeline::Transformations::Title do
+RSpec.describe InlineSvg::TransformPipeline::Transformations::Title do
   it "adds a title element as the first element in the SVG document" do
     document = Nokogiri::XML::Document.parse('<svg>Some document</svg>')
     transformation = InlineSvg::TransformPipeline::Transformations::Title.create_with_value("Some Title")
