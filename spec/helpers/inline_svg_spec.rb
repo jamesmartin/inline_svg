@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'inline_svg'
+require 'spec_helper'
 
 class WorkingCustomTransform < InlineSvg::CustomTransformation
   def transform(doc)

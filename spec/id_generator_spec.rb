@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "inline_svg/id_generator"
+require 'spec_helper'
 
 RSpec.describe InlineSvg::IdGenerator do
   it "generates a hexencoded ID based on a salt and a random value" do

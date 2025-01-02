@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'inline_svg/transform_pipeline'
+require 'spec_helper'
 
 RSpec.describe InlineSvg::TransformPipeline::Transformations::Title do
   it "adds a title element as the first element in the SVG document" do

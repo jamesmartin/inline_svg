@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require "inline_svg/finds_asset_paths"
-require "inline_svg/asset_file"
+require 'spec_helper'
 
 RSpec.describe InlineSvg::AssetFile do
   it "reads data from a file, after qualifying a full path" do
