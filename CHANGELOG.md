@@ -4,17 +4,18 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
-- Drop Support for Webpacker, Legacy Ruby (< 3.1), and Legacy Rails (< 7.0).  [#163](https://github.com/jamesmartin/inline_svg/pull/163). Thanks, [@tagliala](https://github.com/tagliala)
-- Reduce production gem size from 31K to 18K.  [#165](https://github.com/jamesmartin/inline_svg/pull/165). Thanks, [@tagliala](https://github.com/tagliala)
+- Drop Support for Webpacker, Legacy Ruby (< 3.1), and Legacy Rails (< 7.0). [#163](https://github.com/jamesmartin/inline_svg/pull/163). Thanks, [@tagliala](https://github.com/tagliala)
+- Reduce production gem size from 31K to 18K. [#165](https://github.com/jamesmartin/inline_svg/pull/165). Thanks, [@tagliala](https://github.com/tagliala)
+- Freeze string literals. [#172](https://github.com/jamesmartin/inline_svg/pull/172). Thanks, [@tagliala](https://github.com/tagliala)
 
 ## [1.10.0] - 2024-09-03
 ### Added
 - Support for Shakapacker.  [#158](https://github.com/jamesmartin/inline_svg/pull/158). Thanks, [@tagliala](https://github.com/tagliala)
 
 ### Fixed
-- Fixed documentation typos.  [#157](https://github.com/jamesmartin/inline_svg/pull/157). Thanks, [@tagliala](https://github.com/tagliala)
-- Fixed missing ActiveSupport require.  [#152](https://github.com/jamesmartin/inline_svg/pull/152). Thanks, [@xymbol](https://github.com/xymbol)
-- Remove wrapping whitespace from SVG tags.  [#150](https://github.com/jamesmartin/inline_svg/pull/150). Thanks, [@fredboyle](https://github.com/fredboyle)
+- Fixed documentation typos. [#157](https://github.com/jamesmartin/inline_svg/pull/157). Thanks, [@tagliala](https://github.com/tagliala)
+- Fixed missing ActiveSupport require. [#152](https://github.com/jamesmartin/inline_svg/pull/152). Thanks, [@xymbol](https://github.com/xymbol)
+- Remove wrapping whitespace from SVG tags. [#150](https://github.com/jamesmartin/inline_svg/pull/150). Thanks, [@fredboyle](https://github.com/fredboyle)
 
 ## [1.9.0] - 2023-03-29
 ### Added
@@ -263,7 +264,8 @@ transformations](https://github.com/jamesmartin/inline_svg/blob/master/README.md
 ### Added
 - Basic Railtie and view helper to inline SVG documents to Rails views.
 
-[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.9.0...HEAD
+[unreleased]: https://github.com/jamesmartin/inline_svg/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/jamesmartin/inline_svg/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/jamesmartin/inline_svg/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/jamesmartin/inline_svg/compare/v1.7.2...v1.8.0
 [1.7.2]: https://github.com/jamesmartin/inline_svg/compare/v1.7.1...v1.7.2
