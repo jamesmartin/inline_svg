@@ -68,10 +68,9 @@ module InlineSvg
 
       def with_asset_finder(asset_finder)
         Thread.current[:inline_svg_asset_finder] = asset_finder
-        output = yield
+        yield
+      ensure
         Thread.current[:inline_svg_asset_finder] = nil
-
-        output
       end
 
       def extension_hint(filename)
