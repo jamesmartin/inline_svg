@@ -21,7 +21,7 @@ RSpec.describe InlineSvg::ActionView::Helpers do
       end
 
       context "and configured to raise" do
-        it "raises an exception" do
+        before do
           InlineSvg.configure do |config|
             config.raise_on_file_not_found = true
           end
@@ -29,10 +29,22 @@ RSpec.describe InlineSvg::ActionView::Helpers do
           allow(InlineSvg::AssetFile).to receive(:named)
             .with('some-missing-file.svg')
             .and_raise(InlineSvg::AssetFile::FileNotFound.new)
+        end
 
+        it "raises an exception" do
           expect {
             helper.send(helper_method, 'some-missing-file.svg')
           }.to raise_error(InlineSvg::AssetFile::FileNotFound)
+        end
+
+        it "ensures thread-local variable is cleared after execution" do
+          begin
+            helper.send(helper_method, 'some-missing-file.svg')
+          rescue InlineSvg::AssetFile::FileNotFound
+            nil
+          end
+
+          expect(Thread.current[:inline_svg_asset_finder]).to be_nil
         end
       end
 
