@@ -15,11 +15,11 @@ RSpec.describe InlineSvg::ActionView::Helpers do
   let(:helper) { (Class.new { include InlineSvg::ActionView::Helpers }).new }
 
   shared_examples "inline_svg helper" do |helper_method:|
-    context "when passed the name of an SVG that does not exist" do
-      after do
-        InlineSvg.reset_configuration!
-      end
+    after do
+      InlineSvg.reset_configuration!
+    end
 
+    context "when passed the name of an SVG that does not exist" do
       context "and configured to raise" do
         before do
           InlineSvg.configure do |config|
@@ -166,10 +166,6 @@ RSpec.describe InlineSvg::ActionView::Helpers do
           end
         end
 
-        after do
-          InlineSvg.reset_configuration!
-        end
-
         it "applies custm transformations to the output" do
           input_svg = '<svg></svg>'
           expected_output = '<svg custom="some value"></svg>'
@@ -183,10 +179,6 @@ RSpec.describe InlineSvg::ActionView::Helpers do
           InlineSvg.configure do |config|
             config.add_custom_transformation({ attribute: :custom, transform: WorkingCustomTransform, default_value: 'default value' })
           end
-        end
-
-        after do
-          InlineSvg.reset_configuration!
         end
 
         context "without passing the attribute value" do
