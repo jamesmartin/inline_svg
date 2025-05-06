@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.1', '3.2', '3.3']
+        ruby-version: ['3.1', '3.2', '3.3', '3.4']
         channel: ['stable']
 
         include:
@@ -29,7 +29,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.3'
+        ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
     - name: Test with Rake
       run: |

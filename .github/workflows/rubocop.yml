@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.3']
+        ruby-version: ['3.4']
 
     continue-on-error: ${{ matrix.channel != 'stable' }}
 
@@ -24,8 +24,8 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.3'
+        ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
     - name: Test with Rake
       run: |
-        bundle exec rubocop
+        bundle exec rubocop --format github

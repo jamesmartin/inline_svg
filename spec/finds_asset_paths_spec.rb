@@ -86,13 +86,13 @@ RSpec.describe InlineSvg::FindsAssetPaths do
       shakapacker = double('ShakapackerDouble')
 
       expect(shakapacker).to receive(:find_asset).with('some-file')
-                                                 .and_return(double(filename: Pathname('https://my-fancy-domain.test/full/path/to/some-file')))
+                                                 .and_return(double(filename: Pathname('https://test.example.org/full/path/to/some-file')))
 
       InlineSvg.configure do |config|
         config.asset_finder = shakapacker
       end
 
-      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('https://my-fancy-domain.test/full/path/to/some-file')
+      expect(InlineSvg::FindsAssetPaths.by_filename('some-file')).to eq Pathname('https://test.example.org/full/path/to/some-file')
     end
   end
 end
