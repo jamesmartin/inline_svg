@@ -24,6 +24,10 @@ RSpec.describe InlineSvg::IOResource do
       it "for File object" do
         expect(subject === File.new("#{Dir.tmpdir}/testfile", "w")).to be true
       end
+
+      it "for Tempfile object" do
+        expect(subject === Tempfile.new).to be true
+      end
     end
 
     context 'return false' do
@@ -77,6 +81,19 @@ RSpec.describe InlineSvg::IOResource do
       it 'has non empty body' do
         expect(answer).not_to eq ''
       end
+    end
+
+    context 'Tempfile object' do
+      let(:answer) { 'read' }
+      let(:rio) do
+        Tempfile.new.tap do |f|
+          f.write(answer)
+          f.rewind
+        end
+      end
+      let(:wio) { File.new(File::NULL, 'w') } # Tempfile cannot be created for write only mode
+
+      instance_exec(&tests)
     end
   end
 end
