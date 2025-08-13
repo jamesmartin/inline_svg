@@ -315,6 +315,12 @@ InlineSvg.configure do |config|
 end
 ```
 
+## ActiveStorage
+
+```erb
+<%= user.avatar.open { |file| inline_svg_tag file } %>
+```
+
 ## Contributing
 
 1. Fork it ( [http://github.com/jamesmartin/inline_svg/fork](http://github.com/jamesmartin/inline_svg/fork) )
