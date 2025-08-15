@@ -263,4 +263,35 @@ RSpec.describe InlineSvg::ActionView::Helpers do
   describe '#inline_svg_tag' do
     it_behaves_like "inline_svg helper", helper_method: :inline_svg_pack_tag
   end
+
+  describe '#inline_svg_data_url' do
+    let(:helper) { (Class.new { include InlineSvg::ActionView::Helpers }).new }
+
+    it 'returns a base64 data URL for a simple SVG' do
+      input_svg = '<svg xmlns="http://www.w3.org/2000/svg"></svg>'
+      allow(InlineSvg::AssetFile).to receive(:named).with('simple.svg').and_return(input_svg)
+      data_url = helper.inline_svg_data_url('simple.svg')
+      expect(data_url).to start_with('data:image/svg+xml;base64,')
+      decoded = Base64.decode64(data_url.sub('data:image/svg+xml;base64,', ''))
+      expect(decoded).to include('<svg')
+      expect(decoded).to include('</svg>')
+    end
+
+    it 'removes XML declaration and minifies whitespace' do
+      input_svg = "<?xml version=\"1.0\"?><svg>   <rect/>  </svg>"
+      allow(InlineSvg::AssetFile).to receive(:named).with('xml.svg').and_return(input_svg)
+      data_url = helper.inline_svg_data_url('xml.svg')
+      decoded = Base64.decode64(data_url.sub('data:image/svg+xml;base64,', ''))
+      expect(decoded).not_to include('<?xml')
+      expect(decoded).to eq('<svg> <rect></rect> </svg>')
+    end
+
+    it 'applies transformations' do
+      input_svg = '<svg></svg>'
+      allow(InlineSvg::AssetFile).to receive(:named).with('title.svg').and_return(input_svg)
+      data_url = helper.inline_svg_data_url('title.svg', title: 'Test Title')
+      decoded = Base64.decode64(data_url.sub('data:image/svg+xml;base64,', ''))
+      expect(decoded).to include('<title>Test Title</title>')
+    end
+  end
 end
