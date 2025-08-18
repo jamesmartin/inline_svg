@@ -294,4 +294,45 @@ RSpec.describe InlineSvg::ActionView::Helpers do
       expect(decoded).to include('<title>Test Title</title>')
     end
   end
+
+  it 'normalizes all whitespace (tabs, newlines, multiple spaces) to a single space' do
+    input_svg = "<svg>\n\t   <rect/>\n\t</svg>"
+    allow(InlineSvg::AssetFile).to receive(:named).with('whitespace.svg').and_return(input_svg)
+    data_url = helper.inline_svg_data_url('whitespace.svg')
+    decoded = data_url.sub('data:image/svg+xml;base64,', '').unpack1('m0')
+    expect(decoded).to eq('<svg> <rect></rect> </svg>')
+  end
+
+  it 'removes comments from SVG content' do
+    input_svg = '<svg><!-- comment --><rect/></svg>'
+    allow(InlineSvg::AssetFile).to receive(:named).with('comment.svg').and_return(input_svg)
+    data_url = helper.inline_svg_data_url('comment.svg')
+    decoded = data_url.sub('data:image/svg+xml;base64,', '').unpack1('m0')
+    expect(decoded).to include('<svg><rect></rect></svg>')
+    expect(decoded).not_to include('<!--')
+  end
+
+  it 'returns a base64 data URL for fallback SVG if original is missing' do
+    allow(InlineSvg::AssetFile).to receive(:named).with('missing.svg').and_raise(InlineSvg::AssetFile::FileNotFound.new)
+    fallback_svg = '<svg><rect/></svg>'
+    allow(InlineSvg::AssetFile).to receive(:named).with('fallback.svg').and_return(fallback_svg)
+    data_url = helper.inline_svg_data_url('missing.svg', fallback: 'fallback.svg')
+    decoded = data_url.sub('data:image/svg+xml;base64,', '').unpack1('m0')
+    expect(decoded).to include('<svg><rect></rect></svg>')
+  end
+
+  it 'returns a placeholder SVG as base64 data URL if file is missing and no fallback' do
+    allow(InlineSvg::AssetFile).to receive(:named).with('missing.svg').and_raise(InlineSvg::AssetFile::FileNotFound.new)
+    data_url = helper.inline_svg_data_url('missing.svg')
+    decoded = data_url.sub('data:image/svg+xml;base64,', '').unpack1('m0')
+    expect(decoded).to include('<svg></svg>')
+  end
+
+  it 'escapes malicious input in placeholder SVG as base64 data URL' do
+    malicious = "--></svg><script>alert(1)</script><svg>.svg"
+    allow(InlineSvg::AssetFile).to receive(:named).with(malicious).and_raise(InlineSvg::AssetFile::FileNotFound.new)
+    data_url = helper.inline_svg_data_url(malicious)
+    decoded = data_url.sub('data:image/svg+xml;base64,', '').unpack1('m0')
+    expect(decoded).to include('<svg></svg>')
+  end
 end
