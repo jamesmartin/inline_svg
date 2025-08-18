@@ -2,7 +2,6 @@
 
 require 'action_view/helpers' if defined?(Rails)
 require 'action_view/context' if defined?(Rails)
-require 'base64'
 
 module InlineSvg
   module ActionView
@@ -27,7 +26,7 @@ module InlineSvg
         svg = render_inline_svg(filename, transform_params)
         svg = svg.sub(/<\?xml.*?\?>/, "").strip
         svg = svg.gsub(/\s+/, " ")
-        base64 = Base64.strict_encode64(svg)
+        base64 = [svg].pack("m0")
         "data:image/svg+xml;base64,#{base64}"
       end
 
