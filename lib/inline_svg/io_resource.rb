@@ -3,7 +3,7 @@
 module InlineSvg
   module IOResource
     def self.===(object)
-      object.is_a?(IO) || object.is_a?(StringIO)
+      object.is_a?(IO) || object.is_a?(StringIO) || object.is_a?(Tempfile)
     end
 
     def self.read(object)

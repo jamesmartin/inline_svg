@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Freeze string literals. [#172](https://github.com/jamesmartin/inline_svg/pull/172). Thanks, [@tagliala](https://github.com/tagliala)
 - Fix thread-local variable leakage in `with_asset_finder`. [#185](https://github.com/jamesmartin/inline_svg/pull/185). Thanks, [@tagliala](https://github.com/tagliala)
 - Remove unused `InlineSvg::IOResource.default_for` method. [#187](https://github.com/jamesmartin/inline_svg/pull/187). Thanks, [@tagliala](https://github.com/tagliala)
+- Add support for Tempfile. [#186](https://github.com/jamesmartin/inline_svg/pull/186). Thanks, [@javierav](https://github.com/javierav)
 
 ## [1.10.0] - 2024-09-03
 ### Added
