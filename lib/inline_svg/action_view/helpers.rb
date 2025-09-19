@@ -22,6 +22,15 @@ module InlineSvg
         render_inline_svg(filename, transform_params)
       end
 
+      def inline_svg_data_url(filename, transform_params = {})
+        svg = render_inline_svg(filename, transform_params)
+        svg = svg.sub(/<\?xml.*?\?>/, "").strip
+        svg = svg.gsub(/<!--.*?-->/m, "")
+        svg = svg.gsub(/\s+/, " ")
+        base64 = [svg].pack("m0")
+        "data:image/svg+xml;base64,#{base64}"
+      end
+
       private
 
       def render_inline_svg(filename, transform_params = {})
